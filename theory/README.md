@@ -4,7 +4,7 @@ CS fundamentals and design, with diagrams. GitHub renders the Mermaid blocks nat
 
 | Track | Weeks | Files |
 |---|---|---|
-| [Operating Systems](os/) | 1–5 | 5 |
+| [Operating Systems](os/) | 1–5 | **9** |
 | [Computer Networks](networks/) | 6–10 | **8** |
 | [DBMS](dbms/) | 11–13 | **5** |
 | [OOP & Low Level Design](lld/) | 14–17 | **7** |
