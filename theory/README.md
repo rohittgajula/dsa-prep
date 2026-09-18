@@ -6,10 +6,14 @@ CS fundamentals and design, with diagrams. GitHub renders the Mermaid blocks nat
 |---|---|---|
 | [Operating Systems](os/) | 1–5 | 5 |
 | [Computer Networks](networks/) | 6–10 | 5 |
-| [DBMS](dbms/) | 11–13 | 1 |
+| [DBMS](dbms/) | 11–13 | 3 |
 | [OOP & Low Level Design](lld/) | 14–17 | 1 |
-| [System Design](system-design/) | 18–26 | 1 |
-| [AI / LLM Systems](ai/) | 27–35 | 1 |
+| [System Design](system-design/) | 18–26 | **9** |
+| [AI / LLM Systems](ai/) | 27–35 | **4** |
+
+Every component in the System Design and AI sections follows the same shape:
+**what it is → the problem it solves → how it works (diagram) → advantages →
+disadvantages → when to use and when NOT to.**
 
 ## How the tracks connect
 
