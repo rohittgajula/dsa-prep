@@ -124,3 +124,14 @@ O(n) time, O(h) stack space.
 - [337. House Robber III](https://leetcode.com/problems/house-robber-iii/) — Medium
 - [124. Binary Tree Maximum Path Sum](https://leetcode.com/problems/binary-tree-maximum-path-sum/) — Hard
 - [968. Binary Tree Cameras](https://leetcode.com/problems/binary-tree-cameras/) — Hard
+
+---
+
+## All problems in this pattern
+
+**DP Tree** — 2 problems (1 core). Full list with dates and checkboxes: [`solutions/38-dp-tree/`](../../solutions/38-dp-tree/)
+
+| # | Problem | Diff | Tier |
+|---|---|---|---|
+| 337 | [House Robber Iii](https://leetcode.com/problems/house-robber-iii/) | Medium | **Core** |
+| 968 | [Binary Tree Cameras](https://leetcode.com/problems/binary-tree-cameras/) | Hard | _opt_ |

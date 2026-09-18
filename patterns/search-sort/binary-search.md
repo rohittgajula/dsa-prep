@@ -104,3 +104,28 @@ O(log n) time, O(1) space.
 - [704. Binary Search](https://leetcode.com/problems/binary-search/) — Easy
 - [34. Find First and Last Position](https://leetcode.com/problems/find-first-and-last-position-of-element-in-sorted-array/) — Medium
 - [33. Search in Rotated Sorted Array](https://leetcode.com/problems/search-in-rotated-sorted-array/) — Medium
+
+---
+
+## All problems in this pattern
+
+**Binary Search** — 16 problems (11 core). Full list with dates and checkboxes: [`solutions/07-binary-search/`](../../solutions/07-binary-search/)
+
+| # | Problem | Diff | Tier |
+|---|---|---|---|
+| 33 | [Search In Rotated Sorted Array](https://leetcode.com/problems/search-in-rotated-sorted-array/) | Medium | **Core** |
+| 34 | [Find First And Last Position Of Element In Sorted Array](https://leetcode.com/problems/find-first-and-last-position-of-element-in-sorted-array/) | Medium | **Core** |
+| 35 | [Search Insert Position](https://leetcode.com/problems/search-insert-position/) | Easy | **Core** |
+| 69 | [Sqrtx](https://leetcode.com/problems/sqrtx/) | Easy | **Core** |
+| 74 | [Search A 2D Matrix](https://leetcode.com/problems/search-a-2d-matrix/) | Medium | **Core** |
+| 81 | [Search In Rotated Sorted Array Ii](https://leetcode.com/problems/search-in-rotated-sorted-array-ii/) | Medium | _opt_ |
+| 153 | [Find Minimum In Rotated Sorted Array](https://leetcode.com/problems/find-minimum-in-rotated-sorted-array/) | Medium | **Core** |
+| 154 | [Find Minimum In Rotated Sorted Array Ii](https://leetcode.com/problems/find-minimum-in-rotated-sorted-array-ii/) | Hard | _opt_ |
+| 162 | [Find Peak Element](https://leetcode.com/problems/find-peak-element/) | Medium | **Core** |
+| 240 | [Search A 2D Matrix Ii](https://leetcode.com/problems/search-a-2d-matrix-ii/) | Medium | **Core** |
+| 278 | [First Bad Version](https://leetcode.com/problems/first-bad-version/) | Easy | **Core** |
+| 367 | [Valid Perfect Square](https://leetcode.com/problems/valid-perfect-square/) | Easy | _opt_ |
+| 540 | [Single Element In A Sorted Array](https://leetcode.com/problems/single-element-in-a-sorted-array/) | Medium | **Core** |
+| 658 | [Find K Closest Elements](https://leetcode.com/problems/find-k-closest-elements/) | Medium | _opt_ |
+| 704 | [Binary Search](https://leetcode.com/problems/binary-search/) | Easy | **Core** |
+| 852 | [Peak Index In A Mountain Array](https://leetcode.com/problems/peak-index-in-a-mountain-array/) | Medium | _opt_ |

@@ -121,3 +121,22 @@ O(n log n), dominated by the sort.
 - [435. Non-overlapping Intervals](https://leetcode.com/problems/non-overlapping-intervals/) — Medium
 - [452. Minimum Arrows to Burst Balloons](https://leetcode.com/problems/minimum-number-of-arrows-to-burst-balloons/) — Medium
 - [55. Jump Game](https://leetcode.com/problems/jump-game/) — Medium
+
+---
+
+## All problems in this pattern
+
+**Greedy** — 10 problems (4 core). Full list with dates and checkboxes: [`solutions/31-greedy/`](../../solutions/31-greedy/)
+
+| # | Problem | Diff | Tier |
+|---|---|---|---|
+| 45 | [Jump Game Ii](https://leetcode.com/problems/jump-game-ii/) | Medium | **Core** |
+| 55 | [Jump Game](https://leetcode.com/problems/jump-game/) | Medium | **Core** |
+| 122 | [Best Time To Buy And Sell Stock Ii](https://leetcode.com/problems/best-time-to-buy-and-sell-stock-ii/) | Medium | **Core** |
+| 134 | [Gas Station](https://leetcode.com/problems/gas-station/) | Medium | **Core** |
+| 135 | [Candy](https://leetcode.com/problems/candy/) | Hard | _opt_ |
+| 406 | [Queue Reconstruction By Height](https://leetcode.com/problems/queue-reconstruction-by-height/) | Medium | _opt_ |
+| 455 | [Assign Cookies](https://leetcode.com/problems/assign-cookies/) | Easy | _opt_ |
+| 605 | [Can Place Flowers](https://leetcode.com/problems/can-place-flowers/) | Easy | _opt_ |
+| 678 | [Valid Parenthesis String](https://leetcode.com/problems/valid-parenthesis-string/) | Medium | _opt_ |
+| 860 | [Lemonade Change](https://leetcode.com/problems/lemonade-change/) | Easy | _opt_ |

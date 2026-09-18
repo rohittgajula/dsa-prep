@@ -93,3 +93,26 @@ O(n) time, O(1) space.
 - [53. Maximum Subarray](https://leetcode.com/problems/maximum-subarray/) — Medium
 - [152. Maximum Product Subarray](https://leetcode.com/problems/maximum-product-subarray/) — Medium
 - [918. Maximum Sum Circular Subarray](https://leetcode.com/problems/maximum-sum-circular-subarray/) — Medium
+
+---
+
+## All problems in this pattern
+
+**Array Basics** — 14 problems (11 core). Full list with dates and checkboxes: [`solutions/01-array-basics/`](../../solutions/01-array-basics/)
+
+| # | Problem | Diff | Tier |
+|---|---|---|---|
+| 1 | [Two Sum](https://leetcode.com/problems/two-sum/) | Easy | **Core** |
+| 26 | [Remove Duplicates From Sorted Array](https://leetcode.com/problems/remove-duplicates-from-sorted-array/) | Easy | **Core** |
+| 27 | [Remove Element](https://leetcode.com/problems/remove-element/) | Easy | **Core** |
+| 66 | [Plus One](https://leetcode.com/problems/plus-one/) | Easy | **Core** |
+| 53 | [Maximum Subarray](https://leetcode.com/problems/maximum-subarray/) | Medium | **Core** |
+| 88 | [Merge Sorted Array](https://leetcode.com/problems/merge-sorted-array/) | Easy | **Core** |
+| 121 | [Best Time To Buy And Sell Stock](https://leetcode.com/problems/best-time-to-buy-and-sell-stock/) | Easy | **Core** |
+| 169 | [Majority Element](https://leetcode.com/problems/majority-element/) | Easy | **Core** |
+| 283 | [Move Zeroes](https://leetcode.com/problems/move-zeroes/) | Easy | **Core** |
+| 485 | [Max Consecutive Ones](https://leetcode.com/problems/max-consecutive-ones/) | Easy | **Core** |
+| 1480 | [Running Sum Of 1D Array](https://leetcode.com/problems/running-sum-of-1d-array/) | Easy | **Core** |
+| 1512 | [Number Of Good Pairs](https://leetcode.com/problems/number-of-good-pairs/) | Easy | _opt_ |
+| 1672 | [Richest Customer Wealth](https://leetcode.com/problems/richest-customer-wealth/) | Easy | _opt_ |
+| 1929 | [Concatenation Of Array](https://leetcode.com/problems/concatenation-of-array/) | Easy | _opt_ |

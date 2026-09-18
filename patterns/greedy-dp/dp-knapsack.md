@@ -144,3 +144,20 @@ This is **pseudo-polynomial** — linear in the *value* of the capacity, not its
 - [416. Partition Equal Subset Sum](https://leetcode.com/problems/partition-equal-subset-sum/) — Medium
 - [322. Coin Change](https://leetcode.com/problems/coin-change/) — Medium
 - [494. Target Sum](https://leetcode.com/problems/target-sum/) — Medium
+
+---
+
+## All problems in this pattern
+
+**DP Knapsack** — 8 problems (4 core). Full list with dates and checkboxes: [`solutions/32-dp-knapsack/`](../../solutions/32-dp-knapsack/)
+
+| # | Problem | Diff | Tier |
+|---|---|---|---|
+| 322 | [Coin Change](https://leetcode.com/problems/coin-change/) | Medium | **Core** |
+| 377 | [Combination Sum Iv](https://leetcode.com/problems/combination-sum-iv/) | Medium | _opt_ |
+| 416 | [Partition Equal Subset Sum](https://leetcode.com/problems/partition-equal-subset-sum/) | Medium | **Core** |
+| 474 | [Ones And Zeroes](https://leetcode.com/problems/ones-and-zeroes/) | Medium | _opt_ |
+| 494 | [Target Sum](https://leetcode.com/problems/target-sum/) | Medium | **Core** |
+| 518 | [Coin Change Ii](https://leetcode.com/problems/coin-change-ii/) | Medium | **Core** |
+| 983 | [Minimum Cost For Tickets](https://leetcode.com/problems/minimum-cost-for-tickets/) | Medium | _opt_ |
+| 1049 | [Last Stone Weight Ii](https://leetcode.com/problems/last-stone-weight-ii/) | Medium | _opt_ |

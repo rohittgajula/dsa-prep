@@ -76,3 +76,28 @@ O(n) time, O(1) space, single pass.
 - [75. Sort Colors](https://leetcode.com/problems/sort-colors/) — Medium
 - [283. Move Zeroes](https://leetcode.com/problems/move-zeroes/) — Easy
 - [905. Sort Array By Parity](https://leetcode.com/problems/sort-array-by-parity/) — Easy
+
+---
+
+## All problems in this pattern
+
+**Two Pointers** — 16 problems (12 core). Full list with dates and checkboxes: [`solutions/02-two-pointers/`](../../solutions/02-two-pointers/)
+
+| # | Problem | Diff | Tier |
+|---|---|---|---|
+| 11 | [Container With Most Water](https://leetcode.com/problems/container-with-most-water/) | Medium | **Core** |
+| 15 | [3Sum](https://leetcode.com/problems/3sum/) | Medium | **Core** |
+| 16 | [3Sum Closest](https://leetcode.com/problems/3sum-closest/) | Medium | _opt_ |
+| 18 | [4Sum](https://leetcode.com/problems/4sum/) | Medium | _opt_ |
+| 31 | [Next Permutation](https://leetcode.com/problems/next-permutation/) | Medium | **Core** |
+| 42 | [Trapping Rain Water](https://leetcode.com/problems/trapping-rain-water/) | Hard | _opt_ |
+| 75 | [Sort Colors](https://leetcode.com/problems/sort-colors/) | Medium | **Core** |
+| 80 | [Remove Duplicates From Sorted Array Ii](https://leetcode.com/problems/remove-duplicates-from-sorted-array-ii/) | Medium | **Core** |
+| 125 | [Valid Palindrome](https://leetcode.com/problems/valid-palindrome/) | Easy | **Core** |
+| 167 | [Two Sum Ii Input Array Is Sorted](https://leetcode.com/problems/two-sum-ii-input-array-is-sorted/) | Medium | **Core** |
+| 189 | [Rotate Array](https://leetcode.com/problems/rotate-array/) | Medium | **Core** |
+| 287 | [Find The Duplicate Number](https://leetcode.com/problems/find-the-duplicate-number/) | Medium | **Core** |
+| 344 | [Reverse String](https://leetcode.com/problems/reverse-string/) | Easy | **Core** |
+| 680 | [Valid Palindrome Ii](https://leetcode.com/problems/valid-palindrome-ii/) | Easy | **Core** |
+| 905 | [Sort Array By Parity](https://leetcode.com/problems/sort-array-by-parity/) | Easy | _opt_ |
+| 977 | [Squares Of A Sorted Array](https://leetcode.com/problems/squares-of-a-sorted-array/) | Easy | **Core** |

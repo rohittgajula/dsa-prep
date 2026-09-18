@@ -103,3 +103,26 @@ O(n) build, **O(1) per query**. O(n) extra space.
 - [303. Range Sum Query — Immutable](https://leetcode.com/problems/range-sum-query-immutable/) — Easy
 - [724. Find Pivot Index](https://leetcode.com/problems/find-pivot-index/) — Easy
 - [238. Product of Array Except Self](https://leetcode.com/problems/product-of-array-except-self/) — Medium
+
+---
+
+## All problems in this pattern
+
+**Prefix Sum** — 14 problems (10 core). Full list with dates and checkboxes: [`solutions/04-prefix-sum/`](../../solutions/04-prefix-sum/)
+
+| # | Problem | Diff | Tier |
+|---|---|---|---|
+| 238 | [Product Of Array Except Self](https://leetcode.com/problems/product-of-array-except-self/) | Medium | **Core** |
+| 303 | [Range Sum Query Immutable](https://leetcode.com/problems/range-sum-query-immutable/) | Easy | **Core** |
+| 304 | [Range Sum Query 2D Immutable](https://leetcode.com/problems/range-sum-query-2d-immutable/) | Medium | **Core** |
+| 523 | [Continuous Subarray Sum](https://leetcode.com/problems/continuous-subarray-sum/) | Medium | **Core** |
+| 525 | [Contiguous Array](https://leetcode.com/problems/contiguous-array/) | Medium | **Core** |
+| 560 | [Subarray Sum Equals K](https://leetcode.com/problems/subarray-sum-equals-k/) | Medium | **Core** |
+| 724 | [Find Pivot Index](https://leetcode.com/problems/find-pivot-index/) | Easy | **Core** |
+| 930 | [Binary Subarrays With Sum](https://leetcode.com/problems/binary-subarrays-with-sum/) | Medium | _opt_ |
+| 974 | [Subarray Sums Divisible By K](https://leetcode.com/problems/subarray-sums-divisible-by-k/) | Medium | **Core** |
+| 1094 | [Car Pooling](https://leetcode.com/problems/car-pooling/) | Medium | **Core** |
+| 1109 | [Corporate Flight Bookings](https://leetcode.com/problems/corporate-flight-bookings/) | Medium | _opt_ |
+| 1248 | [Count Number Of Nice Subarrays](https://leetcode.com/problems/count-number-of-nice-subarrays/) | Medium | **Core** |
+| 1314 | [Matrix Block Sum](https://leetcode.com/problems/matrix-block-sum/) | Medium | _opt_ |
+| 1893 | [Check If All The Integers In A Range Are Covered](https://leetcode.com/problems/check-if-all-the-integers-in-a-range-are-covered/) | Easy | _opt_ |

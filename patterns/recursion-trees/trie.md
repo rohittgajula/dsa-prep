@@ -155,3 +155,23 @@ def find_words(board: list[list[str]], words: list[str]) -> list[str]:
 - [208. Implement Trie](https://leetcode.com/problems/implement-trie-prefix-tree/) — Medium
 - [211. Design Add and Search Words](https://leetcode.com/problems/design-add-and-search-words-data-structure/) — Medium
 - [212. Word Search II](https://leetcode.com/problems/word-search-ii/) — Hard
+
+---
+
+## All problems in this pattern
+
+**Trie** — 11 problems (5 core). Full list with dates and checkboxes: [`solutions/21-trie/`](../../solutions/21-trie/)
+
+| # | Problem | Diff | Tier |
+|---|---|---|---|
+| 208 | [Implement Trie Prefix Tree](https://leetcode.com/problems/implement-trie-prefix-tree/) | Medium | **Core** |
+| 211 | [Design Add And Search Words Data Structure](https://leetcode.com/problems/design-add-and-search-words-data-structure/) | Medium | **Core** |
+| 212 | [Word Search Ii](https://leetcode.com/problems/word-search-ii/) | Hard | **Core** |
+| 421 | [Maximum Xor Of Two Numbers In An Array](https://leetcode.com/problems/maximum-xor-of-two-numbers-in-an-array/) | Medium | **Core** |
+| 472 | [Concatenated Words](https://leetcode.com/problems/concatenated-words/) | Hard | _opt_ |
+| 648 | [Replace Words](https://leetcode.com/problems/replace-words/) | Medium | _opt_ |
+| 676 | [Implement Magic Dictionary](https://leetcode.com/problems/implement-magic-dictionary/) | Medium | _opt_ |
+| 677 | [Map Sum Pairs](https://leetcode.com/problems/map-sum-pairs/) | Medium | _opt_ |
+| 745 | [Prefix And Suffix Search](https://leetcode.com/problems/prefix-and-suffix-search/) | Hard | _opt_ |
+| 1268 | [Search Suggestions System](https://leetcode.com/problems/search-suggestions-system/) | Medium | **Core** |
+| 1707 | [Maximum Xor With An Element From Array](https://leetcode.com/problems/maximum-xor-with-an-element-from-array/) | Hard | _opt_ |

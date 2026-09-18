@@ -134,3 +134,28 @@ def lowest_common_ancestor(root, p, q):
 - [98. Validate Binary Search Tree](https://leetcode.com/problems/validate-binary-search-tree/) — Medium
 - [230. Kth Smallest Element in a BST](https://leetcode.com/problems/kth-smallest-element-in-a-bst/) — Medium
 - [235. LCA of a BST](https://leetcode.com/problems/lowest-common-ancestor-of-a-binary-search-tree/) — Medium
+
+---
+
+## All problems in this pattern
+
+**BST** — 16 problems (8 core). Full list with dates and checkboxes: [`solutions/20-bst/`](../../solutions/20-bst/)
+
+| # | Problem | Diff | Tier |
+|---|---|---|---|
+| 96 | [Unique Binary Search Trees](https://leetcode.com/problems/unique-binary-search-trees/) | Medium | _opt_ |
+| 98 | [Validate Binary Search Tree](https://leetcode.com/problems/validate-binary-search-tree/) | Medium | **Core** |
+| 99 | [Recover Binary Search Tree](https://leetcode.com/problems/recover-binary-search-tree/) | Medium | _opt_ |
+| 108 | [Convert Sorted Array To Binary Search Tree](https://leetcode.com/problems/convert-sorted-array-to-binary-search-tree/) | Easy | **Core** |
+| 109 | [Convert Sorted List To Binary Search Tree](https://leetcode.com/problems/convert-sorted-list-to-binary-search-tree/) | Medium | _opt_ |
+| 173 | [Binary Search Tree Iterator](https://leetcode.com/problems/binary-search-tree-iterator/) | Medium | **Core** |
+| 230 | [Kth Smallest Element In A Bst](https://leetcode.com/problems/kth-smallest-element-in-a-bst/) | Medium | **Core** |
+| 235 | [Lowest Common Ancestor Of A Binary Search Tree](https://leetcode.com/problems/lowest-common-ancestor-of-a-binary-search-tree/) | Medium | **Core** |
+| 450 | [Delete Node In A Bst](https://leetcode.com/problems/delete-node-in-a-bst/) | Medium | **Core** |
+| 501 | [Find Mode In Binary Search Tree](https://leetcode.com/problems/find-mode-in-binary-search-tree/) | Easy | _opt_ |
+| 538 | [Convert Bst To Greater Tree](https://leetcode.com/problems/convert-bst-to-greater-tree/) | Medium | _opt_ |
+| 653 | [Two Sum Iv Input Is A Bst](https://leetcode.com/problems/two-sum-iv-input-is-a-bst/) | Easy | _opt_ |
+| 700 | [Search In A Binary Search Tree](https://leetcode.com/problems/search-in-a-binary-search-tree/) | Easy | **Core** |
+| 701 | [Insert Into A Binary Search Tree](https://leetcode.com/problems/insert-into-a-binary-search-tree/) | Medium | **Core** |
+| 938 | [Range Sum Of Bst](https://leetcode.com/problems/range-sum-of-bst/) | Easy | _opt_ |
+| 1382 | [Balance A Binary Search Tree](https://leetcode.com/problems/balance-a-binary-search-tree/) | Medium | _opt_ |

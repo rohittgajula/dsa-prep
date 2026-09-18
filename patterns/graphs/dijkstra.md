@@ -142,3 +142,19 @@ O(E log V) with a binary heap. O(V) space.
 - [743. Network Delay Time](https://leetcode.com/problems/network-delay-time/) — Medium
 - [1631. Path With Minimum Effort](https://leetcode.com/problems/path-with-minimum-effort/) — Medium
 - [787. Cheapest Flights Within K Stops](https://leetcode.com/problems/cheapest-flights-within-k-stops/) — Medium
+
+---
+
+## All problems in this pattern
+
+**Shortest Path** — 7 problems (4 core). Full list with dates and checkboxes: [`solutions/27-shortest-path/`](../../solutions/27-shortest-path/)
+
+| # | Problem | Diff | Tier |
+|---|---|---|---|
+| 399 | [Evaluate Division](https://leetcode.com/problems/evaluate-division/) | Medium | **Core** |
+| 743 | [Network Delay Time](https://leetcode.com/problems/network-delay-time/) | Medium | **Core** |
+| 778 | [Swim In Rising Water](https://leetcode.com/problems/swim-in-rising-water/) | Hard | _opt_ |
+| 787 | [Cheapest Flights Within K Stops](https://leetcode.com/problems/cheapest-flights-within-k-stops/) | Medium | **Core** |
+| 1514 | [Path With Maximum Probability](https://leetcode.com/problems/path-with-maximum-probability/) | Medium | _opt_ |
+| 1631 | [Path With Minimum Effort](https://leetcode.com/problems/path-with-minimum-effort/) | Medium | **Core** |
+| 1976 | [Number Of Ways To Arrive At Destination](https://leetcode.com/problems/number-of-ways-to-arrive-at-destination/) | Medium | _opt_ |

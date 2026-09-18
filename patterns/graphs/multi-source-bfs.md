@@ -114,3 +114,30 @@ O(V + E) — identical to single-source BFS, regardless of how many sources ther
 - [994. Rotting Oranges](https://leetcode.com/problems/rotting-oranges/) — Medium
 - [542. 01 Matrix](https://leetcode.com/problems/01-matrix/) — Medium
 - [1926. Nearest Exit from Entrance in Maze](https://leetcode.com/problems/nearest-exit-from-entrance-in-maze/) — Medium
+
+---
+
+## All problems in this pattern
+
+**Graph BFS/DFS** — 18 problems (10 core). Full list with dates and checkboxes: [`solutions/22-graph-bfs-dfs/`](../../solutions/22-graph-bfs-dfs/)
+
+| # | Problem | Diff | Tier |
+|---|---|---|---|
+| 130 | [Surrounded Regions](https://leetcode.com/problems/surrounded-regions/) | Medium | **Core** |
+| 133 | [Clone Graph](https://leetcode.com/problems/clone-graph/) | Medium | **Core** |
+| 200 | [Number Of Islands](https://leetcode.com/problems/number-of-islands/) | Medium | **Core** |
+| 329 | [Longest Increasing Path In A Matrix](https://leetcode.com/problems/longest-increasing-path-in-a-matrix/) | Hard | _opt_ |
+| 417 | [Pacific Atlantic Water Flow](https://leetcode.com/problems/pacific-atlantic-water-flow/) | Medium | **Core** |
+| 463 | [Island Perimeter](https://leetcode.com/problems/island-perimeter/) | Easy | _opt_ |
+| 542 | [01 Matrix](https://leetcode.com/problems/01-matrix/) | Medium | **Core** |
+| 547 | [Number Of Provinces](https://leetcode.com/problems/number-of-provinces/) | Medium | **Core** |
+| 695 | [Max Area Of Island](https://leetcode.com/problems/max-area-of-island/) | Medium | **Core** |
+| 733 | [Flood Fill](https://leetcode.com/problems/flood-fill/) | Easy | **Core** |
+| 797 | [All Paths From Source To Target](https://leetcode.com/problems/all-paths-from-source-to-target/) | Medium | _opt_ |
+| 841 | [Keys And Rooms](https://leetcode.com/problems/keys-and-rooms/) | Medium | _opt_ |
+| 994 | [Rotting Oranges](https://leetcode.com/problems/rotting-oranges/) | Medium | **Core** |
+| 1020 | [Number Of Enclaves](https://leetcode.com/problems/number-of-enclaves/) | Medium | _opt_ |
+| 1091 | [Shortest Path In Binary Matrix](https://leetcode.com/problems/shortest-path-in-binary-matrix/) | Medium | **Core** |
+| 1254 | [Number Of Closed Islands](https://leetcode.com/problems/number-of-closed-islands/) | Medium | _opt_ |
+| 1926 | [Nearest Exit From Entrance In Maze](https://leetcode.com/problems/nearest-exit-from-entrance-in-maze/) | Medium | _opt_ |
+| 1971 | [Find If Path Exists In Graph](https://leetcode.com/problems/find-if-path-exists-in-graph/) | Easy | _opt_ |

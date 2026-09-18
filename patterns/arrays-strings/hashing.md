@@ -90,3 +90,26 @@ O(n) time, O(n) space. Worst-case O(n) per lookup with adversarial hash collisio
 - [242. Valid Anagram](https://leetcode.com/problems/valid-anagram/) — Easy
 - [49. Group Anagrams](https://leetcode.com/problems/group-anagrams/) — Medium
 - [128. Longest Consecutive Sequence](https://leetcode.com/problems/longest-consecutive-sequence/) — Medium
+
+---
+
+## All problems in this pattern
+
+**Hashing** — 14 problems (10 core). Full list with dates and checkboxes: [`solutions/05-hashing/`](../../solutions/05-hashing/)
+
+| # | Problem | Diff | Tier |
+|---|---|---|---|
+| 36 | [Valid Sudoku](https://leetcode.com/problems/valid-sudoku/) | Medium | **Core** |
+| 49 | [Group Anagrams](https://leetcode.com/problems/group-anagrams/) | Medium | **Core** |
+| 128 | [Longest Consecutive Sequence](https://leetcode.com/problems/longest-consecutive-sequence/) | Medium | **Core** |
+| 149 | [Max Points On A Line](https://leetcode.com/problems/max-points-on-a-line/) | Hard | _opt_ |
+| 205 | [Isomorphic Strings](https://leetcode.com/problems/isomorphic-strings/) | Easy | **Core** |
+| 217 | [Contains Duplicate](https://leetcode.com/problems/contains-duplicate/) | Easy | **Core** |
+| 242 | [Valid Anagram](https://leetcode.com/problems/valid-anagram/) | Easy | **Core** |
+| 290 | [Word Pattern](https://leetcode.com/problems/word-pattern/) | Easy | _opt_ |
+| 347 | [Top K Frequent Elements](https://leetcode.com/problems/top-k-frequent-elements/) | Medium | **Core** |
+| 383 | [Ransom Note](https://leetcode.com/problems/ransom-note/) | Easy | **Core** |
+| 387 | [First Unique Character In A String](https://leetcode.com/problems/first-unique-character-in-a-string/) | Easy | **Core** |
+| 454 | [4Sum Ii](https://leetcode.com/problems/4sum-ii/) | Medium | _opt_ |
+| 763 | [Partition Labels](https://leetcode.com/problems/partition-labels/) | Medium | **Core** |
+| 771 | [Jewels And Stones](https://leetcode.com/problems/jewels-and-stones/) | Easy | _opt_ |

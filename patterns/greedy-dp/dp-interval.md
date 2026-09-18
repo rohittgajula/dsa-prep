@@ -132,3 +132,17 @@ n ≤ ~500 in practice.
 - [312. Burst Balloons](https://leetcode.com/problems/burst-balloons/) — Hard
 - [1547. Minimum Cost to Cut a Stick](https://leetcode.com/problems/minimum-cost-to-cut-a-stick/) — Hard
 - [132. Palindrome Partitioning II](https://leetcode.com/problems/palindrome-partitioning-ii/) — Hard
+
+---
+
+## All problems in this pattern
+
+**DP Interval** — 5 problems (1 core). Full list with dates and checkboxes: [`solutions/37-dp-interval/`](../../solutions/37-dp-interval/)
+
+| # | Problem | Diff | Tier |
+|---|---|---|---|
+| 132 | [Palindrome Partitioning Ii](https://leetcode.com/problems/palindrome-partitioning-ii/) | Hard | _opt_ |
+| 312 | [Burst Balloons](https://leetcode.com/problems/burst-balloons/) | Hard | **Core** |
+| 877 | [Stone Game](https://leetcode.com/problems/stone-game/) | Medium | _opt_ |
+| 1039 | [Minimum Score Triangulation Of Polygon](https://leetcode.com/problems/minimum-score-triangulation-of-polygon/) | Medium | _opt_ |
+| 1547 | [Minimum Cost To Cut A Stick](https://leetcode.com/problems/minimum-cost-to-cut-a-stick/) | Hard | _opt_ |

@@ -94,3 +94,30 @@ O(n²) time, **O(1) space**. Manacher's algorithm does it in O(n) but is rarely 
 - [5. Longest Palindromic Substring](https://leetcode.com/problems/longest-palindromic-substring/) — Medium
 - [647. Palindromic Substrings](https://leetcode.com/problems/palindromic-substrings/) — Medium
 - [680. Valid Palindrome II](https://leetcode.com/problems/valid-palindrome-ii/) — Easy
+
+---
+
+## All problems in this pattern
+
+**Strings** — 18 problems (11 core). Full list with dates and checkboxes: [`solutions/06-strings/`](../../solutions/06-strings/)
+
+| # | Problem | Diff | Tier |
+|---|---|---|---|
+| 5 | [Longest Palindromic Substring](https://leetcode.com/problems/longest-palindromic-substring/) | Medium | **Core** |
+| 6 | [Zigzag Conversion](https://leetcode.com/problems/zigzag-conversion/) | Medium | _opt_ |
+| 8 | [String To Integer Atoi](https://leetcode.com/problems/string-to-integer-atoi/) | Medium | **Core** |
+| 9 | [Palindrome Number](https://leetcode.com/problems/palindrome-number/) | Easy | **Core** |
+| 12 | [Integer To Roman](https://leetcode.com/problems/integer-to-roman/) | Medium | _opt_ |
+| 13 | [Roman To Integer](https://leetcode.com/problems/roman-to-integer/) | Easy | **Core** |
+| 14 | [Longest Common Prefix](https://leetcode.com/problems/longest-common-prefix/) | Easy | **Core** |
+| 28 | [Find The Index Of The First Occurrence In A String](https://leetcode.com/problems/find-the-index-of-the-first-occurrence-in-a-string/) | Easy | **Core** |
+| 43 | [Multiply Strings](https://leetcode.com/problems/multiply-strings/) | Medium | **Core** |
+| 58 | [Length Of Last Word](https://leetcode.com/problems/length-of-last-word/) | Easy | **Core** |
+| 68 | [Text Justification](https://leetcode.com/problems/text-justification/) | Hard | _opt_ |
+| 151 | [Reverse Words In A String](https://leetcode.com/problems/reverse-words-in-a-string/) | Medium | **Core** |
+| 214 | [Shortest Palindrome](https://leetcode.com/problems/shortest-palindrome/) | Hard | _opt_ |
+| 415 | [Add Strings](https://leetcode.com/problems/add-strings/) | Easy | **Core** |
+| 443 | [String Compression](https://leetcode.com/problems/string-compression/) | Medium | _opt_ |
+| 459 | [Repeated Substring Pattern](https://leetcode.com/problems/repeated-substring-pattern/) | Easy | _opt_ |
+| 647 | [Palindromic Substrings](https://leetcode.com/problems/palindromic-substrings/) | Medium | **Core** |
+| 796 | [Rotate String](https://leetcode.com/problems/rotate-string/) | Easy | _opt_ |

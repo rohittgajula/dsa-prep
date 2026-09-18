@@ -137,3 +137,24 @@ def nCr(n: int, r: int, fact, inv) -> int:
 - [50. Pow(x, n)](https://leetcode.com/problems/powx-n/) — Medium
 - [372. Super Pow](https://leetcode.com/problems/super-pow/) — Medium
 - [1922. Count Good Numbers](https://leetcode.com/problems/count-good-numbers/) — Medium
+
+---
+
+## All problems in this pattern
+
+**Math** — 12 problems (5 core). Full list with dates and checkboxes: [`solutions/41-math/`](../../solutions/41-math/)
+
+| # | Problem | Diff | Tier |
+|---|---|---|---|
+| 7 | [Reverse Integer](https://leetcode.com/problems/reverse-integer/) | Medium | **Core** |
+| 29 | [Divide Two Integers](https://leetcode.com/problems/divide-two-integers/) | Medium | _opt_ |
+| 166 | [Fraction To Recurring Decimal](https://leetcode.com/problems/fraction-to-recurring-decimal/) | Medium | _opt_ |
+| 172 | [Factorial Trailing Zeroes](https://leetcode.com/problems/factorial-trailing-zeroes/) | Medium | **Core** |
+| 202 | [Happy Number](https://leetcode.com/problems/happy-number/) | Easy | **Core** |
+| 204 | [Count Primes](https://leetcode.com/problems/count-primes/) | Medium | **Core** |
+| 233 | [Number Of Digit One](https://leetcode.com/problems/number-of-digit-one/) | Hard | _opt_ |
+| 382 | [Linked List Random Node](https://leetcode.com/problems/linked-list-random-node/) | Medium | _opt_ |
+| 384 | [Shuffle An Array](https://leetcode.com/problems/shuffle-an-array/) | Medium | _opt_ |
+| 398 | [Random Pick Index](https://leetcode.com/problems/random-pick-index/) | Medium | _opt_ |
+| 470 | [Implement Rand10 Using Rand7](https://leetcode.com/problems/implement-rand10-using-rand7/) | Medium | _opt_ |
+| 528 | [Random Pick With Weight](https://leetcode.com/problems/random-pick-with-weight/) | Medium | **Core** |

@@ -113,3 +113,17 @@ O(n log n) — dominated by the sort.
 - [56. Merge Intervals](https://leetcode.com/problems/merge-intervals/) — Medium
 - [57. Insert Interval](https://leetcode.com/problems/insert-interval/) — Medium
 - [435. Non-overlapping Intervals](https://leetcode.com/problems/non-overlapping-intervals/) — Medium
+
+---
+
+## All problems in this pattern
+
+**Intervals** — 5 problems (4 core). Full list with dates and checkboxes: [`solutions/10-intervals/`](../../solutions/10-intervals/)
+
+| # | Problem | Diff | Tier |
+|---|---|---|---|
+| 56 | [Merge Intervals](https://leetcode.com/problems/merge-intervals/) | Medium | **Core** |
+| 57 | [Insert Interval](https://leetcode.com/problems/insert-interval/) | Medium | **Core** |
+| 435 | [Non Overlapping Intervals](https://leetcode.com/problems/non-overlapping-intervals/) | Medium | **Core** |
+| 452 | [Minimum Number Of Arrows To Burst Balloons](https://leetcode.com/problems/minimum-number-of-arrows-to-burst-balloons/) | Medium | **Core** |
+| 986 | [Interval List Intersections](https://leetcode.com/problems/interval-list-intersections/) | Medium | _opt_ |

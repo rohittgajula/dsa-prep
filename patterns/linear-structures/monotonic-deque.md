@@ -95,3 +95,20 @@ O(n) time — each index enters and leaves the deque once. O(k) space.
 - [239. Sliding Window Maximum](https://leetcode.com/problems/sliding-window-maximum/) — Hard
 - [1438. Longest Subarray with Absolute Diff ≤ Limit](https://leetcode.com/problems/longest-continuous-subarray-with-absolute-diff-less-than-or-equal-to-limit/) — Medium
 - [862. Shortest Subarray with Sum at Least K](https://leetcode.com/problems/shortest-subarray-with-sum-at-least-k/) — Hard
+
+---
+
+## All problems in this pattern
+
+**Queue / Deque** — 8 problems (8 core). Full list with dates and checkboxes: [`solutions/15-queue-deque/`](../../solutions/15-queue-deque/)
+
+| # | Problem | Diff | Tier |
+|---|---|---|---|
+| 239 | [Sliding Window Maximum](https://leetcode.com/problems/sliding-window-maximum/) | Hard | **Core** |
+| 622 | [Design Circular Queue](https://leetcode.com/problems/design-circular-queue/) | Medium | **Core** |
+| 649 | [Dota2 Senate](https://leetcode.com/problems/dota2-senate/) | Medium | **Core** |
+| 862 | [Shortest Subarray With Sum At Least K](https://leetcode.com/problems/shortest-subarray-with-sum-at-least-k/) | Hard | **Core** |
+| 918 | [Maximum Sum Circular Subarray](https://leetcode.com/problems/maximum-sum-circular-subarray/) | Medium | **Core** |
+| 933 | [Number Of Recent Calls](https://leetcode.com/problems/number-of-recent-calls/) | Easy | **Core** |
+| 950 | [Reveal Cards In Increasing Order](https://leetcode.com/problems/reveal-cards-in-increasing-order/) | Medium | **Core** |
+| 1438 | [Longest Continuous Subarray With Absolute Diff Less Than Or Equal To Limit](https://leetcode.com/problems/longest-continuous-subarray-with-absolute-diff-less-than-or-equal-to-limit/) | Medium | **Core** |

@@ -151,3 +151,20 @@ O(n) time, O(n) → **O(1)** space after optimisation.
 - [70. Climbing Stairs](https://leetcode.com/problems/climbing-stairs/) — Easy
 - [198. House Robber](https://leetcode.com/problems/house-robber/) — Medium
 - [91. Decode Ways](https://leetcode.com/problems/decode-ways/) — Medium
+
+---
+
+## All problems in this pattern
+
+**DP 1D** — 8 problems (6 core). Full list with dates and checkboxes: [`solutions/30-dp-1d/`](../../solutions/30-dp-1d/)
+
+| # | Problem | Diff | Tier |
+|---|---|---|---|
+| 91 | [Decode Ways](https://leetcode.com/problems/decode-ways/) | Medium | **Core** |
+| 139 | [Word Break](https://leetcode.com/problems/word-break/) | Medium | **Core** |
+| 152 | [Maximum Product Subarray](https://leetcode.com/problems/maximum-product-subarray/) | Medium | **Core** |
+| 198 | [House Robber](https://leetcode.com/problems/house-robber/) | Medium | **Core** |
+| 213 | [House Robber Ii](https://leetcode.com/problems/house-robber-ii/) | Medium | **Core** |
+| 279 | [Perfect Squares](https://leetcode.com/problems/perfect-squares/) | Medium | _opt_ |
+| 343 | [Integer Break](https://leetcode.com/problems/integer-break/) | Medium | _opt_ |
+| 746 | [Min Cost Climbing Stairs](https://leetcode.com/problems/min-cost-climbing-stairs/) | Easy | **Core** |

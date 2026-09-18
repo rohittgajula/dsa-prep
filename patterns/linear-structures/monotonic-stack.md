@@ -116,3 +116,21 @@ O(n) time — each index pushed and popped once. O(n) space.
 - [739. Daily Temperatures](https://leetcode.com/problems/daily-temperatures/) — Medium
 - [496. Next Greater Element I](https://leetcode.com/problems/next-greater-element-i/) — Easy
 - [84. Largest Rectangle in Histogram](https://leetcode.com/problems/largest-rectangle-in-histogram/) — Hard
+
+---
+
+## All problems in this pattern
+
+**Monotonic Stack** — 9 problems (4 core). Full list with dates and checkboxes: [`solutions/14-monotonic-stack/`](../../solutions/14-monotonic-stack/)
+
+| # | Problem | Diff | Tier |
+|---|---|---|---|
+| 84 | [Largest Rectangle In Histogram](https://leetcode.com/problems/largest-rectangle-in-histogram/) | Hard | **Core** |
+| 85 | [Maximal Rectangle](https://leetcode.com/problems/maximal-rectangle/) | Hard | _opt_ |
+| 316 | [Remove Duplicate Letters](https://leetcode.com/problems/remove-duplicate-letters/) | Medium | _opt_ |
+| 402 | [Remove K Digits](https://leetcode.com/problems/remove-k-digits/) | Medium | _opt_ |
+| 496 | [Next Greater Element I](https://leetcode.com/problems/next-greater-element-i/) | Easy | **Core** |
+| 503 | [Next Greater Element Ii](https://leetcode.com/problems/next-greater-element-ii/) | Medium | _opt_ |
+| 739 | [Daily Temperatures](https://leetcode.com/problems/daily-temperatures/) | Medium | **Core** |
+| 901 | [Online Stock Span](https://leetcode.com/problems/online-stock-span/) | Medium | **Core** |
+| 907 | [Sum Of Subarray Minimums](https://leetcode.com/problems/sum-of-subarray-minimums/) | Medium | _opt_ |

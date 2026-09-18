@@ -95,3 +95,25 @@ def find_kth_largest(nums: list[int], k: int) -> int:
 - [215. Kth Largest Element in an Array](https://leetcode.com/problems/kth-largest-element-in-an-array/) — Medium
 - [973. K Closest Points to Origin](https://leetcode.com/problems/k-closest-points-to-origin/) — Medium
 - [347. Top K Frequent Elements](https://leetcode.com/problems/top-k-frequent-elements/) — Medium
+
+---
+
+## All problems in this pattern
+
+**Sorting** — 13 problems (8 core). Full list with dates and checkboxes: [`solutions/09-sorting/`](../../solutions/09-sorting/)
+
+| # | Problem | Diff | Tier |
+|---|---|---|---|
+| 41 | [First Missing Positive](https://leetcode.com/problems/first-missing-positive/) | Hard | **Core** |
+| 164 | [Maximum Gap](https://leetcode.com/problems/maximum-gap/) | Medium | _opt_ |
+| 179 | [Largest Number](https://leetcode.com/problems/largest-number/) | Medium | **Core** |
+| 215 | [Kth Largest Element In An Array](https://leetcode.com/problems/kth-largest-element-in-an-array/) | Medium | **Core** |
+| 268 | [Missing Number](https://leetcode.com/problems/missing-number/) | Easy | **Core** |
+| 274 | [H Index](https://leetcode.com/problems/h-index/) | Medium | _opt_ |
+| 315 | [Count Of Smaller Numbers After Self](https://leetcode.com/problems/count-of-smaller-numbers-after-self/) | Hard | _opt_ |
+| 442 | [Find All Duplicates In An Array](https://leetcode.com/problems/find-all-duplicates-in-an-array/) | Medium | **Core** |
+| 448 | [Find All Numbers Disappeared In An Array](https://leetcode.com/problems/find-all-numbers-disappeared-in-an-array/) | Easy | **Core** |
+| 493 | [Reverse Pairs](https://leetcode.com/problems/reverse-pairs/) | Hard | _opt_ |
+| 912 | [Sort An Array](https://leetcode.com/problems/sort-an-array/) | Medium | **Core** |
+| 973 | [K Closest Points To Origin](https://leetcode.com/problems/k-closest-points-to-origin/) | Medium | **Core** |
+| 2418 | [Sort The People](https://leetcode.com/problems/sort-the-people/) | Easy | _opt_ |

@@ -127,3 +127,18 @@ def accounts_merge(accounts: list[list[str]]) -> list[list[str]]:
 - [684. Redundant Connection](https://leetcode.com/problems/redundant-connection/) — Medium
 - [721. Accounts Merge](https://leetcode.com/problems/accounts-merge/) — Medium
 - [1584. Min Cost to Connect All Points](https://leetcode.com/problems/min-cost-to-connect-all-points/) — Medium
+
+---
+
+## All problems in this pattern
+
+**Union-Find** — 6 problems (2 core). Full list with dates and checkboxes: [`solutions/25-union-find/`](../../solutions/25-union-find/)
+
+| # | Problem | Diff | Tier |
+|---|---|---|---|
+| 684 | [Redundant Connection](https://leetcode.com/problems/redundant-connection/) | Medium | **Core** |
+| 685 | [Redundant Connection Ii](https://leetcode.com/problems/redundant-connection-ii/) | Hard | _opt_ |
+| 721 | [Accounts Merge](https://leetcode.com/problems/accounts-merge/) | Medium | **Core** |
+| 839 | [Similar String Groups](https://leetcode.com/problems/similar-string-groups/) | Hard | _opt_ |
+| 990 | [Satisfiability Of Equality Equations](https://leetcode.com/problems/satisfiability-of-equality-equations/) | Medium | _opt_ |
+| 1319 | [Number Of Operations To Make Network Connected](https://leetcode.com/problems/number-of-operations-to-make-network-connected/) | Medium | _opt_ |

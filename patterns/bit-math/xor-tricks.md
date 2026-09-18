@@ -152,3 +152,21 @@ O(n) time, **O(1) space** — that space bound is the whole point versus a hash 
 - [136. Single Number](https://leetcode.com/problems/single-number/) — Easy
 - [260. Single Number III](https://leetcode.com/problems/single-number-iii/) — Medium
 - [268. Missing Number](https://leetcode.com/problems/missing-number/) — Easy
+
+---
+
+## All problems in this pattern
+
+**Bit Manipulation** — 9 problems (4 core). Full list with dates and checkboxes: [`solutions/40-bit-manipulation/`](../../solutions/40-bit-manipulation/)
+
+| # | Problem | Diff | Tier |
+|---|---|---|---|
+| 89 | [Gray Code](https://leetcode.com/problems/gray-code/) | Medium | _opt_ |
+| 136 | [Single Number](https://leetcode.com/problems/single-number/) | Easy | **Core** |
+| 137 | [Single Number Ii](https://leetcode.com/problems/single-number-ii/) | Medium | _opt_ |
+| 190 | [Reverse Bits](https://leetcode.com/problems/reverse-bits/) | Easy | _opt_ |
+| 191 | [Number Of 1 Bits](https://leetcode.com/problems/number-of-1-bits/) | Easy | **Core** |
+| 201 | [Bitwise And Of Numbers Range](https://leetcode.com/problems/bitwise-and-of-numbers-range/) | Medium | _opt_ |
+| 260 | [Single Number Iii](https://leetcode.com/problems/single-number-iii/) | Medium | _opt_ |
+| 338 | [Counting Bits](https://leetcode.com/problems/counting-bits/) | Easy | **Core** |
+| 371 | [Sum Of Two Integers](https://leetcode.com/problems/sum-of-two-integers/) | Medium | **Core** |

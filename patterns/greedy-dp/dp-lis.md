@@ -138,3 +138,17 @@ def find_number_of_lis(nums: list[int]) -> int:
 - [300. Longest Increasing Subsequence](https://leetcode.com/problems/longest-increasing-subsequence/) — Medium
 - [354. Russian Doll Envelopes](https://leetcode.com/problems/russian-doll-envelopes/) — Hard
 - [1048. Longest String Chain](https://leetcode.com/problems/longest-string-chain/) — Medium
+
+---
+
+## All problems in this pattern
+
+**DP LIS** — 5 problems (2 core). Full list with dates and checkboxes: [`solutions/35-dp-lis/`](../../solutions/35-dp-lis/)
+
+| # | Problem | Diff | Tier |
+|---|---|---|---|
+| 300 | [Longest Increasing Subsequence](https://leetcode.com/problems/longest-increasing-subsequence/) | Medium | **Core** |
+| 354 | [Russian Doll Envelopes](https://leetcode.com/problems/russian-doll-envelopes/) | Hard | _opt_ |
+| 646 | [Maximum Length Of Pair Chain](https://leetcode.com/problems/maximum-length-of-pair-chain/) | Medium | _opt_ |
+| 673 | [Number Of Longest Increasing Subsequence](https://leetcode.com/problems/number-of-longest-increasing-subsequence/) | Medium | **Core** |
+| 1048 | [Longest String Chain](https://leetcode.com/problems/longest-string-chain/) | Medium | _opt_ |

@@ -91,3 +91,26 @@ O(n log k) time, O(k) space — vs O(n log n) for a full sort.
 - [215. Kth Largest Element](https://leetcode.com/problems/kth-largest-element-in-an-array/) — Medium
 - [347. Top K Frequent Elements](https://leetcode.com/problems/top-k-frequent-elements/) — Medium
 - [973. K Closest Points to Origin](https://leetcode.com/problems/k-closest-points-to-origin/) — Medium
+
+---
+
+## All problems in this pattern
+
+**Heap** — 14 problems (7 core). Full list with dates and checkboxes: [`solutions/16-heap/`](../../solutions/16-heap/)
+
+| # | Problem | Diff | Tier |
+|---|---|---|---|
+| 23 | [Merge K Sorted Lists](https://leetcode.com/problems/merge-k-sorted-lists/) | Hard | **Core** |
+| 295 | [Find Median From Data Stream](https://leetcode.com/problems/find-median-from-data-stream/) | Hard | **Core** |
+| 373 | [Find K Pairs With Smallest Sums](https://leetcode.com/problems/find-k-pairs-with-smallest-sums/) | Medium | _opt_ |
+| 378 | [Kth Smallest Element In A Sorted Matrix](https://leetcode.com/problems/kth-smallest-element-in-a-sorted-matrix/) | Medium | **Core** |
+| 480 | [Sliding Window Median](https://leetcode.com/problems/sliding-window-median/) | Hard | _opt_ |
+| 502 | [Ipo](https://leetcode.com/problems/ipo/) | Hard | _opt_ |
+| 621 | [Task Scheduler](https://leetcode.com/problems/task-scheduler/) | Medium | **Core** |
+| 632 | [Smallest Range Covering Elements From K Lists](https://leetcode.com/problems/smallest-range-covering-elements-from-k-lists/) | Hard | _opt_ |
+| 703 | [Kth Largest Element In A Stream](https://leetcode.com/problems/kth-largest-element-in-a-stream/) | Easy | **Core** |
+| 767 | [Reorganize String](https://leetcode.com/problems/reorganize-string/) | Medium | **Core** |
+| 871 | [Minimum Number Of Refueling Stops](https://leetcode.com/problems/minimum-number-of-refueling-stops/) | Hard | _opt_ |
+| 1046 | [Last Stone Weight](https://leetcode.com/problems/last-stone-weight/) | Easy | **Core** |
+| 1834 | [Single Threaded Cpu](https://leetcode.com/problems/single-threaded-cpu/) | Medium | _opt_ |
+| 2542 | [Maximum Subsequence Score](https://leetcode.com/problems/maximum-subsequence-score/) | Medium | _opt_ |

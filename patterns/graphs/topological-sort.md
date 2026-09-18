@@ -128,3 +128,17 @@ O(V + E) time, O(V) space.
 - [207. Course Schedule](https://leetcode.com/problems/course-schedule/) — Medium
 - [210. Course Schedule II](https://leetcode.com/problems/course-schedule-ii/) — Medium
 - [802. Find Eventual Safe States](https://leetcode.com/problems/find-eventual-safe-states/) — Medium
+
+---
+
+## All problems in this pattern
+
+**Topological Sort** — 5 problems (3 core). Full list with dates and checkboxes: [`solutions/23-topological-sort/`](../../solutions/23-topological-sort/)
+
+| # | Problem | Diff | Tier |
+|---|---|---|---|
+| 207 | [Course Schedule](https://leetcode.com/problems/course-schedule/) | Medium | **Core** |
+| 210 | [Course Schedule Ii](https://leetcode.com/problems/course-schedule-ii/) | Medium | **Core** |
+| 310 | [Minimum Height Trees](https://leetcode.com/problems/minimum-height-trees/) | Medium | _opt_ |
+| 802 | [Find Eventual Safe States](https://leetcode.com/problems/find-eventual-safe-states/) | Medium | **Core** |
+| 2115 | [Find All Possible Recipes From Given Supplies](https://leetcode.com/problems/find-all-possible-recipes-from-given-supplies/) | Medium | _opt_ |

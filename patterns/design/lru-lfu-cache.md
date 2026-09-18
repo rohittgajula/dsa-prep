@@ -180,3 +180,24 @@ This is exactly the **page replacement** policy from your OS notes — the same 
 - [146. LRU Cache](https://leetcode.com/problems/lru-cache/) — Medium
 - [460. LFU Cache](https://leetcode.com/problems/lfu-cache/) — Hard
 - [432. All O`one Data Structure](https://leetcode.com/problems/all-oone-data-structure/) — Hard
+
+---
+
+## All problems in this pattern
+
+**Design DS** — 12 problems (3 core). Full list with dates and checkboxes: [`solutions/42-design-ds/`](../../solutions/42-design-ds/)
+
+| # | Problem | Diff | Tier |
+|---|---|---|---|
+| 146 | [Lru Cache](https://leetcode.com/problems/lru-cache/) | Medium | **Core** |
+| 284 | [Peeking Iterator](https://leetcode.com/problems/peeking-iterator/) | Easy | _opt_ |
+| 341 | [Flatten Nested List Iterator](https://leetcode.com/problems/flatten-nested-list-iterator/) | Medium | _opt_ |
+| 355 | [Design Twitter](https://leetcode.com/problems/design-twitter/) | Medium | _opt_ |
+| 380 | [Insert Delete Getrandom O1](https://leetcode.com/problems/insert-delete-getrandom-o1/) | Medium | **Core** |
+| 381 | [Insert Delete Getrandom O1 Duplicates Allowed](https://leetcode.com/problems/insert-delete-getrandom-o1-duplicates-allowed/) | Hard | _opt_ |
+| 432 | [All Oone Data Structure](https://leetcode.com/problems/all-oone-data-structure/) | Hard | _opt_ |
+| 460 | [Lfu Cache](https://leetcode.com/problems/lfu-cache/) | Hard | **Core** |
+| 705 | [Design Hashset](https://leetcode.com/problems/design-hashset/) | Easy | _opt_ |
+| 706 | [Design Hashmap](https://leetcode.com/problems/design-hashmap/) | Easy | _opt_ |
+| 895 | [Maximum Frequency Stack](https://leetcode.com/problems/maximum-frequency-stack/) | Hard | _opt_ |
+| 1206 | [Design Skiplist](https://leetcode.com/problems/design-skiplist/) | Hard | _opt_ |

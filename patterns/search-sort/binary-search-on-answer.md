@@ -119,3 +119,25 @@ O(n log(range)) — `log(range)` iterations, each costing an O(n) feasibility ch
 - [875. Koko Eating Bananas](https://leetcode.com/problems/koko-eating-bananas/) — Medium
 - [1011. Capacity To Ship Packages](https://leetcode.com/problems/capacity-to-ship-packages-within-d-days/) — Medium
 - [410. Split Array Largest Sum](https://leetcode.com/problems/split-array-largest-sum/) — Hard
+
+---
+
+## All problems in this pattern
+
+**Binary Search on Answer** — 13 problems (8 core). Full list with dates and checkboxes: [`solutions/08-binary-search-on-answer/`](../../solutions/08-binary-search-on-answer/)
+
+| # | Problem | Diff | Tier |
+|---|---|---|---|
+| 4 | [Median Of Two Sorted Arrays](https://leetcode.com/problems/median-of-two-sorted-arrays/) | Hard | **Core** |
+| 410 | [Split Array Largest Sum](https://leetcode.com/problems/split-array-largest-sum/) | Hard | **Core** |
+| 668 | [Kth Smallest Number In Multiplication Table](https://leetcode.com/problems/kth-smallest-number-in-multiplication-table/) | Hard | _opt_ |
+| 719 | [Find K Th Smallest Pair Distance](https://leetcode.com/problems/find-k-th-smallest-pair-distance/) | Hard | _opt_ |
+| 875 | [Koko Eating Bananas](https://leetcode.com/problems/koko-eating-bananas/) | Medium | **Core** |
+| 1011 | [Capacity To Ship Packages Within D Days](https://leetcode.com/problems/capacity-to-ship-packages-within-d-days/) | Medium | **Core** |
+| 1283 | [Find The Smallest Divisor Given A Threshold](https://leetcode.com/problems/find-the-smallest-divisor-given-a-threshold/) | Medium | **Core** |
+| 1300 | [Sum Of Mutated Array Closest To Target](https://leetcode.com/problems/sum-of-mutated-array-closest-to-target/) | Medium | _opt_ |
+| 1482 | [Minimum Number Of Days To Make M Bouquets](https://leetcode.com/problems/minimum-number-of-days-to-make-m-bouquets/) | Medium | **Core** |
+| 1552 | [Magnetic Force Between Two Balls](https://leetcode.com/problems/magnetic-force-between-two-balls/) | Medium | **Core** |
+| 1642 | [Furthest Building You Can Reach](https://leetcode.com/problems/furthest-building-you-can-reach/) | Medium | **Core** |
+| 1802 | [Maximum Value At A Given Index In A Bounded Array](https://leetcode.com/problems/maximum-value-at-a-given-index-in-a-bounded-array/) | Medium | _opt_ |
+| 1898 | [Maximum Number Of Removable Characters](https://leetcode.com/problems/maximum-number-of-removable-characters/) | Medium | _opt_ |

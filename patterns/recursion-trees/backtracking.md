@@ -150,3 +150,31 @@ The `· n` is the cost of copying each result.
 - [78. Subsets](https://leetcode.com/problems/subsets/) — Medium
 - [46. Permutations](https://leetcode.com/problems/permutations/) — Medium
 - [39. Combination Sum](https://leetcode.com/problems/combination-sum/) — Medium
+
+---
+
+## All problems in this pattern
+
+**Backtracking** — 19 problems (10 core). Full list with dates and checkboxes: [`solutions/18-backtracking/`](../../solutions/18-backtracking/)
+
+| # | Problem | Diff | Tier |
+|---|---|---|---|
+| 17 | [Letter Combinations Of A Phone Number](https://leetcode.com/problems/letter-combinations-of-a-phone-number/) | Medium | **Core** |
+| 22 | [Generate Parentheses](https://leetcode.com/problems/generate-parentheses/) | Medium | **Core** |
+| 37 | [Sudoku Solver](https://leetcode.com/problems/sudoku-solver/) | Hard | _opt_ |
+| 39 | [Combination Sum](https://leetcode.com/problems/combination-sum/) | Medium | **Core** |
+| 40 | [Combination Sum Ii](https://leetcode.com/problems/combination-sum-ii/) | Medium | _opt_ |
+| 46 | [Permutations](https://leetcode.com/problems/permutations/) | Medium | **Core** |
+| 47 | [Permutations Ii](https://leetcode.com/problems/permutations-ii/) | Medium | _opt_ |
+| 51 | [N Queens](https://leetcode.com/problems/n-queens/) | Hard | **Core** |
+| 52 | [N Queens Ii](https://leetcode.com/problems/n-queens-ii/) | Hard | _opt_ |
+| 77 | [Combinations](https://leetcode.com/problems/combinations/) | Medium | **Core** |
+| 78 | [Subsets](https://leetcode.com/problems/subsets/) | Medium | **Core** |
+| 79 | [Word Search](https://leetcode.com/problems/word-search/) | Medium | **Core** |
+| 90 | [Subsets Ii](https://leetcode.com/problems/subsets-ii/) | Medium | **Core** |
+| 93 | [Restore Ip Addresses](https://leetcode.com/problems/restore-ip-addresses/) | Medium | _opt_ |
+| 131 | [Palindrome Partitioning](https://leetcode.com/problems/palindrome-partitioning/) | Medium | **Core** |
+| 216 | [Combination Sum Iii](https://leetcode.com/problems/combination-sum-iii/) | Medium | _opt_ |
+| 473 | [Matchsticks To Square](https://leetcode.com/problems/matchsticks-to-square/) | Medium | _opt_ |
+| 698 | [Partition To K Equal Sum Subsets](https://leetcode.com/problems/partition-to-k-equal-sum-subsets/) | Medium | _opt_ |
+| 784 | [Letter Case Permutation](https://leetcode.com/problems/letter-case-permutation/) | Medium | _opt_ |

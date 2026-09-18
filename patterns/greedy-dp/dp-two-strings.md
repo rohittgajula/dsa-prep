@@ -129,3 +129,21 @@ O(m × n) time and space. Space collapses to O(min(m, n)) with two rows, though 
 - [1143. Longest Common Subsequence](https://leetcode.com/problems/longest-common-subsequence/) — Medium
 - [72. Edit Distance](https://leetcode.com/problems/edit-distance/) — Medium
 - [516. Longest Palindromic Subsequence](https://leetcode.com/problems/longest-palindromic-subsequence/) — Medium
+
+---
+
+## All problems in this pattern
+
+**DP String** — 9 problems (5 core). Full list with dates and checkboxes: [`solutions/34-dp-string/`](../../solutions/34-dp-string/)
+
+| # | Problem | Diff | Tier |
+|---|---|---|---|
+| 10 | [Regular Expression Matching](https://leetcode.com/problems/regular-expression-matching/) | Hard | **Core** |
+| 44 | [Wildcard Matching](https://leetcode.com/problems/wildcard-matching/) | Hard | _opt_ |
+| 72 | [Edit Distance](https://leetcode.com/problems/edit-distance/) | Medium | **Core** |
+| 97 | [Interleaving String](https://leetcode.com/problems/interleaving-string/) | Medium | _opt_ |
+| 115 | [Distinct Subsequences](https://leetcode.com/problems/distinct-subsequences/) | Hard | **Core** |
+| 516 | [Longest Palindromic Subsequence](https://leetcode.com/problems/longest-palindromic-subsequence/) | Medium | **Core** |
+| 583 | [Delete Operation For Two Strings](https://leetcode.com/problems/delete-operation-for-two-strings/) | Medium | _opt_ |
+| 712 | [Minimum Ascii Delete Sum For Two Strings](https://leetcode.com/problems/minimum-ascii-delete-sum-for-two-strings/) | Medium | _opt_ |
+| 1143 | [Longest Common Subsequence](https://leetcode.com/problems/longest-common-subsequence/) | Medium | **Core** |

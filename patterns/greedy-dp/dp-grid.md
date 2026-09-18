@@ -139,3 +139,21 @@ O(m × n) time, O(n) space after collapsing to one row.
 - [62. Unique Paths](https://leetcode.com/problems/unique-paths/) — Medium
 - [64. Minimum Path Sum](https://leetcode.com/problems/minimum-path-sum/) — Medium
 - [221. Maximal Square](https://leetcode.com/problems/maximal-square/) — Medium
+
+---
+
+## All problems in this pattern
+
+**DP Grid** — 9 problems (4 core). Full list with dates and checkboxes: [`solutions/33-dp-grid/`](../../solutions/33-dp-grid/)
+
+| # | Problem | Diff | Tier |
+|---|---|---|---|
+| 62 | [Unique Paths](https://leetcode.com/problems/unique-paths/) | Medium | **Core** |
+| 63 | [Unique Paths Ii](https://leetcode.com/problems/unique-paths-ii/) | Medium | **Core** |
+| 64 | [Minimum Path Sum](https://leetcode.com/problems/minimum-path-sum/) | Medium | **Core** |
+| 120 | [Triangle](https://leetcode.com/problems/triangle/) | Medium | _opt_ |
+| 174 | [Dungeon Game](https://leetcode.com/problems/dungeon-game/) | Hard | _opt_ |
+| 221 | [Maximal Square](https://leetcode.com/problems/maximal-square/) | Medium | **Core** |
+| 741 | [Cherry Pickup](https://leetcode.com/problems/cherry-pickup/) | Hard | _opt_ |
+| 931 | [Minimum Falling Path Sum](https://leetcode.com/problems/minimum-falling-path-sum/) | Medium | _opt_ |
+| 1277 | [Count Square Submatrices With All Ones](https://leetcode.com/problems/count-square-submatrices-with-all-ones/) | Medium | _opt_ |

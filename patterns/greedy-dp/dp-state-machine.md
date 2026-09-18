@@ -142,3 +142,16 @@ O(n) time, O(1) space for the unlimited/cooldown/fee variants; O(nk) time, O(k) 
 - [121. Best Time to Buy and Sell Stock](https://leetcode.com/problems/best-time-to-buy-and-sell-stock/) — Easy
 - [309. With Cooldown](https://leetcode.com/problems/best-time-to-buy-and-sell-stock-with-cooldown/) — Medium
 - [188. At Most K Transactions](https://leetcode.com/problems/best-time-to-buy-and-sell-stock-iv/) — Hard
+
+---
+
+## All problems in this pattern
+
+**DP Stocks** — 4 problems (4 core). Full list with dates and checkboxes: [`solutions/36-dp-stocks/`](../../solutions/36-dp-stocks/)
+
+| # | Problem | Diff | Tier |
+|---|---|---|---|
+| 123 | [Best Time To Buy And Sell Stock Iii](https://leetcode.com/problems/best-time-to-buy-and-sell-stock-iii/) | Hard | **Core** |
+| 188 | [Best Time To Buy And Sell Stock Iv](https://leetcode.com/problems/best-time-to-buy-and-sell-stock-iv/) | Hard | **Core** |
+| 309 | [Best Time To Buy And Sell Stock With Cooldown](https://leetcode.com/problems/best-time-to-buy-and-sell-stock-with-cooldown/) | Medium | **Core** |
+| 714 | [Best Time To Buy And Sell Stock With Transaction Fee](https://leetcode.com/problems/best-time-to-buy-and-sell-stock-with-transaction-fee/) | Medium | **Core** |

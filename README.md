@@ -11,9 +11,9 @@ Interview preparation: 454 curated problems, 53 patterns, and CS fundamentals.
 
 | Folder | What's in it |
 |---|---|
-| [`patterns/`](patterns/) | 53 pattern guides — how to recognise each one, why it works, diagrams, templates |
-| [`solutions/`](solutions/) | My solutions, mirroring the pattern folders |
-| [`theory/`](theory/) | OS, Networks, DBMS, LLD, System Design, AI — with diagrams |
+| [`patterns/`](patterns/) | **53 pattern guides** — recognition cue, the insight, diagrams, templates, pitfalls, every problem |
+| [`solutions/`](solutions/) | **44 pattern folders, 454 stub files** — pre-filled with the problem, its date and a recognition hint |
+| [`theory/`](theory/) | **OS · Networks · DBMS · LLD · System Design · AI** — with Mermaid diagrams |
 | [`templates/`](templates/) | Solution scaffold |
 | [`notes/`](notes/) | Scratch notes, mock interview post-mortems |
 

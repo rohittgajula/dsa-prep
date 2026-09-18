@@ -147,3 +147,15 @@ n ≤ 20 → about 1M states. n ≤ 12 for the n² variants.
 - [78. Subsets](https://leetcode.com/problems/subsets/) — Medium
 - [1125. Smallest Sufficient Team](https://leetcode.com/problems/smallest-sufficient-team/) — Hard
 - [847. Shortest Path Visiting All Nodes](https://leetcode.com/problems/shortest-path-visiting-all-nodes/) — Hard
+
+---
+
+## All problems in this pattern
+
+**DP Bitmask** — 3 problems (0 core). Full list with dates and checkboxes: [`solutions/39-dp-bitmask/`](../../solutions/39-dp-bitmask/)
+
+| # | Problem | Diff | Tier |
+|---|---|---|---|
+| 691 | [Stickers To Spell Word](https://leetcode.com/problems/stickers-to-spell-word/) | Hard | _opt_ |
+| 1125 | [Smallest Sufficient Team](https://leetcode.com/problems/smallest-sufficient-team/) | Hard | _opt_ |
+| 1349 | [Maximum Students Taking Exam](https://leetcode.com/problems/maximum-students-taking-exam/) | Hard | _opt_ |

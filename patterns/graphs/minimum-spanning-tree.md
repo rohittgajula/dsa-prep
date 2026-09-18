@@ -124,3 +124,15 @@ With n ≤ 1000 that is ~500k edges — fine. On a denser graph, Prim is the bet
 - [1584. Min Cost to Connect All Points](https://leetcode.com/problems/min-cost-to-connect-all-points/) — Medium
 - [1697. Checking Existence of Edge Length Limited Paths](https://leetcode.com/problems/checking-existence-of-edge-length-limited-paths/) — Hard
 - [1489. Find Critical and Pseudo-Critical Edges in MST](https://leetcode.com/problems/find-critical-and-pseudo-critical-edges-in-minimum-spanning-tree/) — Hard
+
+---
+
+## All problems in this pattern
+
+**MST** — 3 problems (1 core). Full list with dates and checkboxes: [`solutions/28-mst/`](../../solutions/28-mst/)
+
+| # | Problem | Diff | Tier |
+|---|---|---|---|
+| 1489 | [Find Critical And Pseudo Critical Edges In Minimum Spanning Tree](https://leetcode.com/problems/find-critical-and-pseudo-critical-edges-in-minimum-spanning-tree/) | Hard | _opt_ |
+| 1584 | [Min Cost To Connect All Points](https://leetcode.com/problems/min-cost-to-connect-all-points/) | Medium | **Core** |
+| 1697 | [Checking Existence Of Edge Length Limited Paths](https://leetcode.com/problems/checking-existence-of-edge-length-limited-paths/) | Hard | _opt_ |
