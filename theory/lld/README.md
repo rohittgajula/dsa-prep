@@ -9,6 +9,8 @@
 | 03 | [Splitwise](03-splitwise.md) | split strategies, balance sheet, **debt simplification**, the rounding trap |
 | 04 | [BookMyShow](04-bookmyshow.md) | **seat-locking concurrency**, three correct solutions, flash sales |
 | 05 | [Rate Limiter & others](05-rate-limiter-and-others.md) | token bucket + thread safety, Snake & Ladder, Notification System |
+| 06 | [**Design Patterns Reference**](06-design-patterns-reference.md) | all 23 GoF patterns with code, when to use each, anti-patterns |
+| 07 | [More Case Studies](07-more-case-studies.md) | Vending Machine, ATM, Chess, Logger |
 
 ## The LLD interview shape
 
@@ -31,6 +33,10 @@ graph LR
 | Rate Limiter | token bucket, thread safety | [05](05-rate-limiter-and-others.md) |
 | Snake & Ladder | game loop, board modelling | [05](05-rate-limiter-and-others.md) |
 | Notification System | channel strategy, async, idempotency | [05](05-rate-limiter-and-others.md) |
+| Vending Machine | **State pattern**, change-making | [07](07-more-case-studies.md) |
+| ATM | transaction ordering, dispensing safety | [07](07-more-case-studies.md) |
+| Chess / Tic-Tac-Toe | polymorphic move validation | [07](07-more-case-studies.md) |
+| Logger | Chain of Responsibility, async writes | [07](07-more-case-studies.md) |
 
 ## The patterns that actually appear
 

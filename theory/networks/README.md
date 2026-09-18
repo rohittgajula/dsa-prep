@@ -9,6 +9,9 @@
 | 03 | [TCP & UDP](03-tcp-udp.md) | handshake, TIME_WAIT, flow vs congestion control, QUIC, sockets |
 | 04 | [DNS, HTTP & TLS](04-dns-http-tls.md) | resolution chain, HTTP/1-2-3, TLS, cookies, CORS, caching |
 | 05 | [Troubleshooting Toolkit](05-toolkit.md) | dig/curl/ss/tcpdump, latency vs bandwidth, bufferbloat |
+| 06 | [**OSI 7 Layers in Detail**](06-osi-layers-in-detail.md) | every layer: function, PDU, address, devices, protocols, headers |
+| 07 | [Architectures & Topologies](07-architectures-and-topologies.md) | client-server vs P2P, tiers, topologies, switching, VLAN, VPN, STUN/TURN, firewalls, WiFi |
+| 08 | [Subnetting Practice](08-subnetting-practice.md) | the method, the CIDR table, 3 worked examples, a practice set with answers |
 
 ## The five that come up most
 

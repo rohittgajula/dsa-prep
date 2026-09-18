@@ -7,6 +7,8 @@
 | 01 | [Fundamentals & SQL](01-fundamentals-and-sql.md) | keys, joins, normalisation, ACID overview, SQL vs NoSQL |
 | 02 | [Transactions & Concurrency](02-transactions-and-concurrency.md) | WAL, isolation levels, anomalies, 2PL, deadlock, MVCC, optimistic vs pessimistic |
 | 03 | [Indexing & Performance](03-indexing-and-performance.md) | B+ trees, clustered indexes, leftmost prefix, query plans, denormalisation, CDC |
+| 04 | [ER Modelling & Schema Design](04-er-modelling-and-schema-design.md) | ER diagrams, cardinality, ER→relational mapping, keys, NULL semantics, constraints, views/triggers |
+| 05 | [Query Processing & NoSQL](05-query-processing-and-nosql.md) | optimiser, join algorithms, EXPLAIN, why indexes are ignored, partitioning, NoSQL modelling, quorum, backup/RPO/RTO |
 
 ## SQL practice
 

@@ -8,6 +8,7 @@
 | 02 | [RAG](02-rag.md) | chunking, vector search, hybrid + reranking, query rewriting, RAG evaluation |
 | 03 | [Agents & Serving](03-agents-and-serving.md) | the agent loop, workflow vs agent, multi-agent, caching, latency, model routing |
 | 04 | [Evals, Observability & Safety](04-evals-and-safety.md) | golden sets, LLM-as-judge, drift, hallucination, prompt injection, PII |
+| 05 | [**Foundations & Fine-Tuning**](05-foundations-and-finetuning.md) | transformers, attention, tokens & cost, embeddings, LoRA/QLoRA, RLHF vs DPO, distillation, prompting, classic ML |
 
 ## The eight sentences worth memorising
 
