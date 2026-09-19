@@ -32,7 +32,16 @@ Time taken: __ min      Solved unaided: Y / N
 ------------------------------------------------------------------------
 """
 
-from typing import List, Optional
+from typing import Optional
+
+
+class Node:
+    """LeetCode's linked-list node with an extra random pointer."""
+
+    def __init__(self, x: int, next=None, random=None):
+        self.val = int(x)
+        self.next = next
+        self.random = random
 
 #---------------------------------------------------------------------
 #  HEADS UP - LeetCode's test data does not line up with this method.

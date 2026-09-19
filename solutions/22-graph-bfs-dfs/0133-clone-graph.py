@@ -32,7 +32,15 @@ Time taken: __ min      Solved unaided: Y / N
 ------------------------------------------------------------------------
 """
 
-from typing import List, Optional
+from typing import Optional
+
+
+class Node:
+    """LeetCode's graph node."""
+
+    def __init__(self, val=0, neighbors=None):
+        self.val = val
+        self.neighbors = neighbors if neighbors is not None else []
 
 #---------------------------------------------------------------------
 #  HEADS UP - LeetCode's test data does not line up with this method.

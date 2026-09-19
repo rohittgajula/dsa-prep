@@ -31,7 +31,7 @@ Time taken: __ min      Solved unaided: Y / N
 ------------------------------------------------------------------------
 """
 
-from typing import List, Optional
+from typing import List
 
 
 class SolutionBrute:

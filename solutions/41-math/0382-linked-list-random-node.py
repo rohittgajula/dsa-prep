@@ -32,7 +32,30 @@ Time taken: __ min      Solved unaided: Y / N
 ------------------------------------------------------------------------
 """
 
-from typing import List, Optional
+from typing import Optional
+
+
+class ListNode:
+    def __init__(self, val=0, next=None):
+        self.val = val
+        self.next = next
+
+
+def build_list(vals):
+    """[1,2,3] -> 1 -> 2 -> 3"""
+    head = None
+    for v in reversed(vals or []):
+        head = ListNode(v, head)
+    return head
+
+
+def dump_list(head, limit=500):
+    """1 -> 2 -> 3 -> [1,2,3]   (limit guards against a cycle)"""
+    out = []
+    while head is not None and len(out) < limit:
+        out.append(head.val)
+        head = head.next
+    return out
 
 
 class SolutionBrute:

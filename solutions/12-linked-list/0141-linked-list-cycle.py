@@ -32,7 +32,7 @@ Time taken: __ min      Solved unaided: Y / N
 ------------------------------------------------------------------------
 """
 
-from typing import List, Optional
+from typing import Optional
 
 
 class ListNode:

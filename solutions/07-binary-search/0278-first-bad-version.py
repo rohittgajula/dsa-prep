@@ -32,7 +32,6 @@ Time taken: __ min      Solved unaided: Y / N
 ------------------------------------------------------------------------
 """
 
-from typing import List, Optional
 
 #---------------------------------------------------------------------
 #  HEADS UP - LeetCode's test data does not line up with this method.

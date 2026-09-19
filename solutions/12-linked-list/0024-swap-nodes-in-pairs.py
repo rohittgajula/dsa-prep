@@ -32,7 +32,7 @@ Time taken: __ min      Solved unaided: Y / N
 ------------------------------------------------------------------------
 """
 
-from typing import List, Optional
+from typing import Optional
 
 
 class ListNode:
@@ -81,8 +81,6 @@ METHOD      = 'swapPairs'
 PARAM_TYPES = ['ListNode']
 RETURN_TYPE = 'ListNode'
 INPLACE_ARG = None
-NODE_BY_VALUE = []
-RETURN_AS   = None
 
 TESTS = [
     # ( [args...], expected )
@@ -104,15 +102,6 @@ if __name__ == "__main__":
     def _build(v, t):
         if t.startswith("ListNode"):
             return build_list(v)
-        if t.startswith("TreeNode"):
-            return build_tree(v)
-        return v
-
-    def _dump(v):
-        if RETURN_TYPE.startswith("ListNode"):
-            return dump_list(v)
-        if RETURN_TYPE.startswith("TreeNode"):
-            return dump_tree(v)
         return v
 
     def _verdict(got, want):
@@ -140,8 +129,6 @@ if __name__ == "__main__":
         print(f"{label} :")
         for n, (args, want) in enumerate(TESTS, 1):
             call = [_build(copy.deepcopy(a), t) for a, t in zip(args, PARAM_TYPES)]
-            for _i in NODE_BY_VALUE:          # judge sends a value, method wants the node
-                call[_i] = find_node(call[0], call[_i])
             try:
                 got = fn(*call)
             except NotImplementedError:
@@ -150,11 +137,6 @@ if __name__ == "__main__":
             except Exception as exc:
                 print(f"    case {n}: ERROR  {type(exc).__name__}: {exc}")
                 continue
-            if INPLACE_ARG is not None:
-                got = call[INPLACE_ARG]
-            elif RETURN_AS == "node_val":
-                got = got.val if got is not None else None
-            else:
-                got = _dump(got)
+            got = dump_list(got)
             print(f"    case {n}: {_verdict(got, want):<20} got={got!r}  want={want!r}")
         print()

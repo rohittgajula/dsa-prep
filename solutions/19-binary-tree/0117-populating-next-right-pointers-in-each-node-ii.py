@@ -32,7 +32,15 @@ Time taken: __ min      Solved unaided: Y / N
 ------------------------------------------------------------------------
 """
 
-from typing import List, Optional
+
+class Node:
+    """LeetCode's perfect-binary-tree node, with a next pointer per level."""
+
+    def __init__(self, val=0, left=None, right=None, next=None):
+        self.val = val
+        self.left = left
+        self.right = right
+        self.next = next
 
 #---------------------------------------------------------------------
 #  HEADS UP - LeetCode's test data does not line up with this method.

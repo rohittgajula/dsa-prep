@@ -31,8 +31,6 @@ Time taken: __ min      Solved unaided: Y / N
 ------------------------------------------------------------------------
 """
 
-from typing import List, Optional
-
 
 class MyHashMapBrute:
     """Simplest thing that works. Get it correct, then beat it."""

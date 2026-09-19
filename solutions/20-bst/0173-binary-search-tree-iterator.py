@@ -32,7 +32,69 @@ Time taken: __ min      Solved unaided: Y / N
 ------------------------------------------------------------------------
 """
 
-from typing import List, Optional
+from typing import Optional
+
+
+class TreeNode:
+    def __init__(self, val=0, left=None, right=None):
+        self.val = val
+        self.left = left
+        self.right = right
+
+
+def build_tree(vals):
+    """LeetCode level-order list (None = missing child) -> root"""
+    if not vals:
+        return None
+    root = TreeNode(vals[0])
+    q, i = [root], 1
+    while q and i < len(vals):
+        node = q.pop(0)
+        if i < len(vals):
+            if vals[i] is not None:
+                node.left = TreeNode(vals[i])
+                q.append(node.left)
+            i += 1
+        if i < len(vals):
+            if vals[i] is not None:
+                node.right = TreeNode(vals[i])
+                q.append(node.right)
+            i += 1
+    return root
+
+
+def dump_tree(root):
+    """root -> LeetCode level-order list, trailing Nones trimmed"""
+    if root is None:
+        return []
+    out, q = [], [root]
+    while q:
+        node = q.pop(0)
+        if node is None:
+            out.append(None)
+        else:
+            out.append(node.val)
+            q.append(node.left)
+            q.append(node.right)
+    while out and out[-1] is None:
+        out.pop()
+    return out
+
+
+def find_node(root, val):
+    """LeetCode hands some problems a VALUE where the method wants the NODE."""
+    if root is None:
+        return None
+    q = [root]
+    while q:
+        n = q.pop(0)
+        if n.val == val:
+            return n
+        if n.left:
+            q.append(n.left)
+        if n.right:
+            q.append(n.right)
+    return None
 
 
 class BSTIteratorBrute:

@@ -32,7 +32,17 @@ Time taken: __ min      Solved unaided: Y / N
 ------------------------------------------------------------------------
 """
 
-from typing import List, Optional
+from typing import Optional
+
+
+class Node:
+    """LeetCode's doubly linked list node with a child pointer."""
+
+    def __init__(self, val, prev=None, next=None, child=None):
+        self.val = val
+        self.prev = prev
+        self.next = next
+        self.child = child
 
 #---------------------------------------------------------------------
 #  HEADS UP - LeetCode's test data does not line up with this method.

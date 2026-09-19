@@ -32,8 +32,6 @@ Time taken: __ min      Solved unaided: Y / N
 ------------------------------------------------------------------------
 """
 
-from typing import List, Optional
-
 
 class MyStackBrute:
     """Simplest thing that works. Get it correct, then beat it."""
