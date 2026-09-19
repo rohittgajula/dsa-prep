@@ -7,6 +7,16 @@ Pattern    : Two Pointers
 Tier       : Core
 Scheduled  : Mon 21 Sep 2026  (week 2)
 
+INPUT
+    s : list of characters
+
+RETURN
+    nothing is returned - s itself is changed
+
+EXAMPLE
+    s = ['h', 'e', 'l', 'l', 'o']
+    ->  s becomes ['o', 'l', 'l', 'e', 'h']
+
 RECOGNITION HINT  (read only AFTER a real attempt)
     Opposite-end two pointers, swap and converge. The simplest instance
     of the pattern.
@@ -36,47 +46,37 @@ from typing import List
 
 
 class Solution:
-    # -----------------------------------------------------------------
-    #  BRUTE FORCE   -- write this one first, even when it is obvious.
-    #  Time  : O(?)      Space : O(?)
-    # -----------------------------------------------------------------
     def reverseString_brute(self, s: List[str]) -> None:
-        # NOTE: modify s IN PLACE -- the runner
-        #       checks that argument, not the return value.
-        raise NotImplementedError("brute force")
+        pass
 
-    # -----------------------------------------------------------------
-    #  OPTIMAL       -- what does the brute force redo that it need not?
-    #  Time  : O(?)      Space : O(?)
-    # -----------------------------------------------------------------
+
     def reverseString(self, s: List[str]) -> None:
-        # NOTE: modify s IN PLACE -- the runner
-        #       checks that argument, not the return value.
-        raise NotImplementedError("optimal")
+        pass
 
 
-# ---------------------------------------------------------------------
-#  TEST CASES  --  taken from the examples on the LeetCode page
-# ---------------------------------------------------------------------
 METHOD      = 'reverseString'
 PARAM_TYPES = ['character[]']
 RETURN_TYPE = 'void'
-INPLACE_ARG = 0   # answer is left in 's'
+INPLACE_ARG = 0
 
 TESTS = [
-    # ( [args...], expected )
     ([['h', 'e', 'l', 'l', 'o']], ['o', 'l', 'l', 'e', 'h']),
     ([['H', 'a', 'n', 'n', 'a', 'h']], ['h', 'a', 'n', 'n', 'a', 'H']),
 ]
 
 
-# ---------------------------------------------------------------------
-#  RUNNER  --  python3 this_file.py
-#  Runs every test case against BOTH methods. A method you have not
-#  written yet is skipped, so you can fill in brute force first.
-# ---------------------------------------------------------------------
 if __name__ == "__main__":
+    import ast
     import copy
+    import inspect
+    import textwrap
+
+    def _todo(fn):
+        try:
+            body = ast.parse(textwrap.dedent(inspect.getsource(fn))).body[0].body
+        except (OSError, TypeError, SyntaxError, IndexError):
+            return False
+        return len(body) == 1 and isinstance(body[0], (ast.Pass, ast.Expr))
 
     def _verdict(got, want):
         if got == want:
@@ -101,13 +101,13 @@ if __name__ == "__main__":
         if fn is None:
             continue
         print(f"{label} :")
+        if _todo(fn):
+            print("    not written yet\n")
+            continue
         for n, (args, want) in enumerate(TESTS, 1):
             call = [copy.deepcopy(a) for a in args]
             try:
                 got = fn(*call)
-            except NotImplementedError:
-                print("    -- not written yet --")
-                break
             except Exception as exc:
                 print(f"    case {n}: ERROR  {type(exc).__name__}: {exc}")
                 continue

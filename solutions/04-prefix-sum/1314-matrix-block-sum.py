@@ -7,6 +7,17 @@ Pattern    : Prefix Sum
 Tier       : Stretch   (optional - skip without guilt if the week is tight)
 Scheduled  : Thu 08 Oct 2026  (week 4)
 
+INPUT
+    mat : grid of integers
+    k   : integer
+
+RETURN
+    grid of integers
+
+EXAMPLE
+    mat = [[1, 2, 3], [4, 5, 6], [7, 8, 9]], k = 1
+    ->  [[12, 21, 16], [27, 45, 33], [24, 39, 28]]
+
 RECOGNITION HINT  (read only AFTER a real attempt)
     Build a 2D prefix sum, then each answer is one inclusion-exclusion
     query with clamped bounds.
@@ -36,43 +47,37 @@ from typing import List
 
 
 class Solution:
-    # -----------------------------------------------------------------
-    #  BRUTE FORCE   -- write this one first, even when it is obvious.
-    #  Time  : O(?)      Space : O(?)
-    # -----------------------------------------------------------------
     def matrixBlockSum_brute(self, mat: List[List[int]], k: int) -> List[List[int]]:
-        raise NotImplementedError("brute force")
+        pass
 
-    # -----------------------------------------------------------------
-    #  OPTIMAL       -- what does the brute force redo that it need not?
-    #  Time  : O(?)      Space : O(?)
-    # -----------------------------------------------------------------
+
     def matrixBlockSum(self, mat: List[List[int]], k: int) -> List[List[int]]:
-        raise NotImplementedError("optimal")
+        pass
 
 
-# ---------------------------------------------------------------------
-#  TEST CASES  --  taken from the examples on the LeetCode page
-# ---------------------------------------------------------------------
 METHOD      = 'matrixBlockSum'
 PARAM_TYPES = ['integer[][]', 'integer']
 RETURN_TYPE = 'integer[][]'
 INPLACE_ARG = None
 
 TESTS = [
-    # ( [args...], expected )
     ([[[1, 2, 3], [4, 5, 6], [7, 8, 9]], 1], [[12, 21, 16], [27, 45, 33], [24, 39, 28]]),
     ([[[1, 2, 3], [4, 5, 6], [7, 8, 9]], 2], [[45, 45, 45], [45, 45, 45], [45, 45, 45]]),
 ]
 
 
-# ---------------------------------------------------------------------
-#  RUNNER  --  python3 this_file.py
-#  Runs every test case against BOTH methods. A method you have not
-#  written yet is skipped, so you can fill in brute force first.
-# ---------------------------------------------------------------------
 if __name__ == "__main__":
+    import ast
     import copy
+    import inspect
+    import textwrap
+
+    def _todo(fn):
+        try:
+            body = ast.parse(textwrap.dedent(inspect.getsource(fn))).body[0].body
+        except (OSError, TypeError, SyntaxError, IndexError):
+            return False
+        return len(body) == 1 and isinstance(body[0], (ast.Pass, ast.Expr))
 
     def _verdict(got, want):
         if got == want:
@@ -97,13 +102,13 @@ if __name__ == "__main__":
         if fn is None:
             continue
         print(f"{label} :")
+        if _todo(fn):
+            print("    not written yet\n")
+            continue
         for n, (args, want) in enumerate(TESTS, 1):
             call = [copy.deepcopy(a) for a in args]
             try:
                 got = fn(*call)
-            except NotImplementedError:
-                print("    -- not written yet --")
-                break
             except Exception as exc:
                 print(f"    case {n}: ERROR  {type(exc).__name__}: {exc}")
                 continue

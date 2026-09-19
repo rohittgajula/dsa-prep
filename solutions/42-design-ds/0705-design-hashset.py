@@ -7,6 +7,12 @@ Pattern    : Design DS
 Tier       : Stretch   (optional - skip without guilt if the week is tight)
 Scheduled  : Thu 01 Apr 2027  (week 29)
 
+OPERATIONS
+    MyHashSet()
+    add(key)  ->  nothing
+    remove(key)  ->  nothing
+    contains(key)  ->  true or false
+
 RECOGNITION HINT  (read only AFTER a real attempt)
     Array of buckets plus chaining. Understand collision handling and
     load factor.
@@ -34,40 +40,39 @@ Time taken: __ min      Solved unaided: Y / N
 
 
 class MyHashSetBrute:
-    """Simplest thing that works. Get it correct, then beat it."""
-
     def __init__(self):
-        raise NotImplementedError
+        pass
+
 
     def add(self, key: int) -> None:
-        raise NotImplementedError
+        pass
+
 
     def remove(self, key: int) -> None:
-        raise NotImplementedError
+        pass
+
 
     def contains(self, key: int) -> bool:
-        raise NotImplementedError
+        pass
 
 
 class MyHashSet:
-    """The version you would actually submit."""
-
     def __init__(self):
-        raise NotImplementedError
+        pass
+
 
     def add(self, key: int) -> None:
-        raise NotImplementedError
+        pass
+
 
     def remove(self, key: int) -> None:
-        raise NotImplementedError
+        pass
+
 
     def contains(self, key: int) -> bool:
-        raise NotImplementedError
+        pass
 
 
-# ---------------------------------------------------------------------
-#  TEST CASES  --  the operation sequence from the LeetCode page
-# ---------------------------------------------------------------------
 CLASS_BRUTE   = MyHashSetBrute
 CLASS_OPTIMAL = MyHashSet
 
@@ -76,13 +81,23 @@ ARGS     = [[], [1], [10001], [1], [1], [1], [7], [10007], [7], [7], [7], [123],
 EXPECTED = [None, None, None, True, False, None, True, None, False]
 
 
-# ---------------------------------------------------------------------
-#  RUNNER  --  python3 this_file.py
-#  Replays the LeetCode operation sequence against both versions.
-# ---------------------------------------------------------------------
 if __name__ == "__main__":
+    import ast
+    import inspect
+    import textwrap
+
+    def _todo(cls):
+        try:
+            body = ast.parse(textwrap.dedent(inspect.getsource(cls.__init__))).body[0].body
+        except (OSError, TypeError, SyntaxError, IndexError):
+            return False
+        return len(body) == 1 and isinstance(body[0], (ast.Pass, ast.Expr))
+
     def replay(cls, label):
         print(f"{label} :")
+        if _todo(cls):
+            print("    not written yet\n")
+            return
         obj = None
         for n, (op, args) in enumerate(zip(OPS, ARGS)):
             want = EXPECTED[n] if n < len(EXPECTED) else "?"
@@ -92,15 +107,10 @@ if __name__ == "__main__":
                     got = None
                 else:
                     got = getattr(obj, op)(*args)
-            except NotImplementedError:
-                print("    -- not written yet --")
-                return
             except Exception as exc:
                 print(f"    {op}({args}) ERROR {type(exc).__name__}: {exc}")
                 continue
-            mark = "PASS" if got == want else "FAIL"
-            if want == "?":
-                mark = "----"
+            mark = "----" if want == "?" else ("PASS" if got == want else "FAIL")
             print(f"    {n:>2}. {op}({str(args)[1:-1]:<12}) -> {str(got):<8} want {str(want):<8} {mark}")
         print()
 

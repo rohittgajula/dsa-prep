@@ -7,6 +7,16 @@ Pattern    : DP Tree
 Tier       : Core
 Scheduled  : Wed 17 Mar 2027  (week 27)
 
+INPUT
+    root : root of a binary tree
+
+RETURN
+    integer
+
+EXAMPLE
+    root = [3, 2, 3, None, 3, None, 1]
+    ->  7
+
 RECOGNITION HINT  (read only AFTER a real attempt)
     Tree DP. Return a (rob, skip) TUPLE per node - collapsing to one
     value is the common trap.
@@ -43,7 +53,6 @@ class TreeNode:
 
 
 def build_tree(vals):
-    """LeetCode level-order list (None = missing child) -> root"""
     if not vals:
         return None
     root = TreeNode(vals[0])
@@ -64,7 +73,6 @@ def build_tree(vals):
 
 
 def dump_tree(root):
-    """root -> LeetCode level-order list, trailing Nones trimmed"""
     if root is None:
         return []
     out, q = [], [root]
@@ -82,7 +90,6 @@ def dump_tree(root):
 
 
 def find_node(root, val):
-    """LeetCode hands some problems a VALUE where the method wants the NODE."""
     if root is None:
         return None
     q = [root]
@@ -98,48 +105,42 @@ def find_node(root, val):
 
 
 class Solution:
-    # -----------------------------------------------------------------
-    #  BRUTE FORCE   -- write this one first, even when it is obvious.
-    #  Time  : O(?)      Space : O(?)
-    # -----------------------------------------------------------------
     def rob_brute(self, root: Optional[TreeNode]) -> int:
-        raise NotImplementedError("brute force")
+        pass
 
-    # -----------------------------------------------------------------
-    #  OPTIMAL       -- what does the brute force redo that it need not?
-    #  Time  : O(?)      Space : O(?)
-    # -----------------------------------------------------------------
+
     def rob(self, root: Optional[TreeNode]) -> int:
-        raise NotImplementedError("optimal")
+        pass
 
 
-# ---------------------------------------------------------------------
-#  TEST CASES  --  taken from the examples on the LeetCode page
-# ---------------------------------------------------------------------
 METHOD      = 'rob'
 PARAM_TYPES = ['TreeNode']
 RETURN_TYPE = 'integer'
 INPLACE_ARG = None
 
 TESTS = [
-    # ( [args...], expected )
     ([[3, 2, 3, None, 3, None, 1]], 7),
     ([[3, 4, 5, 1, 3, None, 1]], 9),
 ]
 
 
-# ---------------------------------------------------------------------
-#  RUNNER  --  python3 this_file.py
-#  Runs every test case against BOTH methods. A method you have not
-#  written yet is skipped, so you can fill in brute force first.
-# ---------------------------------------------------------------------
 if __name__ == "__main__":
+    import ast
     import copy
+    import inspect
+    import textwrap
 
     def _build(v, t):
         if t.startswith("TreeNode"):
             return build_tree(v)
         return v
+
+    def _todo(fn):
+        try:
+            body = ast.parse(textwrap.dedent(inspect.getsource(fn))).body[0].body
+        except (OSError, TypeError, SyntaxError, IndexError):
+            return False
+        return len(body) == 1 and isinstance(body[0], (ast.Pass, ast.Expr))
 
     def _verdict(got, want):
         if got == want:
@@ -164,13 +165,13 @@ if __name__ == "__main__":
         if fn is None:
             continue
         print(f"{label} :")
+        if _todo(fn):
+            print("    not written yet\n")
+            continue
         for n, (args, want) in enumerate(TESTS, 1):
             call = [_build(copy.deepcopy(a), t) for a, t in zip(args, PARAM_TYPES)]
             try:
                 got = fn(*call)
-            except NotImplementedError:
-                print("    -- not written yet --")
-                break
             except Exception as exc:
                 print(f"    case {n}: ERROR  {type(exc).__name__}: {exc}")
                 continue

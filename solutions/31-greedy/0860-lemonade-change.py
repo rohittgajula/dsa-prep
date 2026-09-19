@@ -7,6 +7,16 @@ Pattern    : Greedy
 Tier       : Stretch   (optional - skip without guilt if the week is tight)
 Scheduled  : Wed 24 Feb 2027  (week 24)
 
+INPUT
+    bills : list of integers
+
+RETURN
+    true or false
+
+EXAMPLE
+    bills = [5, 5, 5, 10, 20]
+    ->  True
+
 RECOGNITION HINT  (read only AFTER a real attempt)
     Greedy: always give the largest bills first to preserve small
     change.
@@ -36,43 +46,37 @@ from typing import List
 
 
 class Solution:
-    # -----------------------------------------------------------------
-    #  BRUTE FORCE   -- write this one first, even when it is obvious.
-    #  Time  : O(?)      Space : O(?)
-    # -----------------------------------------------------------------
     def lemonadeChange_brute(self, bills: List[int]) -> bool:
-        raise NotImplementedError("brute force")
+        pass
 
-    # -----------------------------------------------------------------
-    #  OPTIMAL       -- what does the brute force redo that it need not?
-    #  Time  : O(?)      Space : O(?)
-    # -----------------------------------------------------------------
+
     def lemonadeChange(self, bills: List[int]) -> bool:
-        raise NotImplementedError("optimal")
+        pass
 
 
-# ---------------------------------------------------------------------
-#  TEST CASES  --  taken from the examples on the LeetCode page
-# ---------------------------------------------------------------------
 METHOD      = 'lemonadeChange'
 PARAM_TYPES = ['integer[]']
 RETURN_TYPE = 'boolean'
 INPLACE_ARG = None
 
 TESTS = [
-    # ( [args...], expected )
     ([[5, 5, 5, 10, 20]], True),
     ([[5, 5, 10, 10, 20]], False),
 ]
 
 
-# ---------------------------------------------------------------------
-#  RUNNER  --  python3 this_file.py
-#  Runs every test case against BOTH methods. A method you have not
-#  written yet is skipped, so you can fill in brute force first.
-# ---------------------------------------------------------------------
 if __name__ == "__main__":
+    import ast
     import copy
+    import inspect
+    import textwrap
+
+    def _todo(fn):
+        try:
+            body = ast.parse(textwrap.dedent(inspect.getsource(fn))).body[0].body
+        except (OSError, TypeError, SyntaxError, IndexError):
+            return False
+        return len(body) == 1 and isinstance(body[0], (ast.Pass, ast.Expr))
 
     def _verdict(got, want):
         if got == want:
@@ -97,13 +101,13 @@ if __name__ == "__main__":
         if fn is None:
             continue
         print(f"{label} :")
+        if _todo(fn):
+            print("    not written yet\n")
+            continue
         for n, (args, want) in enumerate(TESTS, 1):
             call = [copy.deepcopy(a) for a in args]
             try:
                 got = fn(*call)
-            except NotImplementedError:
-                print("    -- not written yet --")
-                break
             except Exception as exc:
                 print(f"    case {n}: ERROR  {type(exc).__name__}: {exc}")
                 continue

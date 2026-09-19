@@ -7,6 +7,19 @@ Pattern    : Array Basics
 Tier       : Core
 Scheduled  : Mon 14 Sep 2026  (week 1)
 
+INPUT
+    nums1 : list of integers
+    m     : integer
+    nums2 : list of integers
+    n     : integer
+
+RETURN
+    nothing is returned - nums1 itself is changed
+
+EXAMPLE
+    nums1 = [1, 2, 3, 0, 0, 0], m = 3, nums2 = [2, 5, 6], n = 3
+    ->  nums1 becomes [1, 2, 2, 3, 5, 6]
+
 RECOGNITION HINT  (read only AFTER a real attempt)
     Merging forward needs shifting. Fill from the BACK where the spare
     space already is.
@@ -36,48 +49,38 @@ from typing import List
 
 
 class Solution:
-    # -----------------------------------------------------------------
-    #  BRUTE FORCE   -- write this one first, even when it is obvious.
-    #  Time  : O(?)      Space : O(?)
-    # -----------------------------------------------------------------
     def merge_brute(self, nums1: List[int], m: int, nums2: List[int], n: int) -> None:
-        # NOTE: modify nums1 IN PLACE -- the runner
-        #       checks that argument, not the return value.
-        raise NotImplementedError("brute force")
+        pass
 
-    # -----------------------------------------------------------------
-    #  OPTIMAL       -- what does the brute force redo that it need not?
-    #  Time  : O(?)      Space : O(?)
-    # -----------------------------------------------------------------
+
     def merge(self, nums1: List[int], m: int, nums2: List[int], n: int) -> None:
-        # NOTE: modify nums1 IN PLACE -- the runner
-        #       checks that argument, not the return value.
-        raise NotImplementedError("optimal")
+        pass
 
 
-# ---------------------------------------------------------------------
-#  TEST CASES  --  taken from the examples on the LeetCode page
-# ---------------------------------------------------------------------
 METHOD      = 'merge'
 PARAM_TYPES = ['integer[]', 'integer', 'integer[]', 'integer']
 RETURN_TYPE = 'void'
-INPLACE_ARG = 0   # answer is left in 'nums1'
+INPLACE_ARG = 0
 
 TESTS = [
-    # ( [args...], expected )
     ([[1, 2, 3, 0, 0, 0], 3, [2, 5, 6], 3], [1, 2, 2, 3, 5, 6]),
     ([[1], 1, [], 0], [1]),
     ([[0], 0, [1], 1], [1]),
 ]
 
 
-# ---------------------------------------------------------------------
-#  RUNNER  --  python3 this_file.py
-#  Runs every test case against BOTH methods. A method you have not
-#  written yet is skipped, so you can fill in brute force first.
-# ---------------------------------------------------------------------
 if __name__ == "__main__":
+    import ast
     import copy
+    import inspect
+    import textwrap
+
+    def _todo(fn):
+        try:
+            body = ast.parse(textwrap.dedent(inspect.getsource(fn))).body[0].body
+        except (OSError, TypeError, SyntaxError, IndexError):
+            return False
+        return len(body) == 1 and isinstance(body[0], (ast.Pass, ast.Expr))
 
     def _verdict(got, want):
         if got == want:
@@ -102,13 +105,13 @@ if __name__ == "__main__":
         if fn is None:
             continue
         print(f"{label} :")
+        if _todo(fn):
+            print("    not written yet\n")
+            continue
         for n, (args, want) in enumerate(TESTS, 1):
             call = [copy.deepcopy(a) for a in args]
             try:
                 got = fn(*call)
-            except NotImplementedError:
-                print("    -- not written yet --")
-                break
             except Exception as exc:
                 print(f"    case {n}: ERROR  {type(exc).__name__}: {exc}")
                 continue

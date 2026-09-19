@@ -7,6 +7,17 @@ Pattern    : Binary Search on Answer
 Tier       : Core
 Scheduled  : Sat 07 Nov 2026  (week 8)
 
+INPUT
+    nums : list of integers
+    k    : integer
+
+RETURN
+    integer
+
+EXAMPLE
+    nums = [7, 2, 5, 10, 8], k = 2
+    ->  18
+
 RECOGNITION HINT  (read only AFTER a real attempt)
     MINIMISE the maximum subarray sum. feasible(x) = greedy splitting
     needs at most m parts.
@@ -36,43 +47,37 @@ from typing import List
 
 
 class Solution:
-    # -----------------------------------------------------------------
-    #  BRUTE FORCE   -- write this one first, even when it is obvious.
-    #  Time  : O(?)      Space : O(?)
-    # -----------------------------------------------------------------
     def splitArray_brute(self, nums: List[int], k: int) -> int:
-        raise NotImplementedError("brute force")
+        pass
 
-    # -----------------------------------------------------------------
-    #  OPTIMAL       -- what does the brute force redo that it need not?
-    #  Time  : O(?)      Space : O(?)
-    # -----------------------------------------------------------------
+
     def splitArray(self, nums: List[int], k: int) -> int:
-        raise NotImplementedError("optimal")
+        pass
 
 
-# ---------------------------------------------------------------------
-#  TEST CASES  --  taken from the examples on the LeetCode page
-# ---------------------------------------------------------------------
 METHOD      = 'splitArray'
 PARAM_TYPES = ['integer[]', 'integer']
 RETURN_TYPE = 'integer'
 INPLACE_ARG = None
 
 TESTS = [
-    # ( [args...], expected )
     ([[7, 2, 5, 10, 8], 2], 18),
     ([[1, 2, 3, 4, 5], 2], 9),
 ]
 
 
-# ---------------------------------------------------------------------
-#  RUNNER  --  python3 this_file.py
-#  Runs every test case against BOTH methods. A method you have not
-#  written yet is skipped, so you can fill in brute force first.
-# ---------------------------------------------------------------------
 if __name__ == "__main__":
+    import ast
     import copy
+    import inspect
+    import textwrap
+
+    def _todo(fn):
+        try:
+            body = ast.parse(textwrap.dedent(inspect.getsource(fn))).body[0].body
+        except (OSError, TypeError, SyntaxError, IndexError):
+            return False
+        return len(body) == 1 and isinstance(body[0], (ast.Pass, ast.Expr))
 
     def _verdict(got, want):
         if got == want:
@@ -97,13 +102,13 @@ if __name__ == "__main__":
         if fn is None:
             continue
         print(f"{label} :")
+        if _todo(fn):
+            print("    not written yet\n")
+            continue
         for n, (args, want) in enumerate(TESTS, 1):
             call = [copy.deepcopy(a) for a in args]
             try:
                 got = fn(*call)
-            except NotImplementedError:
-                print("    -- not written yet --")
-                break
             except Exception as exc:
                 print(f"    case {n}: ERROR  {type(exc).__name__}: {exc}")
                 continue

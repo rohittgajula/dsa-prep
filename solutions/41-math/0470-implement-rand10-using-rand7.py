@@ -7,6 +7,26 @@ Pattern    : Math
 Tier       : Stretch   (optional - skip without guilt if the week is tight)
 Scheduled  : Mon 22 Mar 2027  (week 28)
 
+INPUT
+    this one hands you a class or a ready-made interface to work
+    against rather than plain arguments - open the problem page and
+    copy the starter code in.
+
+HEADS UP
+    LeetCode's test data does not line up with this method.
+    signature takes 0 arg(s), the judge feeds 1.
+    Build the real arguments by hand, then fill in TESTS below.
+
+RAW JUDGE DATA
+    inputs:
+        1
+        2
+        3
+    outputs:
+        [2]
+        [2,8]
+        [3,8,10]
+
 RECOGNITION HINT  (read only AFTER a real attempt)
     Rejection sampling: build a uniform 1-49 grid, reject 41-49, then
     mod 10.
@@ -33,63 +53,50 @@ Time taken: __ min      Solved unaided: Y / N
 """
 
 
-#---------------------------------------------------------------------
-#  HEADS UP - LeetCode's test data does not line up with this method.
-#  signature takes 0 arg(s), the judge feeds 1.
-#---------------------------------------------------------------------
-
-
 class Solution:
-    # -----------------------------------------------------------------
-    #  BRUTE FORCE   -- write this one first, even when it is obvious.
-    #  Time  : O(?)      Space : O(?)
-    # -----------------------------------------------------------------
     def rand10_brute(self, *args):
-        raise NotImplementedError("brute force")
+        pass
 
-    # -----------------------------------------------------------------
-    #  OPTIMAL       -- what does the brute force redo that it need not?
-    #  Time  : O(?)      Space : O(?)
-    # -----------------------------------------------------------------
+
     def rand10(self, *args):
-        raise NotImplementedError("optimal")
+        pass
 
-
-# ---------------------------------------------------------------------
-#  The raw data LeetCode feeds its judge, for reference. Build the real
-#  arguments from it by hand (see the heads-up above), then fill in TESTS.
-# ---------------------------------------------------------------------
-#  inputs :
-#      1
-#      2
-#      3
-#  outputs:
-#      [2]
-#      [2,8]
-#      [3,8,10]
 
 TESTS = [
-    # ( [args...], expected )   <- write these yourself for this one
 ]
 
 
 if __name__ == "__main__":
-    if not TESTS:
-        print("no test cases yet - see the heads-up at the top of this file")
+    import ast
+    import copy
+    import inspect
+    import textwrap
+
+    def _todo(fn):
+        try:
+            body = ast.parse(textwrap.dedent(inspect.getsource(fn))).body[0].body
+        except (OSError, TypeError, SyntaxError, IndexError):
+            return False
+        return len(body) == 1 and isinstance(body[0], (ast.Pass, ast.Expr))
+
     sol = Solution()
     for label, fname in (("BRUTE FORCE", 'rand10_brute'), ("OPTIMAL    ", 'rand10')):
         fn = getattr(sol, fname, None)
         if fn is None:
             continue
         print(f"{label} :")
+        if _todo(fn):
+            print("    not written yet\n")
+            continue
+        if not TESTS:
+            print("    no test cases yet - see HEADS UP at the top of this file\n")
+            continue
         for n, (args, want) in enumerate(TESTS, 1):
             try:
-                got = fn(*args)
-            except NotImplementedError:
-                print("    -- not written yet --")
-                break
+                got = fn(*copy.deepcopy(args))
             except Exception as exc:
                 print(f"    case {n}: ERROR  {type(exc).__name__}: {exc}")
                 continue
-            print(f"    case {n}: {'PASS' if got == want else 'FAIL'}   got={got!r}  want={want!r}")
+            mark = "PASS" if got == want else "FAIL"
+            print(f"    case {n}: {mark:<20} got={got!r}  want={want!r}")
         print()

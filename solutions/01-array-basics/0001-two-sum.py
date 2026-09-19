@@ -7,6 +7,17 @@ Pattern    : Array Basics
 Tier       : Core
 Scheduled  : Thu 10 Sep 2026  (week 0)
 
+INPUT
+    nums   : list of integers
+    target : integer
+
+RETURN
+    list of integers
+
+EXAMPLE
+    nums = [2, 7, 11, 15], target = 9
+    ->  [0, 1]
+
 RECOGNITION HINT  (read only AFTER a real attempt)
     Brute force is O(n^2). Ask: what am I searching for? The complement.
     Hash map turns that search into O(1).
@@ -36,44 +47,38 @@ from typing import List
 
 
 class Solution:
-    # -----------------------------------------------------------------
-    #  BRUTE FORCE   -- write this one first, even when it is obvious.
-    #  Time  : O(?)      Space : O(?)
-    # -----------------------------------------------------------------
     def twoSum_brute(self, nums: List[int], target: int) -> List[int]:
-        raise NotImplementedError("brute force")
+        pass
 
-    # -----------------------------------------------------------------
-    #  OPTIMAL       -- what does the brute force redo that it need not?
-    #  Time  : O(?)      Space : O(?)
-    # -----------------------------------------------------------------
+
     def twoSum(self, nums: List[int], target: int) -> List[int]:
-        raise NotImplementedError("optimal")
+        pass
 
 
-# ---------------------------------------------------------------------
-#  TEST CASES  --  taken from the examples on the LeetCode page
-# ---------------------------------------------------------------------
 METHOD      = 'twoSum'
 PARAM_TYPES = ['integer[]', 'integer']
 RETURN_TYPE = 'integer[]'
 INPLACE_ARG = None
 
 TESTS = [
-    # ( [args...], expected )
     ([[2, 7, 11, 15], 9], [0, 1]),
     ([[3, 2, 4], 6], [1, 2]),
     ([[3, 3], 6], [0, 1]),
 ]
 
 
-# ---------------------------------------------------------------------
-#  RUNNER  --  python3 this_file.py
-#  Runs every test case against BOTH methods. A method you have not
-#  written yet is skipped, so you can fill in brute force first.
-# ---------------------------------------------------------------------
 if __name__ == "__main__":
+    import ast
     import copy
+    import inspect
+    import textwrap
+
+    def _todo(fn):
+        try:
+            body = ast.parse(textwrap.dedent(inspect.getsource(fn))).body[0].body
+        except (OSError, TypeError, SyntaxError, IndexError):
+            return False
+        return len(body) == 1 and isinstance(body[0], (ast.Pass, ast.Expr))
 
     def _verdict(got, want):
         if got == want:
@@ -98,13 +103,13 @@ if __name__ == "__main__":
         if fn is None:
             continue
         print(f"{label} :")
+        if _todo(fn):
+            print("    not written yet\n")
+            continue
         for n, (args, want) in enumerate(TESTS, 1):
             call = [copy.deepcopy(a) for a in args]
             try:
                 got = fn(*call)
-            except NotImplementedError:
-                print("    -- not written yet --")
-                break
             except Exception as exc:
                 print(f"    case {n}: ERROR  {type(exc).__name__}: {exc}")
                 continue

@@ -7,6 +7,13 @@ Pattern    : Design DS
 Tier       : Stretch   (optional - skip without guilt if the week is tight)
 Scheduled  : Tue 30 Mar 2027  (week 29)
 
+OPERATIONS
+    AllOne()
+    inc(key)  ->  nothing
+    dec(key)  ->  nothing
+    getMaxKey()  ->  string
+    getMinKey()  ->  string
+
 RECOGNITION HINT  (read only AFTER a real attempt)
     Doubly linked list of frequency buckets, each holding a set of keys.
     O(1) for min and max.
@@ -34,46 +41,47 @@ Time taken: __ min      Solved unaided: Y / N
 
 
 class AllOneBrute:
-    """Simplest thing that works. Get it correct, then beat it."""
-
     def __init__(self):
-        raise NotImplementedError
+        pass
+
 
     def inc(self, key: str) -> None:
-        raise NotImplementedError
+        pass
+
 
     def dec(self, key: str) -> None:
-        raise NotImplementedError
+        pass
+
 
     def getMaxKey(self) -> str:
-        raise NotImplementedError
+        pass
+
 
     def getMinKey(self) -> str:
-        raise NotImplementedError
+        pass
 
 
 class AllOne:
-    """The version you would actually submit."""
-
     def __init__(self):
-        raise NotImplementedError
+        pass
+
 
     def inc(self, key: str) -> None:
-        raise NotImplementedError
+        pass
+
 
     def dec(self, key: str) -> None:
-        raise NotImplementedError
+        pass
+
 
     def getMaxKey(self) -> str:
-        raise NotImplementedError
+        pass
+
 
     def getMinKey(self) -> str:
-        raise NotImplementedError
+        pass
 
 
-# ---------------------------------------------------------------------
-#  TEST CASES  --  the operation sequence from the LeetCode page
-# ---------------------------------------------------------------------
 CLASS_BRUTE   = AllOneBrute
 CLASS_OPTIMAL = AllOne
 
@@ -82,13 +90,23 @@ ARGS     = [[], ['hello'], ['hello'], [], [], ['leet'], [], []]
 EXPECTED = [None, None, None, 'hello', 'hello', None, 'hello', 'leet']
 
 
-# ---------------------------------------------------------------------
-#  RUNNER  --  python3 this_file.py
-#  Replays the LeetCode operation sequence against both versions.
-# ---------------------------------------------------------------------
 if __name__ == "__main__":
+    import ast
+    import inspect
+    import textwrap
+
+    def _todo(cls):
+        try:
+            body = ast.parse(textwrap.dedent(inspect.getsource(cls.__init__))).body[0].body
+        except (OSError, TypeError, SyntaxError, IndexError):
+            return False
+        return len(body) == 1 and isinstance(body[0], (ast.Pass, ast.Expr))
+
     def replay(cls, label):
         print(f"{label} :")
+        if _todo(cls):
+            print("    not written yet\n")
+            return
         obj = None
         for n, (op, args) in enumerate(zip(OPS, ARGS)):
             want = EXPECTED[n] if n < len(EXPECTED) else "?"
@@ -98,15 +116,10 @@ if __name__ == "__main__":
                     got = None
                 else:
                     got = getattr(obj, op)(*args)
-            except NotImplementedError:
-                print("    -- not written yet --")
-                return
             except Exception as exc:
                 print(f"    {op}({args}) ERROR {type(exc).__name__}: {exc}")
                 continue
-            mark = "PASS" if got == want else "FAIL"
-            if want == "?":
-                mark = "----"
+            mark = "----" if want == "?" else ("PASS" if got == want else "FAIL")
             print(f"    {n:>2}. {op}({str(args)[1:-1]:<12}) -> {str(got):<8} want {str(want):<8} {mark}")
         print()
 

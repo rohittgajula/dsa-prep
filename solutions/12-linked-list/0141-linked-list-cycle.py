@@ -7,6 +7,30 @@ Pattern    : Linked List
 Tier       : Core
 Scheduled  : Thu 26 Nov 2026  (week 11)
 
+INPUT
+    head : head of a linked list
+
+HEADS UP
+    LeetCode's test data does not line up with this method.
+    signature takes 1 arg(s), the judge feeds 2.
+    The 'pos' in the LeetCode input is not a method parameter - it
+    says where the tail links back to. Build the list, then wire
+    tail.next to the node at pos.
+    Build the real arguments by hand, then fill in TESTS below.
+
+RAW JUDGE DATA
+    inputs:
+        [3,2,0,-4]
+        1
+        [1,2]
+        0
+        [1]
+        -1
+    outputs:
+        true
+        true
+        false
+
 RECOGNITION HINT  (read only AFTER a real attempt)
     Floyd. If fast ever equals slow there is a cycle; if fast hits null
     there is not.
@@ -42,7 +66,6 @@ class ListNode:
 
 
 def build_list(vals):
-    """[1,2,3] -> 1 -> 2 -> 3"""
     head = None
     for v in reversed(vals or []):
         head = ListNode(v, head)
@@ -50,75 +73,57 @@ def build_list(vals):
 
 
 def dump_list(head, limit=500):
-    """1 -> 2 -> 3 -> [1,2,3]   (limit guards against a cycle)"""
     out = []
     while head is not None and len(out) < limit:
         out.append(head.val)
         head = head.next
     return out
 
-#---------------------------------------------------------------------
-#  HEADS UP - LeetCode's test data does not line up with this method.
-#  signature takes 1 arg(s), the judge feeds 2.
-#  The 'pos' in the LeetCode input is not a method parameter - it says where the
-#  tail links back to. Build the list, then wire tail.next to the node at pos.
-#---------------------------------------------------------------------
-
 
 class Solution:
-    # -----------------------------------------------------------------
-    #  BRUTE FORCE   -- write this one first, even when it is obvious.
-    #  Time  : O(?)      Space : O(?)
-    # -----------------------------------------------------------------
     def hasCycle_brute(self, head: Optional[ListNode]) -> bool:
-        raise NotImplementedError("brute force")
+        pass
 
-    # -----------------------------------------------------------------
-    #  OPTIMAL       -- what does the brute force redo that it need not?
-    #  Time  : O(?)      Space : O(?)
-    # -----------------------------------------------------------------
+
     def hasCycle(self, head: Optional[ListNode]) -> bool:
-        raise NotImplementedError("optimal")
+        pass
 
-
-# ---------------------------------------------------------------------
-#  The raw data LeetCode feeds its judge, for reference. Build the real
-#  arguments from it by hand (see the heads-up above), then fill in TESTS.
-# ---------------------------------------------------------------------
-#  inputs :
-#      [3,2,0,-4]
-#      1
-#      [1,2]
-#      0
-#      [1]
-#      -1
-#  outputs:
-#      true
-#      true
-#      false
 
 TESTS = [
-    # ( [args...], expected )   <- write these yourself for this one
 ]
 
 
 if __name__ == "__main__":
-    if not TESTS:
-        print("no test cases yet - see the heads-up at the top of this file")
+    import ast
+    import copy
+    import inspect
+    import textwrap
+
+    def _todo(fn):
+        try:
+            body = ast.parse(textwrap.dedent(inspect.getsource(fn))).body[0].body
+        except (OSError, TypeError, SyntaxError, IndexError):
+            return False
+        return len(body) == 1 and isinstance(body[0], (ast.Pass, ast.Expr))
+
     sol = Solution()
     for label, fname in (("BRUTE FORCE", 'hasCycle_brute'), ("OPTIMAL    ", 'hasCycle')):
         fn = getattr(sol, fname, None)
         if fn is None:
             continue
         print(f"{label} :")
+        if _todo(fn):
+            print("    not written yet\n")
+            continue
+        if not TESTS:
+            print("    no test cases yet - see HEADS UP at the top of this file\n")
+            continue
         for n, (args, want) in enumerate(TESTS, 1):
             try:
-                got = fn(*args)
-            except NotImplementedError:
-                print("    -- not written yet --")
-                break
+                got = fn(*copy.deepcopy(args))
             except Exception as exc:
                 print(f"    case {n}: ERROR  {type(exc).__name__}: {exc}")
                 continue
-            print(f"    case {n}: {'PASS' if got == want else 'FAIL'}   got={got!r}  want={want!r}")
+            mark = "PASS" if got == want else "FAIL"
+            print(f"    case {n}: {mark:<20} got={got!r}  want={want!r}")
         print()

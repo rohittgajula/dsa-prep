@@ -7,6 +7,11 @@ Pattern    : Math
 Tier       : Stretch   (optional - skip without guilt if the week is tight)
 Scheduled  : Thu 25 Mar 2027  (week 28)
 
+OPERATIONS
+    Solution(nums, numsSize)   with nums = list of integers,
+    numsSize = integer
+    pick(target)  ->  integer
+
 RECOGNITION HINT  (read only AFTER a real attempt)
     Reservoir sampling over matching indices, giving O(1) space instead
     of storing all of them.
@@ -36,28 +41,23 @@ from typing import List
 
 
 class SolutionBrute:
-    """Simplest thing that works. Get it correct, then beat it."""
-
     def __init__(self, nums: List[int], numsSize: int):
-        raise NotImplementedError
+        pass
+
 
     def pick(self, target: int) -> int:
-        raise NotImplementedError
+        pass
 
 
 class Solution:
-    """The version you would actually submit."""
-
     def __init__(self, nums: List[int], numsSize: int):
-        raise NotImplementedError
+        pass
+
 
     def pick(self, target: int) -> int:
-        raise NotImplementedError
+        pass
 
 
-# ---------------------------------------------------------------------
-#  TEST CASES  --  the operation sequence from the LeetCode page
-# ---------------------------------------------------------------------
 CLASS_BRUTE   = SolutionBrute
 CLASS_OPTIMAL = Solution
 
@@ -66,13 +66,23 @@ ARGS     = [[[1, 2, 3, 3, 3]], [3], [1], [3]]
 EXPECTED = [None, 4, 0, 2]
 
 
-# ---------------------------------------------------------------------
-#  RUNNER  --  python3 this_file.py
-#  Replays the LeetCode operation sequence against both versions.
-# ---------------------------------------------------------------------
 if __name__ == "__main__":
+    import ast
+    import inspect
+    import textwrap
+
+    def _todo(cls):
+        try:
+            body = ast.parse(textwrap.dedent(inspect.getsource(cls.__init__))).body[0].body
+        except (OSError, TypeError, SyntaxError, IndexError):
+            return False
+        return len(body) == 1 and isinstance(body[0], (ast.Pass, ast.Expr))
+
     def replay(cls, label):
         print(f"{label} :")
+        if _todo(cls):
+            print("    not written yet\n")
+            return
         obj = None
         for n, (op, args) in enumerate(zip(OPS, ARGS)):
             want = EXPECTED[n] if n < len(EXPECTED) else "?"
@@ -82,15 +92,10 @@ if __name__ == "__main__":
                     got = None
                 else:
                     got = getattr(obj, op)(*args)
-            except NotImplementedError:
-                print("    -- not written yet --")
-                return
             except Exception as exc:
                 print(f"    {op}({args}) ERROR {type(exc).__name__}: {exc}")
                 continue
-            mark = "PASS" if got == want else "FAIL"
-            if want == "?":
-                mark = "----"
+            mark = "----" if want == "?" else ("PASS" if got == want else "FAIL")
             print(f"    {n:>2}. {op}({str(args)[1:-1]:<12}) -> {str(got):<8} want {str(want):<8} {mark}")
         print()
 

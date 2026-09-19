@@ -7,6 +7,16 @@ Pattern    : Stack
 Tier       : Stretch   (optional - skip without guilt if the week is tight)
 Scheduled  : Fri 04 Dec 2026  (week 12)
 
+INPUT
+    path : string
+
+RETURN
+    string
+
+EXAMPLE
+    path = '/home/'
+    ->  '/home'
+
 RECOGNITION HINT  (read only AFTER a real attempt)
     Split on '/'. Push real names, pop on '..', ignore '.' and empty
     segments.
@@ -34,31 +44,20 @@ Time taken: __ min      Solved unaided: Y / N
 
 
 class Solution:
-    # -----------------------------------------------------------------
-    #  BRUTE FORCE   -- write this one first, even when it is obvious.
-    #  Time  : O(?)      Space : O(?)
-    # -----------------------------------------------------------------
     def simplifyPath_brute(self, path: str) -> str:
-        raise NotImplementedError("brute force")
+        pass
 
-    # -----------------------------------------------------------------
-    #  OPTIMAL       -- what does the brute force redo that it need not?
-    #  Time  : O(?)      Space : O(?)
-    # -----------------------------------------------------------------
+
     def simplifyPath(self, path: str) -> str:
-        raise NotImplementedError("optimal")
+        pass
 
 
-# ---------------------------------------------------------------------
-#  TEST CASES  --  taken from the examples on the LeetCode page
-# ---------------------------------------------------------------------
 METHOD      = 'simplifyPath'
 PARAM_TYPES = ['string']
 RETURN_TYPE = 'string'
 INPLACE_ARG = None
 
 TESTS = [
-    # ( [args...], expected )
     (['/home/'], '/home'),
     (['/home//foo/'], '/home/foo'),
     (['/home/user/Documents/../Pictures'], '/home/user/Pictures'),
@@ -67,13 +66,18 @@ TESTS = [
 ]
 
 
-# ---------------------------------------------------------------------
-#  RUNNER  --  python3 this_file.py
-#  Runs every test case against BOTH methods. A method you have not
-#  written yet is skipped, so you can fill in brute force first.
-# ---------------------------------------------------------------------
 if __name__ == "__main__":
+    import ast
     import copy
+    import inspect
+    import textwrap
+
+    def _todo(fn):
+        try:
+            body = ast.parse(textwrap.dedent(inspect.getsource(fn))).body[0].body
+        except (OSError, TypeError, SyntaxError, IndexError):
+            return False
+        return len(body) == 1 and isinstance(body[0], (ast.Pass, ast.Expr))
 
     def _verdict(got, want):
         if got == want:
@@ -98,13 +102,13 @@ if __name__ == "__main__":
         if fn is None:
             continue
         print(f"{label} :")
+        if _todo(fn):
+            print("    not written yet\n")
+            continue
         for n, (args, want) in enumerate(TESTS, 1):
             call = [copy.deepcopy(a) for a in args]
             try:
                 got = fn(*call)
-            except NotImplementedError:
-                print("    -- not written yet --")
-                break
             except Exception as exc:
                 print(f"    case {n}: ERROR  {type(exc).__name__}: {exc}")
                 continue

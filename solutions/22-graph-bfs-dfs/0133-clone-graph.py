@@ -7,6 +7,27 @@ Pattern    : Graph BFS/DFS
 Tier       : Core
 Scheduled  : Sun 07 Feb 2027  (week 21)
 
+INPUT
+    node : node, see the problem page
+
+HEADS UP
+    LeetCode's test data does not line up with this method.
+    arg 'edges' is really 'node'.
+    Uses LeetCode's Node class (val, neighbors). Input is an
+    adjacency list. Build the graph, clone it, then confirm no node
+    object is shared with the original.
+    Build the real arguments by hand, then fill in TESTS below.
+
+RAW JUDGE DATA
+    inputs:
+        [[2,4],[1,3],[2,4],[1,3]]
+        [[]]
+        []
+    outputs:
+        [[2,4],[1,3],[2,4],[1,3]]
+        [[]]
+        []
+
 RECOGNITION HINT  (read only AFTER a real attempt)
     DFS or BFS with a hashmap old->new. Create the copy BEFORE recursing
     or you loop forever.
@@ -36,71 +57,55 @@ from typing import Optional
 
 
 class Node:
-    """LeetCode's graph node."""
-
     def __init__(self, val=0, neighbors=None):
         self.val = val
         self.neighbors = neighbors if neighbors is not None else []
 
-#---------------------------------------------------------------------
-#  HEADS UP - LeetCode's test data does not line up with this method.
-#  arg 'edges' is really 'node'.
-#  Uses LeetCode's Node class (val, neighbors). Input is an adjacency list.
-#  Build the graph, clone it, then confirm no node object is shared with the original.
-#---------------------------------------------------------------------
-
 
 class Solution:
-    # -----------------------------------------------------------------
-    #  BRUTE FORCE   -- write this one first, even when it is obvious.
-    #  Time  : O(?)      Space : O(?)
-    # -----------------------------------------------------------------
     def cloneGraph_brute(self, node: Optional['Node']) -> Optional['Node']:
-        raise NotImplementedError("brute force")
+        pass
 
-    # -----------------------------------------------------------------
-    #  OPTIMAL       -- what does the brute force redo that it need not?
-    #  Time  : O(?)      Space : O(?)
-    # -----------------------------------------------------------------
+
     def cloneGraph(self, node: Optional['Node']) -> Optional['Node']:
-        raise NotImplementedError("optimal")
+        pass
 
-
-# ---------------------------------------------------------------------
-#  The raw data LeetCode feeds its judge, for reference. Build the real
-#  arguments from it by hand (see the heads-up above), then fill in TESTS.
-# ---------------------------------------------------------------------
-#  inputs :
-#      [[2,4],[1,3],[2,4],[1,3]]
-#      [[]]
-#      []
-#  outputs:
-#      [[2,4],[1,3],[2,4],[1,3]]
-#      [[]]
-#      []
 
 TESTS = [
-    # ( [args...], expected )   <- write these yourself for this one
 ]
 
 
 if __name__ == "__main__":
-    if not TESTS:
-        print("no test cases yet - see the heads-up at the top of this file")
+    import ast
+    import copy
+    import inspect
+    import textwrap
+
+    def _todo(fn):
+        try:
+            body = ast.parse(textwrap.dedent(inspect.getsource(fn))).body[0].body
+        except (OSError, TypeError, SyntaxError, IndexError):
+            return False
+        return len(body) == 1 and isinstance(body[0], (ast.Pass, ast.Expr))
+
     sol = Solution()
     for label, fname in (("BRUTE FORCE", 'cloneGraph_brute'), ("OPTIMAL    ", 'cloneGraph')):
         fn = getattr(sol, fname, None)
         if fn is None:
             continue
         print(f"{label} :")
+        if _todo(fn):
+            print("    not written yet\n")
+            continue
+        if not TESTS:
+            print("    no test cases yet - see HEADS UP at the top of this file\n")
+            continue
         for n, (args, want) in enumerate(TESTS, 1):
             try:
-                got = fn(*args)
-            except NotImplementedError:
-                print("    -- not written yet --")
-                break
+                got = fn(*copy.deepcopy(args))
             except Exception as exc:
                 print(f"    case {n}: ERROR  {type(exc).__name__}: {exc}")
                 continue
-            print(f"    case {n}: {'PASS' if got == want else 'FAIL'}   got={got!r}  want={want!r}")
+            mark = "PASS" if got == want else "FAIL"
+            print(f"    case {n}: {mark:<20} got={got!r}  want={want!r}")
         print()

@@ -7,6 +7,10 @@ Pattern    : Trie
 Tier       : Stretch   (optional - skip without guilt if the week is tight)
 Scheduled  : Mon 25 Jan 2027  (week 20)
 
+OPERATIONS
+    WordFilter(words)   with words = list of strings
+    f(pref, suff)  ->  integer
+
 RECOGNITION HINT  (read only AFTER a real attempt)
     Insert every suffix+'{'+word combination into one trie so a single
     lookup answers both constraints.
@@ -36,28 +40,23 @@ from typing import List
 
 
 class WordFilterBrute:
-    """Simplest thing that works. Get it correct, then beat it."""
-
     def __init__(self, words: List[str]):
-        raise NotImplementedError
+        pass
+
 
     def f(self, pref: str, suff: str) -> int:
-        raise NotImplementedError
+        pass
 
 
 class WordFilter:
-    """The version you would actually submit."""
-
     def __init__(self, words: List[str]):
-        raise NotImplementedError
+        pass
+
 
     def f(self, pref: str, suff: str) -> int:
-        raise NotImplementedError
+        pass
 
 
-# ---------------------------------------------------------------------
-#  TEST CASES  --  the operation sequence from the LeetCode page
-# ---------------------------------------------------------------------
 CLASS_BRUTE   = WordFilterBrute
 CLASS_OPTIMAL = WordFilter
 
@@ -66,13 +65,23 @@ ARGS     = [[['apple']], ['a', 'e']]
 EXPECTED = [None, 0]
 
 
-# ---------------------------------------------------------------------
-#  RUNNER  --  python3 this_file.py
-#  Replays the LeetCode operation sequence against both versions.
-# ---------------------------------------------------------------------
 if __name__ == "__main__":
+    import ast
+    import inspect
+    import textwrap
+
+    def _todo(cls):
+        try:
+            body = ast.parse(textwrap.dedent(inspect.getsource(cls.__init__))).body[0].body
+        except (OSError, TypeError, SyntaxError, IndexError):
+            return False
+        return len(body) == 1 and isinstance(body[0], (ast.Pass, ast.Expr))
+
     def replay(cls, label):
         print(f"{label} :")
+        if _todo(cls):
+            print("    not written yet\n")
+            return
         obj = None
         for n, (op, args) in enumerate(zip(OPS, ARGS)):
             want = EXPECTED[n] if n < len(EXPECTED) else "?"
@@ -82,15 +91,10 @@ if __name__ == "__main__":
                     got = None
                 else:
                     got = getattr(obj, op)(*args)
-            except NotImplementedError:
-                print("    -- not written yet --")
-                return
             except Exception as exc:
                 print(f"    {op}({args}) ERROR {type(exc).__name__}: {exc}")
                 continue
-            mark = "PASS" if got == want else "FAIL"
-            if want == "?":
-                mark = "----"
+            mark = "----" if want == "?" else ("PASS" if got == want else "FAIL")
             print(f"    {n:>2}. {op}({str(args)[1:-1]:<12}) -> {str(got):<8} want {str(want):<8} {mark}")
         print()
 

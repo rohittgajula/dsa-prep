@@ -7,6 +7,17 @@ Pattern    : Sliding Window
 Tier       : Core
 Scheduled  : Sun 04 Oct 2026  (week 3)
 
+INPUT
+    s : string
+    k : integer
+
+RETURN
+    integer
+
+EXAMPLE
+    s = 'ABAB', k = 2
+    ->  4
+
 RECOGNITION HINT  (read only AFTER a real attempt)
     Window is valid while (length - count of most frequent char) <= k.
 
@@ -33,43 +44,37 @@ Time taken: __ min      Solved unaided: Y / N
 
 
 class Solution:
-    # -----------------------------------------------------------------
-    #  BRUTE FORCE   -- write this one first, even when it is obvious.
-    #  Time  : O(?)      Space : O(?)
-    # -----------------------------------------------------------------
     def characterReplacement_brute(self, s: str, k: int) -> int:
-        raise NotImplementedError("brute force")
+        pass
 
-    # -----------------------------------------------------------------
-    #  OPTIMAL       -- what does the brute force redo that it need not?
-    #  Time  : O(?)      Space : O(?)
-    # -----------------------------------------------------------------
+
     def characterReplacement(self, s: str, k: int) -> int:
-        raise NotImplementedError("optimal")
+        pass
 
 
-# ---------------------------------------------------------------------
-#  TEST CASES  --  taken from the examples on the LeetCode page
-# ---------------------------------------------------------------------
 METHOD      = 'characterReplacement'
 PARAM_TYPES = ['string', 'integer']
 RETURN_TYPE = 'integer'
 INPLACE_ARG = None
 
 TESTS = [
-    # ( [args...], expected )
     (['ABAB', 2], 4),
     (['AABABBA', 1], 4),
 ]
 
 
-# ---------------------------------------------------------------------
-#  RUNNER  --  python3 this_file.py
-#  Runs every test case against BOTH methods. A method you have not
-#  written yet is skipped, so you can fill in brute force first.
-# ---------------------------------------------------------------------
 if __name__ == "__main__":
+    import ast
     import copy
+    import inspect
+    import textwrap
+
+    def _todo(fn):
+        try:
+            body = ast.parse(textwrap.dedent(inspect.getsource(fn))).body[0].body
+        except (OSError, TypeError, SyntaxError, IndexError):
+            return False
+        return len(body) == 1 and isinstance(body[0], (ast.Pass, ast.Expr))
 
     def _verdict(got, want):
         if got == want:
@@ -94,13 +99,13 @@ if __name__ == "__main__":
         if fn is None:
             continue
         print(f"{label} :")
+        if _todo(fn):
+            print("    not written yet\n")
+            continue
         for n, (args, want) in enumerate(TESTS, 1):
             call = [copy.deepcopy(a) for a in args]
             try:
                 got = fn(*call)
-            except NotImplementedError:
-                print("    -- not written yet --")
-                break
             except Exception as exc:
                 print(f"    case {n}: ERROR  {type(exc).__name__}: {exc}")
                 continue

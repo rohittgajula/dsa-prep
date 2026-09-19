@@ -46,9 +46,13 @@ OPTIMAL     :
 
 Each file has:
 
-- `<method>_brute` and `<method>` — the **same signature as LeetCode**, so working code pastes straight into the submission box
+- a docstring saying in plain words what the **input** is, what to **return**, and a worked **example**
+- `<method>_brute` and `<method>` — the **same signature as LeetCode**, so working code pastes straight into the submission box, each body just `pass` for you to fill in
 - `TESTS` — that problem's **own** example cases, pulled from its LeetCode page
 - a runner that skips whichever method you have not written yet, so brute force first is the natural order
+
+Outside that top docstring the files carry no comments — notes, approaches and
+complexities all live in the docstring, so the code area stays clean.
 
 Linked-list and tree problems include `build_list` / `build_tree` helpers, so a test case is written
 as a plain list (`[3,9,20,None,None,15,7]`) and the runner builds the real structure for you.

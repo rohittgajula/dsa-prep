@@ -7,6 +7,17 @@ Pattern    : Binary Tree
 Tier       : Core
 Scheduled  : Fri 15 Jan 2027  (week 18)
 
+INPUT
+    preorder : list of integers
+    inorder  : list of integers
+
+RETURN
+    root of a binary tree
+
+EXAMPLE
+    preorder = [3, 9, 20, 15, 7], inorder = [9, 3, 15, 20, 7]
+    ->  [3, 9, 20, None, None, 15, 7]
+
 RECOGNITION HINT  (read only AFTER a real attempt)
     Preorder gives the root; its index in inorder splits left from
     right. Hashmap the inorder indices.
@@ -43,7 +54,6 @@ class TreeNode:
 
 
 def build_tree(vals):
-    """LeetCode level-order list (None = missing child) -> root"""
     if not vals:
         return None
     root = TreeNode(vals[0])
@@ -64,7 +74,6 @@ def build_tree(vals):
 
 
 def dump_tree(root):
-    """root -> LeetCode level-order list, trailing Nones trimmed"""
     if root is None:
         return []
     out, q = [], [root]
@@ -82,7 +91,6 @@ def dump_tree(root):
 
 
 def find_node(root, val):
-    """LeetCode hands some problems a VALUE where the method wants the NODE."""
     if root is None:
         return None
     q = [root]
@@ -98,43 +106,37 @@ def find_node(root, val):
 
 
 class Solution:
-    # -----------------------------------------------------------------
-    #  BRUTE FORCE   -- write this one first, even when it is obvious.
-    #  Time  : O(?)      Space : O(?)
-    # -----------------------------------------------------------------
     def buildTree_brute(self, preorder: List[int], inorder: List[int]) -> Optional[TreeNode]:
-        raise NotImplementedError("brute force")
+        pass
 
-    # -----------------------------------------------------------------
-    #  OPTIMAL       -- what does the brute force redo that it need not?
-    #  Time  : O(?)      Space : O(?)
-    # -----------------------------------------------------------------
+
     def buildTree(self, preorder: List[int], inorder: List[int]) -> Optional[TreeNode]:
-        raise NotImplementedError("optimal")
+        pass
 
 
-# ---------------------------------------------------------------------
-#  TEST CASES  --  taken from the examples on the LeetCode page
-# ---------------------------------------------------------------------
 METHOD      = 'buildTree'
 PARAM_TYPES = ['integer[]', 'integer[]']
 RETURN_TYPE = 'TreeNode'
 INPLACE_ARG = None
 
 TESTS = [
-    # ( [args...], expected )
     ([[3, 9, 20, 15, 7], [9, 3, 15, 20, 7]], [3, 9, 20, None, None, 15, 7]),
     ([[-1], [-1]], [-1]),
 ]
 
 
-# ---------------------------------------------------------------------
-#  RUNNER  --  python3 this_file.py
-#  Runs every test case against BOTH methods. A method you have not
-#  written yet is skipped, so you can fill in brute force first.
-# ---------------------------------------------------------------------
 if __name__ == "__main__":
+    import ast
     import copy
+    import inspect
+    import textwrap
+
+    def _todo(fn):
+        try:
+            body = ast.parse(textwrap.dedent(inspect.getsource(fn))).body[0].body
+        except (OSError, TypeError, SyntaxError, IndexError):
+            return False
+        return len(body) == 1 and isinstance(body[0], (ast.Pass, ast.Expr))
 
     def _verdict(got, want):
         if got == want:
@@ -159,13 +161,13 @@ if __name__ == "__main__":
         if fn is None:
             continue
         print(f"{label} :")
+        if _todo(fn):
+            print("    not written yet\n")
+            continue
         for n, (args, want) in enumerate(TESTS, 1):
             call = [copy.deepcopy(a) for a in args]
             try:
                 got = fn(*call)
-            except NotImplementedError:
-                print("    -- not written yet --")
-                break
             except Exception as exc:
                 print(f"    case {n}: ERROR  {type(exc).__name__}: {exc}")
                 continue

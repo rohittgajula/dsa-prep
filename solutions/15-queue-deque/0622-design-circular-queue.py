@@ -7,6 +7,15 @@ Pattern    : Queue / Deque
 Tier       : Core
 Scheduled  : Tue 08 Dec 2026  (week 13)
 
+OPERATIONS
+    MyCircularQueue(k)   with k = integer
+    enQueue(value)  ->  true or false
+    deQueue()  ->  true or false
+    Front()  ->  integer
+    Rear()  ->  integer
+    isEmpty()  ->  true or false
+    isFull()  ->  true or false
+
 RECOGNITION HINT  (read only AFTER a real attempt)
     Fixed array with head, tail and size. Modulo arithmetic; track size
     to distinguish full from empty.
@@ -34,58 +43,63 @@ Time taken: __ min      Solved unaided: Y / N
 
 
 class MyCircularQueueBrute:
-    """Simplest thing that works. Get it correct, then beat it."""
-
     def __init__(self, k: int):
-        raise NotImplementedError
+        pass
+
 
     def enQueue(self, value: int) -> bool:
-        raise NotImplementedError
+        pass
+
 
     def deQueue(self) -> bool:
-        raise NotImplementedError
+        pass
+
 
     def Front(self) -> int:
-        raise NotImplementedError
+        pass
+
 
     def Rear(self) -> int:
-        raise NotImplementedError
+        pass
+
 
     def isEmpty(self) -> bool:
-        raise NotImplementedError
+        pass
+
 
     def isFull(self) -> bool:
-        raise NotImplementedError
+        pass
 
 
 class MyCircularQueue:
-    """The version you would actually submit."""
-
     def __init__(self, k: int):
-        raise NotImplementedError
+        pass
+
 
     def enQueue(self, value: int) -> bool:
-        raise NotImplementedError
+        pass
+
 
     def deQueue(self) -> bool:
-        raise NotImplementedError
+        pass
+
 
     def Front(self) -> int:
-        raise NotImplementedError
+        pass
+
 
     def Rear(self) -> int:
-        raise NotImplementedError
+        pass
+
 
     def isEmpty(self) -> bool:
-        raise NotImplementedError
+        pass
+
 
     def isFull(self) -> bool:
-        raise NotImplementedError
+        pass
 
 
-# ---------------------------------------------------------------------
-#  TEST CASES  --  the operation sequence from the LeetCode page
-# ---------------------------------------------------------------------
 CLASS_BRUTE   = MyCircularQueueBrute
 CLASS_OPTIMAL = MyCircularQueue
 
@@ -94,13 +108,23 @@ ARGS     = [[3], [1], [2], [3], [4], [], [], [], [4], []]
 EXPECTED = [None, True, True, True, False, 3, True, True, True, 4]
 
 
-# ---------------------------------------------------------------------
-#  RUNNER  --  python3 this_file.py
-#  Replays the LeetCode operation sequence against both versions.
-# ---------------------------------------------------------------------
 if __name__ == "__main__":
+    import ast
+    import inspect
+    import textwrap
+
+    def _todo(cls):
+        try:
+            body = ast.parse(textwrap.dedent(inspect.getsource(cls.__init__))).body[0].body
+        except (OSError, TypeError, SyntaxError, IndexError):
+            return False
+        return len(body) == 1 and isinstance(body[0], (ast.Pass, ast.Expr))
+
     def replay(cls, label):
         print(f"{label} :")
+        if _todo(cls):
+            print("    not written yet\n")
+            return
         obj = None
         for n, (op, args) in enumerate(zip(OPS, ARGS)):
             want = EXPECTED[n] if n < len(EXPECTED) else "?"
@@ -110,15 +134,10 @@ if __name__ == "__main__":
                     got = None
                 else:
                     got = getattr(obj, op)(*args)
-            except NotImplementedError:
-                print("    -- not written yet --")
-                return
             except Exception as exc:
                 print(f"    {op}({args}) ERROR {type(exc).__name__}: {exc}")
                 continue
-            mark = "PASS" if got == want else "FAIL"
-            if want == "?":
-                mark = "----"
+            mark = "----" if want == "?" else ("PASS" if got == want else "FAIL")
             print(f"    {n:>2}. {op}({str(args)[1:-1]:<12}) -> {str(got):<8} want {str(want):<8} {mark}")
         print()
 

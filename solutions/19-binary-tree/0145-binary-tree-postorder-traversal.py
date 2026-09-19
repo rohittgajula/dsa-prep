@@ -7,6 +7,16 @@ Pattern    : Binary Tree
 Tier       : Stretch   (optional - skip without guilt if the week is tight)
 Scheduled  : Wed 06 Jan 2027  (week 17)
 
+INPUT
+    root : root of a binary tree
+
+RETURN
+    list of integers
+
+EXAMPLE
+    root = [1, None, 2, 3]
+    ->  [3, 2, 1]
+
 RECOGNITION HINT  (read only AFTER a real attempt)
     Easiest iterative trick: do a modified preorder (root-right-left)
     and reverse the result.
@@ -43,7 +53,6 @@ class TreeNode:
 
 
 def build_tree(vals):
-    """LeetCode level-order list (None = missing child) -> root"""
     if not vals:
         return None
     root = TreeNode(vals[0])
@@ -64,7 +73,6 @@ def build_tree(vals):
 
 
 def dump_tree(root):
-    """root -> LeetCode level-order list, trailing Nones trimmed"""
     if root is None:
         return []
     out, q = [], [root]
@@ -82,7 +90,6 @@ def dump_tree(root):
 
 
 def find_node(root, val):
-    """LeetCode hands some problems a VALUE where the method wants the NODE."""
     if root is None:
         return None
     q = [root]
@@ -98,31 +105,20 @@ def find_node(root, val):
 
 
 class Solution:
-    # -----------------------------------------------------------------
-    #  BRUTE FORCE   -- write this one first, even when it is obvious.
-    #  Time  : O(?)      Space : O(?)
-    # -----------------------------------------------------------------
     def postorderTraversal_brute(self, root: Optional[TreeNode]) -> List[int]:
-        raise NotImplementedError("brute force")
+        pass
 
-    # -----------------------------------------------------------------
-    #  OPTIMAL       -- what does the brute force redo that it need not?
-    #  Time  : O(?)      Space : O(?)
-    # -----------------------------------------------------------------
+
     def postorderTraversal(self, root: Optional[TreeNode]) -> List[int]:
-        raise NotImplementedError("optimal")
+        pass
 
 
-# ---------------------------------------------------------------------
-#  TEST CASES  --  taken from the examples on the LeetCode page
-# ---------------------------------------------------------------------
 METHOD      = 'postorderTraversal'
 PARAM_TYPES = ['TreeNode']
 RETURN_TYPE = 'list<integer>'
 INPLACE_ARG = None
 
 TESTS = [
-    # ( [args...], expected )
     ([[1, None, 2, 3]], [3, 2, 1]),
     ([[1, 2, 3, 4, 5, None, 8, None, None, 6, 7, 9]], [4, 6, 7, 5, 2, 9, 8, 3, 1]),
     ([[]], []),
@@ -130,18 +126,23 @@ TESTS = [
 ]
 
 
-# ---------------------------------------------------------------------
-#  RUNNER  --  python3 this_file.py
-#  Runs every test case against BOTH methods. A method you have not
-#  written yet is skipped, so you can fill in brute force first.
-# ---------------------------------------------------------------------
 if __name__ == "__main__":
+    import ast
     import copy
+    import inspect
+    import textwrap
 
     def _build(v, t):
         if t.startswith("TreeNode"):
             return build_tree(v)
         return v
+
+    def _todo(fn):
+        try:
+            body = ast.parse(textwrap.dedent(inspect.getsource(fn))).body[0].body
+        except (OSError, TypeError, SyntaxError, IndexError):
+            return False
+        return len(body) == 1 and isinstance(body[0], (ast.Pass, ast.Expr))
 
     def _verdict(got, want):
         if got == want:
@@ -166,13 +167,13 @@ if __name__ == "__main__":
         if fn is None:
             continue
         print(f"{label} :")
+        if _todo(fn):
+            print("    not written yet\n")
+            continue
         for n, (args, want) in enumerate(TESTS, 1):
             call = [_build(copy.deepcopy(a), t) for a, t in zip(args, PARAM_TYPES)]
             try:
                 got = fn(*call)
-            except NotImplementedError:
-                print("    -- not written yet --")
-                break
             except Exception as exc:
                 print(f"    case {n}: ERROR  {type(exc).__name__}: {exc}")
                 continue

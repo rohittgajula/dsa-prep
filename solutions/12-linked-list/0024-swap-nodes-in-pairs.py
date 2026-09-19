@@ -7,6 +7,16 @@ Pattern    : Linked List
 Tier       : Stretch   (optional - skip without guilt if the week is tight)
 Scheduled  : Thu 26 Nov 2026  (week 11)
 
+INPUT
+    head : head of a linked list
+
+RETURN
+    head of a linked list
+
+EXAMPLE
+    head = [1, 2, 3, 4]
+    ->  [2, 1, 4, 3]
+
 RECOGNITION HINT  (read only AFTER a real attempt)
     Dummy node plus careful pointer choreography. The recursive version
     is four lines.
@@ -42,7 +52,6 @@ class ListNode:
 
 
 def build_list(vals):
-    """[1,2,3] -> 1 -> 2 -> 3"""
     head = None
     for v in reversed(vals or []):
         head = ListNode(v, head)
@@ -50,7 +59,6 @@ def build_list(vals):
 
 
 def dump_list(head, limit=500):
-    """1 -> 2 -> 3 -> [1,2,3]   (limit guards against a cycle)"""
     out = []
     while head is not None and len(out) < limit:
         out.append(head.val)
@@ -59,31 +67,20 @@ def dump_list(head, limit=500):
 
 
 class Solution:
-    # -----------------------------------------------------------------
-    #  BRUTE FORCE   -- write this one first, even when it is obvious.
-    #  Time  : O(?)      Space : O(?)
-    # -----------------------------------------------------------------
     def swapPairs_brute(self, head: Optional[ListNode]) -> Optional[ListNode]:
-        raise NotImplementedError("brute force")
+        pass
 
-    # -----------------------------------------------------------------
-    #  OPTIMAL       -- what does the brute force redo that it need not?
-    #  Time  : O(?)      Space : O(?)
-    # -----------------------------------------------------------------
+
     def swapPairs(self, head: Optional[ListNode]) -> Optional[ListNode]:
-        raise NotImplementedError("optimal")
+        pass
 
 
-# ---------------------------------------------------------------------
-#  TEST CASES  --  taken from the examples on the LeetCode page
-# ---------------------------------------------------------------------
 METHOD      = 'swapPairs'
 PARAM_TYPES = ['ListNode']
 RETURN_TYPE = 'ListNode'
 INPLACE_ARG = None
 
 TESTS = [
-    # ( [args...], expected )
     ([[1, 2, 3, 4]], [2, 1, 4, 3]),
     ([[]], []),
     ([[1]], [1]),
@@ -91,18 +88,23 @@ TESTS = [
 ]
 
 
-# ---------------------------------------------------------------------
-#  RUNNER  --  python3 this_file.py
-#  Runs every test case against BOTH methods. A method you have not
-#  written yet is skipped, so you can fill in brute force first.
-# ---------------------------------------------------------------------
 if __name__ == "__main__":
+    import ast
     import copy
+    import inspect
+    import textwrap
 
     def _build(v, t):
         if t.startswith("ListNode"):
             return build_list(v)
         return v
+
+    def _todo(fn):
+        try:
+            body = ast.parse(textwrap.dedent(inspect.getsource(fn))).body[0].body
+        except (OSError, TypeError, SyntaxError, IndexError):
+            return False
+        return len(body) == 1 and isinstance(body[0], (ast.Pass, ast.Expr))
 
     def _verdict(got, want):
         if got == want:
@@ -127,13 +129,13 @@ if __name__ == "__main__":
         if fn is None:
             continue
         print(f"{label} :")
+        if _todo(fn):
+            print("    not written yet\n")
+            continue
         for n, (args, want) in enumerate(TESTS, 1):
             call = [_build(copy.deepcopy(a), t) for a, t in zip(args, PARAM_TYPES)]
             try:
                 got = fn(*call)
-            except NotImplementedError:
-                print("    -- not written yet --")
-                break
             except Exception as exc:
                 print(f"    case {n}: ERROR  {type(exc).__name__}: {exc}")
                 continue

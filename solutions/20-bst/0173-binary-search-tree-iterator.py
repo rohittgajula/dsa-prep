@@ -7,6 +7,11 @@ Pattern    : BST
 Tier       : Core
 Scheduled  : Sat 23 Jan 2027  (week 19)
 
+OPERATIONS
+    BSTIterator(root)   with root = root of a binary tree
+    next()  ->  integer
+    hasNext()  ->  true or false
+
 RECOGNITION HINT  (read only AFTER a real attempt)
     Controlled iterative inorder - keep a stack of left-spine nodes;
     next() pops and pushes the right subtree's left spine.
@@ -43,7 +48,6 @@ class TreeNode:
 
 
 def build_tree(vals):
-    """LeetCode level-order list (None = missing child) -> root"""
     if not vals:
         return None
     root = TreeNode(vals[0])
@@ -64,7 +68,6 @@ def build_tree(vals):
 
 
 def dump_tree(root):
-    """root -> LeetCode level-order list, trailing Nones trimmed"""
     if root is None:
         return []
     out, q = [], [root]
@@ -82,7 +85,6 @@ def dump_tree(root):
 
 
 def find_node(root, val):
-    """LeetCode hands some problems a VALUE where the method wants the NODE."""
     if root is None:
         return None
     q = [root]
@@ -98,34 +100,31 @@ def find_node(root, val):
 
 
 class BSTIteratorBrute:
-    """Simplest thing that works. Get it correct, then beat it."""
-
     def __init__(self, root: Optional[TreeNode]):
-        raise NotImplementedError
+        pass
+
 
     def next(self) -> int:
-        raise NotImplementedError
+        pass
+
 
     def hasNext(self) -> bool:
-        raise NotImplementedError
+        pass
 
 
 class BSTIterator:
-    """The version you would actually submit."""
-
     def __init__(self, root: Optional[TreeNode]):
-        raise NotImplementedError
+        pass
+
 
     def next(self) -> int:
-        raise NotImplementedError
+        pass
+
 
     def hasNext(self) -> bool:
-        raise NotImplementedError
+        pass
 
 
-# ---------------------------------------------------------------------
-#  TEST CASES  --  the operation sequence from the LeetCode page
-# ---------------------------------------------------------------------
 CLASS_BRUTE   = BSTIteratorBrute
 CLASS_OPTIMAL = BSTIterator
 
@@ -134,13 +133,23 @@ ARGS     = [[[7, 3, 15, None, None, 9, 20]], [], [], [], [], [], [], [], [], []]
 EXPECTED = [None, 3, 7, True, 9, True, 15, True, 20, False]
 
 
-# ---------------------------------------------------------------------
-#  RUNNER  --  python3 this_file.py
-#  Replays the LeetCode operation sequence against both versions.
-# ---------------------------------------------------------------------
 if __name__ == "__main__":
+    import ast
+    import inspect
+    import textwrap
+
+    def _todo(cls):
+        try:
+            body = ast.parse(textwrap.dedent(inspect.getsource(cls.__init__))).body[0].body
+        except (OSError, TypeError, SyntaxError, IndexError):
+            return False
+        return len(body) == 1 and isinstance(body[0], (ast.Pass, ast.Expr))
+
     def replay(cls, label):
         print(f"{label} :")
+        if _todo(cls):
+            print("    not written yet\n")
+            return
         obj = None
         for n, (op, args) in enumerate(zip(OPS, ARGS)):
             want = EXPECTED[n] if n < len(EXPECTED) else "?"
@@ -150,15 +159,10 @@ if __name__ == "__main__":
                     got = None
                 else:
                     got = getattr(obj, op)(*args)
-            except NotImplementedError:
-                print("    -- not written yet --")
-                return
             except Exception as exc:
                 print(f"    {op}({args}) ERROR {type(exc).__name__}: {exc}")
                 continue
-            mark = "PASS" if got == want else "FAIL"
-            if want == "?":
-                mark = "----"
+            mark = "----" if want == "?" else ("PASS" if got == want else "FAIL")
             print(f"    {n:>2}. {op}({str(args)[1:-1]:<12}) -> {str(got):<8} want {str(want):<8} {mark}")
         print()
 

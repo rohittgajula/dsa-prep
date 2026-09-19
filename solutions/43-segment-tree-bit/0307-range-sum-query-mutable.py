@@ -7,6 +7,11 @@ Pattern    : Segment Tree / BIT
 Tier       : Core
 Scheduled  : Wed 31 Mar 2027  (week 29)
 
+OPERATIONS
+    NumArray(nums)   with nums = list of integers
+    update(index, val)  ->  nothing
+    sumRange(left, right)  ->  integer
+
 RECOGNITION HINT  (read only AFTER a real attempt)
     Range query WITH updates -> Fenwick tree or segment tree. Implement
     both at least once.
@@ -36,34 +41,31 @@ from typing import List
 
 
 class NumArrayBrute:
-    """Simplest thing that works. Get it correct, then beat it."""
-
     def __init__(self, nums: List[int]):
-        raise NotImplementedError
+        pass
+
 
     def update(self, index: int, val: int) -> None:
-        raise NotImplementedError
+        pass
+
 
     def sumRange(self, left: int, right: int) -> int:
-        raise NotImplementedError
+        pass
 
 
 class NumArray:
-    """The version you would actually submit."""
-
     def __init__(self, nums: List[int]):
-        raise NotImplementedError
+        pass
+
 
     def update(self, index: int, val: int) -> None:
-        raise NotImplementedError
+        pass
+
 
     def sumRange(self, left: int, right: int) -> int:
-        raise NotImplementedError
+        pass
 
 
-# ---------------------------------------------------------------------
-#  TEST CASES  --  the operation sequence from the LeetCode page
-# ---------------------------------------------------------------------
 CLASS_BRUTE   = NumArrayBrute
 CLASS_OPTIMAL = NumArray
 
@@ -72,13 +74,23 @@ ARGS     = [[[1, 3, 5]], [0, 2], [1, 2], [0, 2]]
 EXPECTED = [None, 9, None, 8]
 
 
-# ---------------------------------------------------------------------
-#  RUNNER  --  python3 this_file.py
-#  Replays the LeetCode operation sequence against both versions.
-# ---------------------------------------------------------------------
 if __name__ == "__main__":
+    import ast
+    import inspect
+    import textwrap
+
+    def _todo(cls):
+        try:
+            body = ast.parse(textwrap.dedent(inspect.getsource(cls.__init__))).body[0].body
+        except (OSError, TypeError, SyntaxError, IndexError):
+            return False
+        return len(body) == 1 and isinstance(body[0], (ast.Pass, ast.Expr))
+
     def replay(cls, label):
         print(f"{label} :")
+        if _todo(cls):
+            print("    not written yet\n")
+            return
         obj = None
         for n, (op, args) in enumerate(zip(OPS, ARGS)):
             want = EXPECTED[n] if n < len(EXPECTED) else "?"
@@ -88,15 +100,10 @@ if __name__ == "__main__":
                     got = None
                 else:
                     got = getattr(obj, op)(*args)
-            except NotImplementedError:
-                print("    -- not written yet --")
-                return
             except Exception as exc:
                 print(f"    {op}({args}) ERROR {type(exc).__name__}: {exc}")
                 continue
-            mark = "PASS" if got == want else "FAIL"
-            if want == "?":
-                mark = "----"
+            mark = "----" if want == "?" else ("PASS" if got == want else "FAIL")
             print(f"    {n:>2}. {op}({str(args)[1:-1]:<12}) -> {str(got):<8} want {str(want):<8} {mark}")
         print()
 

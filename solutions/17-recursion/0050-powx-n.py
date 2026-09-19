@@ -7,6 +7,17 @@ Pattern    : Recursion
 Tier       : Core
 Scheduled  : Sat 26 Dec 2026  (week 15)
 
+INPUT
+    x : decimal number
+    n : integer
+
+RETURN
+    decimal number
+
+EXAMPLE
+    x = 2.0, n = 10
+    ->  1024.0
+
 RECOGNITION HINT  (read only AFTER a real attempt)
     Fast exponentiation by squaring: x^n = (x^(n/2))^2. Handle negative
     n and n = 0.
@@ -34,44 +45,38 @@ Time taken: __ min      Solved unaided: Y / N
 
 
 class Solution:
-    # -----------------------------------------------------------------
-    #  BRUTE FORCE   -- write this one first, even when it is obvious.
-    #  Time  : O(?)      Space : O(?)
-    # -----------------------------------------------------------------
     def myPow_brute(self, x: float, n: int) -> float:
-        raise NotImplementedError("brute force")
+        pass
 
-    # -----------------------------------------------------------------
-    #  OPTIMAL       -- what does the brute force redo that it need not?
-    #  Time  : O(?)      Space : O(?)
-    # -----------------------------------------------------------------
+
     def myPow(self, x: float, n: int) -> float:
-        raise NotImplementedError("optimal")
+        pass
 
 
-# ---------------------------------------------------------------------
-#  TEST CASES  --  taken from the examples on the LeetCode page
-# ---------------------------------------------------------------------
 METHOD      = 'myPow'
 PARAM_TYPES = ['double', 'integer']
 RETURN_TYPE = 'double'
 INPLACE_ARG = None
 
 TESTS = [
-    # ( [args...], expected )
     ([2.0, 10], 1024.0),
     ([2.1, 3], 9.261),
     ([2.0, -2], 0.25),
 ]
 
 
-# ---------------------------------------------------------------------
-#  RUNNER  --  python3 this_file.py
-#  Runs every test case against BOTH methods. A method you have not
-#  written yet is skipped, so you can fill in brute force first.
-# ---------------------------------------------------------------------
 if __name__ == "__main__":
+    import ast
     import copy
+    import inspect
+    import textwrap
+
+    def _todo(fn):
+        try:
+            body = ast.parse(textwrap.dedent(inspect.getsource(fn))).body[0].body
+        except (OSError, TypeError, SyntaxError, IndexError):
+            return False
+        return len(body) == 1 and isinstance(body[0], (ast.Pass, ast.Expr))
 
     def _verdict(got, want):
         if got == want:
@@ -96,13 +101,13 @@ if __name__ == "__main__":
         if fn is None:
             continue
         print(f"{label} :")
+        if _todo(fn):
+            print("    not written yet\n")
+            continue
         for n, (args, want) in enumerate(TESTS, 1):
             call = [copy.deepcopy(a) for a in args]
             try:
                 got = fn(*call)
-            except NotImplementedError:
-                print("    -- not written yet --")
-                break
             except Exception as exc:
                 print(f"    case {n}: ERROR  {type(exc).__name__}: {exc}")
                 continue
