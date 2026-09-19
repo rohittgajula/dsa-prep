@@ -31,15 +31,63 @@ MISTAKES I MADE
 Time taken: __ min      Solved unaided: Y / N
 ------------------------------------------------------------------------
 """
+
 from typing import List, Optional
+
+#---------------------------------------------------------------------
+#  HEADS UP - LeetCode's test data does not line up with this method.
+#  no python3 signature in the LeetCode snippet.
+#---------------------------------------------------------------------
 
 
 class Solution:
-    def solve(self):
-        raise NotImplementedError
+    # -----------------------------------------------------------------
+    #  BRUTE FORCE   -- write this one first, even when it is obvious.
+    #  Time  : O(?)      Space : O(?)
+    # -----------------------------------------------------------------
+    def PeekingIterator_brute(self, *args):
+        raise NotImplementedError("brute force")
+
+    # -----------------------------------------------------------------
+    #  OPTIMAL       -- what does the brute force redo that it need not?
+    #  Time  : O(?)      Space : O(?)
+    # -----------------------------------------------------------------
+    def PeekingIterator(self, *args):
+        raise NotImplementedError("optimal")
+
+
+# ---------------------------------------------------------------------
+#  The raw data LeetCode feeds its judge, for reference. Build the real
+#  arguments from it by hand (see the heads-up above), then fill in TESTS.
+# ---------------------------------------------------------------------
+#  inputs :
+#      ["PeekingIterator","next","peek","next","next","hasNext"]
+#      [[[1,2,3]],[],[],[],[],[]]
+#  outputs:
+#      [null, 1, 2, 2, 3, false]
+
+TESTS = [
+    # ( [args...], expected )   <- write these yourself for this one
+]
 
 
 if __name__ == "__main__":
-    s = Solution()
-    # tests
-    print("ok")
+    if not TESTS:
+        print("no test cases yet - see the heads-up at the top of this file")
+    sol = Solution()
+    for label, fname in (("BRUTE FORCE", 'PeekingIterator_brute'), ("OPTIMAL    ", 'PeekingIterator')):
+        fn = getattr(sol, fname, None)
+        if fn is None:
+            continue
+        print(f"{label} :")
+        for n, (args, want) in enumerate(TESTS, 1):
+            try:
+                got = fn(*args)
+            except NotImplementedError:
+                print("    -- not written yet --")
+                break
+            except Exception as exc:
+                print(f"    case {n}: ERROR  {type(exc).__name__}: {exc}")
+                continue
+            print(f"    case {n}: {'PASS' if got == want else 'FAIL'}   got={got!r}  want={want!r}")
+        print()

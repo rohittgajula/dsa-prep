@@ -31,15 +31,74 @@ MISTAKES I MADE
 Time taken: __ min      Solved unaided: Y / N
 ------------------------------------------------------------------------
 """
+
 from typing import List, Optional
 
 
-class Solution:
-    def solve(self):
+class WordDictionaryBrute:
+    """Simplest thing that works. Get it correct, then beat it."""
+
+    def __init__(self):
+        raise NotImplementedError
+
+    def addWord(self, word: str) -> None:
+        raise NotImplementedError
+
+    def search(self, word: str) -> bool:
         raise NotImplementedError
 
 
+class WordDictionary:
+    """The version you would actually submit."""
+
+    def __init__(self):
+        raise NotImplementedError
+
+    def addWord(self, word: str) -> None:
+        raise NotImplementedError
+
+    def search(self, word: str) -> bool:
+        raise NotImplementedError
+
+
+# ---------------------------------------------------------------------
+#  TEST CASES  --  the operation sequence from the LeetCode page
+# ---------------------------------------------------------------------
+CLASS_BRUTE   = WordDictionaryBrute
+CLASS_OPTIMAL = WordDictionary
+
+OPS      = ['WordDictionary', 'addWord', 'addWord', 'addWord', 'search', 'search', 'search', 'search']
+ARGS     = [[], ['bad'], ['dad'], ['mad'], ['pad'], ['bad'], ['.ad'], ['b..']]
+EXPECTED = [None, None, None, None, False, True, True, True]
+
+
+# ---------------------------------------------------------------------
+#  RUNNER  --  python3 this_file.py
+#  Replays the LeetCode operation sequence against both versions.
+# ---------------------------------------------------------------------
 if __name__ == "__main__":
-    s = Solution()
-    # tests
-    print("ok")
+    def replay(cls, label):
+        print(f"{label} :")
+        obj = None
+        for n, (op, args) in enumerate(zip(OPS, ARGS)):
+            want = EXPECTED[n] if n < len(EXPECTED) else "?"
+            try:
+                if n == 0:
+                    obj = cls(*args)
+                    got = None
+                else:
+                    got = getattr(obj, op)(*args)
+            except NotImplementedError:
+                print("    -- not written yet --")
+                return
+            except Exception as exc:
+                print(f"    {op}({args}) ERROR {type(exc).__name__}: {exc}")
+                continue
+            mark = "PASS" if got == want else "FAIL"
+            if want == "?":
+                mark = "----"
+            print(f"    {n:>2}. {op}({str(args)[1:-1]:<12}) -> {str(got):<8} want {str(want):<8} {mark}")
+        print()
+
+    for cls, label in ((CLASS_BRUTE, "BRUTE FORCE"), (CLASS_OPTIMAL, "OPTIMAL    ")):
+        replay(cls, label)

@@ -31,15 +31,66 @@ MISTAKES I MADE
 Time taken: __ min      Solved unaided: Y / N
 ------------------------------------------------------------------------
 """
+
 from typing import List, Optional
+
+#---------------------------------------------------------------------
+#  HEADS UP - LeetCode's test data does not line up with this method.
+#  head: real type 'Optional[Node]', judge sends Optional[ListNode].
+#---------------------------------------------------------------------
 
 
 class Solution:
-    def solve(self):
-        raise NotImplementedError
+    # -----------------------------------------------------------------
+    #  BRUTE FORCE   -- write this one first, even when it is obvious.
+    #  Time  : O(?)      Space : O(?)
+    # -----------------------------------------------------------------
+    def flatten_brute(self, head: 'Optional[Node]') -> 'Optional[Node]':
+        raise NotImplementedError("brute force")
+
+    # -----------------------------------------------------------------
+    #  OPTIMAL       -- what does the brute force redo that it need not?
+    #  Time  : O(?)      Space : O(?)
+    # -----------------------------------------------------------------
+    def flatten(self, head: 'Optional[Node]') -> 'Optional[Node]':
+        raise NotImplementedError("optimal")
+
+
+# ---------------------------------------------------------------------
+#  The raw data LeetCode feeds its judge, for reference. Build the real
+#  arguments from it by hand (see the heads-up above), then fill in TESTS.
+# ---------------------------------------------------------------------
+#  inputs :
+#      [1,2,3,4,5,6,null,null,null,7,8,9,10,null,null,11,12]
+#      [1,2,null,3]
+#      []
+#  outputs:
+#      [1,2,3,7,8,11,12,9,10,4,5,6]
+#      [1,3,2]
+#      []
+
+TESTS = [
+    # ( [args...], expected )   <- write these yourself for this one
+]
 
 
 if __name__ == "__main__":
-    s = Solution()
-    # tests
-    print("ok")
+    if not TESTS:
+        print("no test cases yet - see the heads-up at the top of this file")
+    sol = Solution()
+    for label, fname in (("BRUTE FORCE", 'flatten_brute'), ("OPTIMAL    ", 'flatten')):
+        fn = getattr(sol, fname, None)
+        if fn is None:
+            continue
+        print(f"{label} :")
+        for n, (args, want) in enumerate(TESTS, 1):
+            try:
+                got = fn(*args)
+            except NotImplementedError:
+                print("    -- not written yet --")
+                break
+            except Exception as exc:
+                print(f"    case {n}: ERROR  {type(exc).__name__}: {exc}")
+                continue
+            print(f"    case {n}: {'PASS' if got == want else 'FAIL'}   got={got!r}  want={want!r}")
+        print()
