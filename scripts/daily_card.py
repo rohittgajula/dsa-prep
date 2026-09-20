@@ -53,13 +53,35 @@ THEMES = [
 ]
 
 
-def scenario_block(today, seed=None):
+def existing_scenario(today):
+    """Today's scenario, if one has already been written into the card.
+
+    The morning task replaces the script's theme with a real scenario. Running
+    the script again later in the day must not throw that away, so a scenario
+    already written for today is carried through untouched.
+    """
+    path = L.NOTES / "daily-card.md"
+    if not path.exists():
+        return None
+    text = path.read_text(encoding="utf-8")
+    if not text.startswith(f"# {today:%a %d %b %Y}"):
+        return None                                   # yesterday's card
+    if SCENARIO_OPEN not in text or SCENARIO_CLOSE not in text:
+        return None
+    body = text.split(SCENARIO_OPEN, 1)[1].split(SCENARIO_CLOSE, 1)[0].strip()
+    return body if body and not body.startswith("**Today's theme:**") else None
+
+
+def scenario_block(today, seed=None, existing=None):
     """The daily system design scenario.
 
     Written between markers so the scheduled task can replace it with a fresh
     one. What the script puts here is the floor, not the intent: a theme to
     think about, so the card is never empty.
     """
+    if existing:
+        return ["## System design — 10 minutes, out loud", "",
+                SCENARIO_OPEN, existing, SCENARIO_CLOSE]
     rng = random.Random(seed if seed is not None else today.toordinal())
     theme = rng.choice(THEMES)
     return [
@@ -143,7 +165,7 @@ def build(rows, today):
                 f"*{drill['difficulty']}* — pattern, key insight, complexity. Do not solve it.",
                 "", "```text", "INPUT", "    " + drill["statement"], "```"]
 
-    out += [""] + scenario_block(today)
+    out += [""] + scenario_block(today, existing=existing_scenario(today))
 
     out += ["", "<details>", "<summary>Answers</summary>", ""]
     if answer:
