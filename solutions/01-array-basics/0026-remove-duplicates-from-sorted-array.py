@@ -24,7 +24,8 @@ RECOGNITION HINT  (read only AFTER a real attempt)
 ------------------------------------------------------------------------
 MY THINKING  (write this while you solve - raw, unedited)
     What the problem looked like at first:
-        <>
+        this is mostly a two pointer approach, initially i will start with fast & slow pointers, fast pointer itirates through all the elements
+        slow pointer points at the place in which we need to replace with the non-duplicate num
     What I tried:
         <>
     Where I got stuck:
@@ -33,26 +34,47 @@ MY THINKING  (write this while you solve - raw, unedited)
         <>
 
     Tutor review:
-        <>
+        Right: pointer mechanics correct, and you stated precisely what slow points at
+               - that is the part most people fumble. Your own convention, not a copy.
+        Wrong turn: led with the technique ("this is mostly a two pointer approach")
+               instead of the observation that sortedness makes duplicates adjacent.
+        Ask yourself next time: what does the input guarantee, and what does that let me skip?
+        Note: empty array returns 1, not 0. Outside this problem's constraints
+               (n >= 1), so not a failure here - but the convention carries it.
 
 BRUTE FORCE
-    <state it the way you would say it out loud in an interview>
-    Time  : O(?)
-    Space : O(?)
+    Collect the values not already kept, then write them back over the front of
+    nums. Membership is tested by scanning what has been kept so far.
+    Time  : O(n^2)   `num not in sol` scans the kept list once per element
+    Space : O(n)     sol holds every unique value before it is written back
 
 OPTIMAL
-    <what does it exploit that the brute force wastes?>
-    Time  : O(?)
-    Space : O(?)
+    Two pointers. slow is the last index already kept; fast walks the array.
+    Because the input is sorted, duplicates sit next to each other, so one
+    comparison against nums[slow] decides whether fast is a new value.
+    The brute force searches everything already kept to answer that same
+    question - the sortedness makes the search unnecessary.
+    Time  : O(n)     fast crosses the array once, each step O(1)
+    Space : O(1)     written in place, only the two indices are kept
 
 KEY INSIGHT
-    <the one sentence that makes this collapse>
+    Sorted means duplicates are adjacent, so you never have to search what you
+    already kept - comparing against the last kept value is enough.
 
 MISTAKES I MADE
-    <the part worth re-reading in the revision sweeps>
+    - Returned a new list instead of mutating nums. The judge scores nums[:k],
+      so building the answer somewhere else scores nothing.
+    - Wrote `nums[:len(sol)]` with no `=`. A bare slice is an expression: it
+      evaluates and is thrown away. Right k, untouched array - that combination
+      is the signature of a missing in-place write.
+    - The brute force never used the sorted constraint; it works fine on
+      unsorted input. That was the tell that the whole optimisation was still
+      on the table, and it was missed.
+    - `slow + 1` assumes at least one element. The problem guarantees n >= 1 so
+      it is safe here, but the convention needs a guard anywhere it is not.
 
-Time taken: __ min      Solved unaided: Y / N
-Solved on: __           Revised: __
+Time taken: __ min      Solved unaided: N
+Solved on: 2026-09-20   Revised: __
 ------------------------------------------------------------------------
 """
 
@@ -67,11 +89,17 @@ class Solution:
             if num not in sol:
                 # print(f"loop : {num}")
                 sol.append(num)
-        return sol
+        nums[:len(sol)] = sol
+        return len(sol)
 
 
     def removeDuplicates(self, nums: List[int]) -> int:
-        pass
+        slow = 0
+        for fast in range(len(nums)):
+            if nums[fast] != nums[slow]:
+                slow += 1
+                nums[slow] = nums[fast]
+        return slow + 1
 
 
 METHOD      = 'removeDuplicates'

@@ -27,7 +27,17 @@ same slip. The repeat dates are the signal.
 
 ## Open
 
-_nothing logged yet_
+### Arrays — in-place modification contract
+**Slip:** builds a new list and returns it, instead of mutating the input and returning k
+**Fix:** in-place problems score `nums[:k]`; write back with `nums[:len(sol)] = sol` — a bare slice is a no-op
+**Seen:** 2026-09-20
+**Status:** open
+
+### DSA reasoning — ignoring a stated constraint
+**Slip:** brute force works on unsorted input for a problem that hands you a *sorted* array
+**Fix:** before optimising, ask which given constraint the brute force is not using yet
+**Seen:** 2026-09-20
+**Status:** open
 
 ## Cooling
 
