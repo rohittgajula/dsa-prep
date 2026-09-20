@@ -56,7 +56,8 @@ HEADER = {
     "pattern":    re.compile(r"^Pattern\s*:\s*(.+?)\s*$", re.M),
     "tier":       re.compile(r"^Tier\s*:\s*(\S+)", re.M),
     "scheduled":  re.compile(r"^Scheduled\s*:\s*(.+?)\s*\(week\s*(\d+)\)", re.M),
-    "unaided":    re.compile(r"Solved unaided\s*:\s*(.+?)\s*$", re.M),
+    # stop at the field itself: `Hints used` sits on the same line
+    "unaided":    re.compile(r"Solved unaided\s*:\s*(Y\s*/\s*N|[YN])", re.M),
     "minutes":    re.compile(r"Time taken\s*:\s*(\S+)\s*min", re.M),
     "solved_on":  re.compile(r"^Solved on\s*:\s*(\S+)", re.M),
     "revised":    re.compile(r"Revised\s*:\s*(.+?)\s*$", re.M),
