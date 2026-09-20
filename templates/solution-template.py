@@ -19,6 +19,19 @@ RECOGNITION HINT  (read only AFTER a real attempt)
     <what in the problem statement points at this pattern>
 
 ------------------------------------------------------------------------
+MY THINKING  (write this while you solve - raw, unedited)
+    What the problem looked like at first:
+        <>
+    What I tried:
+        <>
+    Where I got stuck:
+        <>
+    What made it click:
+        <>
+
+    Tutor review:
+        <>
+
 BRUTE FORCE
     <the obvious approach, stated the way you would say it out loud>
     Time  : O(?)
@@ -36,6 +49,7 @@ MISTAKES I MADE
     <what tripped you up - the part worth re-reading>
 
 Time taken: __ min      Solved unaided: Y / N
+Solved on: __           Revised: __
 ------------------------------------------------------------------------
 """
 from typing import List

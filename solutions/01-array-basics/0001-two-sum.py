@@ -23,15 +23,28 @@ RECOGNITION HINT  (read only AFTER a real attempt)
     Hash map turns that search into O(1).
 
 ------------------------------------------------------------------------
+MY THINKING  (write this while you solve - raw, unedited)
+    What the problem looked like at first:
+        <>
+    What I tried:
+        <>
+    Where I got stuck:
+        <>
+    What made it click:
+        <>
+
+    Tutor review:
+        <>
+
 BRUTE FORCE
     <state it the way you would say it out loud in an interview>
-    Time  : O(?)
-    Space : O(?)
+    Time  : O(n^2)
+    Space : O(1)
 
 OPTIMAL
     <what does it exploit that the brute force wastes?>
-    Time  : O(?)
-    Space : O(?)
+    Time  : O(n)
+    Space : O(n)
 
 KEY INSIGHT
     <the one sentence that makes this collapse>
@@ -39,7 +52,8 @@ KEY INSIGHT
 MISTAKES I MADE
     <the part worth re-reading in the revision sweeps>
 
-Time taken: __ min      Solved unaided: Y / N
+Time taken: __ min      Solved unaided: Y
+Solved on: __           Revised: __
 ------------------------------------------------------------------------
 """
 

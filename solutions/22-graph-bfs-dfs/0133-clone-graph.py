@@ -33,6 +33,19 @@ RECOGNITION HINT  (read only AFTER a real attempt)
     or you loop forever.
 
 ------------------------------------------------------------------------
+MY THINKING  (write this while you solve - raw, unedited)
+    What the problem looked like at first:
+        <>
+    What I tried:
+        <>
+    Where I got stuck:
+        <>
+    What made it click:
+        <>
+
+    Tutor review:
+        <>
+
 BRUTE FORCE
     <state it the way you would say it out loud in an interview>
     Time  : O(?)
@@ -50,6 +63,7 @@ MISTAKES I MADE
     <the part worth re-reading in the revision sweeps>
 
 Time taken: __ min      Solved unaided: Y / N
+Solved on: __           Revised: __
 ------------------------------------------------------------------------
 """
 
