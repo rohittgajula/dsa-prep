@@ -13,12 +13,64 @@ the drill.
 """
 import argparse
 import datetime as dt
+import random
 import subprocess
 import sys
 from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parent))
 import prep_lib as L
+
+
+# Fallback themes, so the card always carries something to think about even
+# when nothing is available to write a fresh scenario. The scheduled task
+# normally replaces the whole block with a real one.
+THEMES = [
+    "a counter that every user increments at once — celebrity post likes",
+    "fan-out on write vs on read, when one account has 20M followers",
+    "the same request arriving twice because the client retried",
+    "one shard holding a key everyone reads — the hot partition",
+    "a cache that all expires at the same second — the stampede",
+    "a queue consumer that is slower than the producer, for hours",
+    "a nightly job that now takes longer than a night",
+    "two users editing the same row at the same moment",
+    "a payment that must happen exactly once across two services",
+    "a read replica lagging behind enough that users see stale data",
+    "search that must stay fresh within seconds of a write",
+    "rate limiting an API per user, per IP, and per endpoint at once",
+    "a deploy that must not drop in-flight requests",
+    "a feature flag read on every request, from every service",
+    "uploading files far larger than any request timeout allows",
+    "notifications that must not be sent twice after a crash",
+    "a report query that locks the table everyone else needs",
+    "sessions that must survive one server dying mid-request",
+    "an autocomplete box hit on every keystroke by every user",
+    "a webhook receiver whose downstream is down for an hour",
+    "counting unique viewers of a live stream, in real time",
+    "a schema migration on a table too big to lock",
+    "geo-distributed users writing to one primary database",
+    "a leaderboard updated thousands of times a second",
+]
+
+
+def scenario_block(today, seed=None):
+    """The daily system design scenario.
+
+    Written between markers so the scheduled task can replace it with a fresh
+    one. What the script puts here is the floor, not the intent: a theme to
+    think about, so the card is never empty.
+    """
+    rng = random.Random(seed if seed is not None else today.toordinal())
+    theme = rng.choice(THEMES)
+    return [
+        "## System design — 10 minutes, out loud", "",
+        SCENARIO_OPEN,
+        f"**Today's theme:** {theme}",
+        "",
+        "Set it up yourself: what is the scale, what breaks first, what do you",
+        "change, and what does that change cost you?",
+        SCENARIO_CLOSE,
+    ]
 
 
 def recall_item(rows, today):
@@ -51,6 +103,10 @@ def recall_item(rows, today):
                 f"both complexities from memory, without opening the file.", answer)
 
     return ("Nothing solved yet — solve today's first problem and the card fills itself in.", "")
+
+
+SCENARIO_OPEN = "<!-- scenario -->"
+SCENARIO_CLOSE = "<!-- /scenario -->"
 
 
 def build(rows, today):
@@ -86,6 +142,8 @@ def build(rows, today):
         out += ["", "## Name the pattern", "",
                 f"*{drill['difficulty']}* — pattern, key insight, complexity. Do not solve it.",
                 "", "```text", "INPUT", "    " + drill["statement"], "```"]
+
+    out += [""] + scenario_block(today)
 
     out += ["", "<details>", "<summary>Answers</summary>", ""]
     if answer:
