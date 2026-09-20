@@ -191,6 +191,16 @@ def parse(path):
         solved_on = dt.date.fromtimestamp(path.stat().st_mtime)
         estimated = True
 
+    statement = ""
+    if "INPUT" in head:
+        statement = head.split("INPUT", 1)[1].split("RECOGNITION HINT", 1)[0].strip()
+    recognition = ""
+    if "RECOGNITION HINT" in head:
+        chunk = head.split("RECOGNITION HINT", 1)[1]
+        chunk = re.split(r"^-{10,}$", chunk, maxsplit=1, flags=re.M)[0]
+        recognition = " ".join(ln.strip() for ln in chunk.splitlines()
+                               if ln.strip() and not ln.strip().startswith("(")).strip()
+
     title = HEADER["title"].search(head)
     minutes = grab("minutes")
     thinking = _thinking(head)
@@ -215,6 +225,8 @@ def parse(path):
         "revised": revised,
         "reps": len(revised),
         "notes_filled": status != "todo" and not PLACEHOLDER.search(head.split("BRUTE FORCE", 1)[-1]),
+        "statement": statement,
+        "recognition": recognition,
         "thinking": thinking,
         "thinking_filled": any(thinking[k] for k in ("first_look", "tried", "stuck", "clicked")),
         "reviewed": bool(thinking["review"]),
@@ -339,3 +351,78 @@ def weak_topics():
         out.append({"title": lines[0].strip(), "slip": field("Slip"), "fix": field("Fix"),
                     "seen": field("Seen"), "status": field("Status").lower() or "open"})
     return out
+
+
+# ---------------------------------------------------- theory revision
+
+def theory_read_dates():
+    """theory path -> the dates the study log says it was read, oldest first."""
+    seen = {}
+    for entry in study_log():
+        if not entry["date"]:
+            continue
+        for path in entry["theory"]:
+            seen.setdefault(path, []).append(entry["date"])
+    return {k: sorted(v) for k, v in seen.items()}
+
+
+def theory_revision_pool(today=None):
+    """Theory files already read, with when each is next due for a re-read.
+
+    Same decay assumption as the problems: the first read starts the clock and
+    every later read pushes it out. Notes read once in week 3 are gone by the
+    time the interviews land, which is the whole reason this exists.
+    """
+    today = today or dt.date.today()
+    pool = []
+    for path, dates in theory_read_dates().items():
+        reps = len(dates) - 1
+        due = dates[-1] + dt.timedelta(days=INTERVALS[min(reps, len(INTERVALS) - 1)])
+        pool.append({"path": path, "first_read": dates[0], "last_read": dates[-1],
+                     "reps": reps, "due": due, "overdue": (today - due).days})
+    return sorted(pool, key=lambda r: -r["overdue"])
+
+
+# ---------------------------------------------------- recognition drill
+
+def covered_folders(rows, week=None):
+    """Folders he has reached: scheduled at or before this week, or already started."""
+    week = week if week is not None else current_week()
+    started = {r["folder"] for r in rows if r["status"] != "todo"}
+    return {r["folder"] for r in rows if r["week"] <= week} | started
+
+
+def drill_pick(rows, n=5, today=None, seed=None):
+    """Unsolved problems from patterns already covered.
+
+    Recognition is the skill the folder names give away: open
+    solutions/02-two-pointers and the answer is in the path. These come back
+    with the pattern stripped, so naming it is the exercise.
+    """
+    import random
+    today = today or dt.date.today()
+    rng = random.Random(seed if seed is not None else today.toordinal())
+    week = current_week(today)
+    covered = covered_folders(rows, week)
+    pool = [r for r in rows if r["folder"] in covered and r["status"] == "todo"
+            and r["statement"]]
+    rng.shuffle(pool)
+    return pool[:n]
+
+
+def interleave_pool(rows, today=None, exclude=(), seed=None):
+    """Unsolved problems from EARLIER patterns, shuffled, to break up blocked practice.
+
+    A week of nothing but two pointers trains execution and hides the choosing:
+    the folder has already answered the only question an interview asks first.
+    Anything already queued for this week is excluded — re-listing a problem he
+    is about to solve anyway teaches nothing.
+    """
+    import random
+    today = today or dt.date.today()
+    week = current_week(today)
+    rng = random.Random((seed if seed is not None else today.toordinal()) + 7)
+    pool = [r for r in rows if r["week"] < week and r["status"] == "todo"
+            and r["file"] not in set(exclude)]
+    rng.shuffle(pool)
+    return pool
