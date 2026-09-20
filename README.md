@@ -80,5 +80,5 @@ Better an empty list than cases that fail for the wrong reason.
 ## Rules
 
 - **Write the brute force down first.** In an interview you state it before optimising — that's what's being scored. Every file has a slot for it; run it before you touch the optimal one.
-- **Solved with a hint ≠ solved.** Flag it and re-solve within two weeks.
+- **A hint is not a failure, but it is a flag.** `Solved unaided: Y` the moment it works, hints or not; `N` only for one I could not finish. `Hints used: Y` is what brings a problem back sooner.
 - **The complexity is part of the answer.** Every solution's docstring states time and space.

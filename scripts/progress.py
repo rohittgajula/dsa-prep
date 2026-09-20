@@ -15,7 +15,8 @@ Status comes from the code, not from a checklist:
 
 and the flags come from the docstring:
 
-    hinted        `Solved unaided: N`  -> re-solve within two weeks
+    hinted        `Hints used: Y`      -> shorter revision intervals
+    unsolved      `Solved unaided: N`  -> could not finish it; shortest of all
     no notes      BRUTE FORCE / OPTIMAL / KEY INSIGHT still the template
     no thinking   MY THINKING never filled in
 """
@@ -35,6 +36,7 @@ def _tags(row):
     tag += "" if row["notes_filled"] or row["status"] == "todo" else "  [no notes]"
     tag += "  [no thinking]" if row["status"] == "done" and not row["thinking_filled"] else ""
     tag += "  [hinted]" if row["hinted"] else ""
+    tag += "  [unsolved]" if row["failed"] else ""
     return tag
 
 
@@ -99,9 +101,9 @@ def report(rows, full=False, today=None):
             when = "today" if r["overdue"] == 0 else f"{r['overdue']}d overdue"
             print(f"    {r['number']:>4}  {r['title'][:40]:<40} sweep {r['reps'] + 1}, {when}")
 
-    resolve = [r for r in rows if r["hinted"]]
+    resolve = [r for r in rows if r["hinted"] or r["failed"]]
     if resolve:
-        print(f"\n  RE-SOLVE  (solved with a hint, so it does not count yet)")
+        print(f"\n  RE-SOLVE  (needed help, so these come back sooner)")
         for r in sorted(resolve, key=lambda r: r["week"])[:cap]:
             print(_line(r))
 

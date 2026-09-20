@@ -48,7 +48,7 @@ KEY INSIGHT
 MISTAKES I MADE
     <what tripped you up - the part worth re-reading>
 
-Time taken: __ min      Solved unaided: Y / N
+Time taken: __ min      Solved unaided: Y / N      Hints used: __
 Solved on: __           Revised: __
 ------------------------------------------------------------------------
 """

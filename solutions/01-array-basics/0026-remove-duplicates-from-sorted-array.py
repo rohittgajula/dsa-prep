@@ -73,7 +73,7 @@ MISTAKES I MADE
     - `slow + 1` assumes at least one element. The problem guarantees n >= 1 so
       it is safe here, but the convention needs a guard anywhere it is not.
 
-Time taken: __ min      Solved unaided: N
+Time taken: __ min      Solved unaided: Y      Hints used: Y
 Solved on: 2026-09-20   Revised: __
 ------------------------------------------------------------------------
 """

@@ -40,9 +40,12 @@ TRACKS = [
     ("ai",            27, 35),
 ]
 
-# days until the next sweep, by how many times it has been revised already
+# days until the next sweep, by how many times it has been revised already.
+# A problem that needed help comes back sooner; one he could not finish at all
+# comes back soonest.
 INTERVALS = [3, 7, 21, 60, 120]
 INTERVALS_HINTED = [2, 5, 14, 40, 90]
+INTERVALS_FAILED = [1, 3, 7, 21, 60]
 
 PLACEHOLDER = re.compile(r"O\(\?\)|^\s*<.*>\s*$", re.M)
 EMPTY = re.compile(r"^\s*(<>|<.*>)?\s*$")
@@ -57,6 +60,7 @@ HEADER = {
     "minutes":    re.compile(r"Time taken\s*:\s*(\S+)\s*min", re.M),
     "solved_on":  re.compile(r"^Solved on\s*:\s*(\S+)", re.M),
     "revised":    re.compile(r"Revised\s*:\s*(.+?)\s*$", re.M),
+    "hints":      re.compile(r"Hints used\s*:\s*(\S+)", re.M),
 }
 
 THINKING_FIELDS = [
@@ -180,8 +184,13 @@ def parse(path):
     status = ("done" if (brute and optimal) else
               "brute" if brute else "optimal" if optimal else "todo")
 
+    # `Solved unaided` is his own flag: Y once he gets it out, hints or not;
+    # N only when he could not finish it. Whether he needed help is a separate
+    # field, because that is what decides how soon it comes back.
     unaided = grab("unaided")
-    hinted = unaided.upper().startswith("N") and "/" not in unaided
+    failed = unaided.upper().startswith("N") and "/" not in unaided
+    hints = grab("hints")
+    hinted = hints.upper().startswith("Y")
 
     revised_raw = grab("revised")
     revised = [d for d in (parse_date(x) for x in re.split(r"[,;]", revised_raw)) if d]
@@ -229,6 +238,8 @@ def parse(path):
         "brute": brute,
         "optimal": optimal,
         "hinted": hinted,
+        "failed": failed,
+        "hints": hints,
         "unaided": unaided,
         "minutes": None if minutes in ("", "__") else minutes,
         "solved_on": solved_on,
@@ -269,7 +280,8 @@ def due_date(row):
     if row["status"] != "done" or row["solved_on"] is None:
         return None
     last = max([row["solved_on"], *row["revised"]])
-    table = INTERVALS_HINTED if row["hinted"] else INTERVALS
+    table = (INTERVALS_FAILED if row["failed"] else
+             INTERVALS_HINTED if row["hinted"] else INTERVALS)
     return last + dt.timedelta(days=table[min(row["reps"], len(table) - 1)])
 
 

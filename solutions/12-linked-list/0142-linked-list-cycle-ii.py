@@ -65,7 +65,7 @@ KEY INSIGHT
 MISTAKES I MADE
     <the part worth re-reading in the revision sweeps>
 
-Time taken: __ min      Solved unaided: Y / N
+Time taken: __ min      Solved unaided: Y / N      Hints used: __
 Solved on: __           Revised: __
 ------------------------------------------------------------------------
 """

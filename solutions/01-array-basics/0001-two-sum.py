@@ -37,23 +37,27 @@ MY THINKING  (write this while you solve - raw, unedited)
         <>
 
 BRUTE FORCE
-    <state it the way you would say it out loud in an interview>
-    Time  : O(n^2)
-    Space : O(1)
+    Try every pair. For each index i, walk the rest of the array looking for a
+    j where nums[i] + nums[j] == target.
+    Time  : O(n^2)   for each of n starting points we scan up to n more elements
+    Space : O(1)     only the two loop indices are kept
 
 OPTIMAL
-    <what does it exploit that the brute force wastes?>
-    Time  : O(n)
-    Space : O(n)
+    One pass with a hash map. For each number the partner it needs is
+    target - num, so ask the map whether that partner has already been seen.
+    The brute force rescans the array to answer that same question every time.
+    Time  : O(n)     one pass, each lookup and insert O(1) on average
+    Space : O(n)     the map can hold every element in the worst case
 
 KEY INSIGHT
-    <the one sentence that makes this collapse>
+    You are not searching for a pair, you are searching for one complement -
+    and a hash map turns that search into a lookup.
 
 MISTAKES I MADE
-    <the part worth re-reading in the revision sweeps>
+    Not recorded - solved on 19 Sep, before this field was being kept.
 
-Time taken: __ min      Solved unaided: Y
-Solved on: __           Revised: __
+Time taken: __ min      Solved unaided: Y      Hints used: N
+Solved on: 2026-09-19   Revised: __
 ------------------------------------------------------------------------
 """
 
