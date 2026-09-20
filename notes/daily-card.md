@@ -28,35 +28,33 @@ EXAMPLE
 ## System design — 10 minutes, out loud
 
 <!-- scenario -->
-**You run the webhook receiver for a payments product. The provider POSTs
-`payment.succeeded`, you write a row and call your fulfilment service inline,
-then return 200. Fulfilment has been down for 47 minutes. The provider retries
-any non-200 with backoff for three days. Your receiver is holding 4,000
-in-flight requests against a 200-connection pool.**
+**A food delivery app dispatches orders to couriers. One city at dinner peak:
+900 orders/sec, about 40,000 couriers online, and for any given order only
+~50 couriers are close enough to matter. Dispatch reads candidate couriers
+from a Postgres read replica, picks the nearest free one, then runs
+`UPDATE couriers SET status='assigned' WHERE id=?`. Support is now seeing the
+same courier assigned to two orders, and couriers are rejecting jobs they
+were never really given.**
 
-1. What gives out first — the provider's retries, your connection pool, or the
-   database — and why?
-2. Redesign the receive path so an hour of downstream failure costs you nothing.
-3. Your new design returns 200 before fulfilment finishes. What can go wrong now
-   that could not before, and what does fixing it cost?
+1. What breaks first, and why?
+2. What do you change?
+3. What does that change cost you, or when does it stop working?
 
 <details>
 <summary>What a good answer covers</summary>
 
-- The pool goes first. 4,000 requests against 200 connections, each held open
-  waiting on a dead service. Retries pile on while nothing drains, so backoff
-  makes it worse before better. The database is fine — it is barely being asked.
-- Receive path should do the minimum durable thing: verify the signature, write
-  the event to a queue or an outbox row, return 200. Fulfilment becomes a
-  consumer. An hour of downstream failure then costs queue depth, nothing else.
-- You have traded synchronous confirmation for at-least-once delivery.
-  Duplicates and out-of-order events are now real. Idempotency on the provider's
-  event id with a unique constraint, and a consumer that no-ops on replay.
-- Cost: you acknowledge before the work is done, so a poison event or a consumer
-  bug is now silent. That buys you a dead-letter queue, lag alerting and a
-  replay path you have actually tested.
-- Where this gets pushed: two events for the same payment arriving out of order.
-  A state machine that only moves forward, or a sequence check — not last-write-wins.
+Replica lag makes the candidate set stale, but that is not the bug — the bug
+is that the UPDATE is unconditional, so two dispatchers both "win". The
+cheap fix is a conditional write: `WHERE id=? AND status='free'`, check rows
+affected, re-pick on 0. That makes correctness safe but moves the pain to
+contention: with 900/s fighting over ~50 hot couriers, losers retry and
+retry rate climbs fast. The alternative is a single assigner per city or geo
+cell, which removes contention entirely and lets you batch a 2s window for
+better matching — at the cost of a failure domain, a hot cell at a stadium,
+and added latency. Either way an assignment is not a boolean: the courier
+must ack, so it needs a reservation with a TTL.
+Push: the single assigner dies holding 200 unacked reservations — what
+happens, and who notices?
 
 </details>
 <!-- /scenario -->

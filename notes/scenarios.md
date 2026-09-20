@@ -10,3 +10,4 @@ Format: `YYYY-MM-DD — <one line naming the situation and the pressure>`
 ---
 
 2026-09-20 — payments webhook receiver holding 4,000 in-flight requests while fulfilment is down; sync receive path vs durable queue
+2026-09-20 — delivery dispatch double-assigning couriers at 900 orders/sec; unconditional UPDATE vs conditional write contention vs single assigner per cell
