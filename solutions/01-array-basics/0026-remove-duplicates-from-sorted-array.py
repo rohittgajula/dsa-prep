@@ -63,9 +63,9 @@ class Solution:
     def removeDuplicates_brute(self, nums: List[int]) -> int:
         sol = []
         for num in nums:
-            print(num)
+            # print(num)
             if num not in sol:
-                print(f"loop : {num}")
+                # print(f"loop : {num}")
                 sol.append(num)
         return sol
 

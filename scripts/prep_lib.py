@@ -201,6 +201,17 @@ def parse(path):
         recognition = " ".join(ln.strip() for ln in chunk.splitlines()
                                if ln.strip() and not ln.strip().startswith("(")).strip()
 
+    def section(name, stop):
+        if name not in head:
+            return ""
+        chunk = head.split(name, 1)[1].split(stop, 1)[0]
+        lines = [ln.strip() for ln in chunk.splitlines()
+                 if ln.strip() and not EMPTY.match(ln) and not ln.strip().startswith("<")]
+        return " ".join(lines).strip()
+
+    key_insight = section("KEY INSIGHT", "MISTAKES I MADE")
+    optimal_note = section("OPTIMAL", "KEY INSIGHT")
+
     title = HEADER["title"].search(head)
     minutes = grab("minutes")
     thinking = _thinking(head)
@@ -226,6 +237,8 @@ def parse(path):
         "reps": len(revised),
         "notes_filled": status != "todo" and not PLACEHOLDER.search(head.split("BRUTE FORCE", 1)[-1]),
         "statement": statement,
+        "key_insight": key_insight,
+        "optimal_note": optimal_note,
         "recognition": recognition,
         "thinking": thinking,
         "thinking_filled": any(thinking[k] for k in ("first_look", "tried", "stuck", "clicked")),
