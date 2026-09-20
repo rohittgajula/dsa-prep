@@ -118,7 +118,9 @@ def main():
     if args.commit:
         rel = str(path.relative_to(L.ROOT))
         run = lambda *a: subprocess.run(a, cwd=L.ROOT, capture_output=True, text=True)
-        if not run("git", "diff", "--quiet", "--", rel).returncode:
+        # `git diff` reports nothing for an untracked file, so the very first
+        # card looked unchanged and skipped its own commit. Ask status instead.
+        if not run("git", "status", "--porcelain", "--", rel).stdout.strip():
             print("card unchanged, nothing to commit")
             return 0
         run("git", "add", rel)
