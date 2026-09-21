@@ -14,6 +14,7 @@ the drill.
 import argparse
 import datetime as dt
 import random
+import re
 import subprocess
 import sys
 from pathlib import Path
@@ -130,6 +131,62 @@ def recall_item(rows, today):
 SCENARIO_OPEN = "<!-- scenario -->"
 SCENARIO_CLOSE = "<!-- /scenario -->"
 
+CARDS = L.NOTES / "cards"
+HEADER_DATE = re.compile(r"^#\s+\w{3}\s+(\d{2}\s+\w{3}\s+\d{4})")
+
+
+def card_date(text):
+    """The date a card was written for, read back off its heading."""
+    m = HEADER_DATE.search(text)
+    return L.parse_date(m.group(1)) if m else None
+
+
+def archive(today, card):
+    """Keep every card, not just the newest.
+
+    notes/daily-card.md is always today - that is the link on the phone, so it
+    has to stay put. Each card is also written to notes/cards/<date>.md, and a
+    card left over from an earlier day is filed there before it is overwritten.
+    """
+    CARDS.mkdir(parents=True, exist_ok=True)
+    written = []
+
+    live = L.NOTES / "daily-card.md"
+    if live.exists():
+        old = live.read_text(encoding="utf-8")
+        old_date = card_date(old)
+        if old_date and old_date != today:
+            dest = CARDS / f"{old_date:%Y-%m-%d}.md"
+            if not dest.exists():
+                dest.write_text(old, encoding="utf-8")
+                written.append(dest)
+
+    dest = CARDS / f"{today:%Y-%m-%d}.md"
+    if not dest.exists() or dest.read_text(encoding="utf-8") != card:
+        dest.write_text(card, encoding="utf-8")
+        written.append(dest)
+
+    index()
+    return written
+
+
+def index():
+    """A dated list of every archived card, newest first."""
+    cards = sorted(CARDS.glob("20*.md"), reverse=True)
+    lines = ["# Card archive", "",
+             "Every daily card, newest first. `../daily-card.md` is always today's.",
+             ""]
+    for c in cards:
+        d = L.parse_date(c.stem)
+        label = f"{d:%a %d %b %Y}" if d else c.stem
+        first = ""
+        for ln in c.read_text(encoding="utf-8").splitlines():
+            if ln.startswith("**Solve**"):
+                first = " — " + ln.replace("**Solve**", "").strip()[:60]
+                break
+        lines.append(f"- [{label}]({c.name}){first}")
+    (CARDS / "README.md").write_text("\n".join(lines) + "\n", encoding="utf-8")
+
 
 def build(rows, today):
     plan = __import__("plan").build(rows, today, days=1)
@@ -192,8 +249,11 @@ def main():
         return 0
 
     path = L.NOTES / "daily-card.md"
+    filed = archive(today, card)
     path.write_text(card, encoding="utf-8")
     print(f"wrote {path.relative_to(L.ROOT)}")
+    for f in filed:
+        print(f"filed {f.relative_to(L.ROOT)}")
 
     if args.commit:
         rel = str(path.relative_to(L.ROOT))
@@ -203,7 +263,7 @@ def main():
         if not run("git", "status", "--porcelain", "--", rel).stdout.strip():
             print("card unchanged, nothing to commit")
             return 0
-        run("git", "add", rel)
+        run("git", "add", *rel)
         commit = run("git", "commit", "-m", f"Daily card: {today:%Y-%m-%d}")
         if commit.returncode:
             print(f"commit failed: {commit.stderr.strip()}", file=sys.stderr)
