@@ -1,13 +1,13 @@
-# Sun 20 Sep 2026 — week 1
+# Mon 21 Sep 2026 — week 1
 
-**Solve** 27 Remove Element, 66 Plus One
+**Solve** 27 Remove Element, 66 Plus One, 53 Maximum Subarray
 **Read** theory/os/01-processes-and-threads.md
-**Revise** 26 Remove Duplicates From Sorted Array (sweep 1)
-**Mock** 45 minutes out loud: one problem, one system design prompt
+**Revise** 1 Two Sum (sweep 1)
 
 ## Recall
 
-Arrays — in-place modification contract — what goes wrong here, and what is the fix?
+An in-place array problem: your returned list holds the right values, but the
+judge still fails you. What is it actually reading, and what must you return?
 
 ## Name the pattern
 
@@ -15,46 +15,43 @@ Arrays — in-place modification contract — what goes wrong here, and what is 
 
 ```text
 INPUT
-    nums : list of integers
+    prices : list of integers
 
 RETURN
-    list of integers
+    integer
 
 EXAMPLE
-    nums = [1, 2, 1]
-    ->  [1, 2, 1, 1, 2, 1]
+    prices = [7, 1, 5, 3, 6, 4]
+    ->  5
 ```
 
 ## System design — 10 minutes, out loud
 
 <!-- scenario -->
-**A food delivery app dispatches orders to couriers. One city at dinner peak:
-900 orders/sec, about 40,000 couriers online, and for any given order only
-~50 couriers are close enough to matter. Dispatch reads candidate couriers
-from a Postgres read replica, picks the nearest free one, then runs
-`UPDATE couriers SET status='assigned' WHERE id=?`. Support is now seeing the
-same courier assigned to two orders, and couriers are rejecting jobs they
-were never really given.**
+**A marketplace app shows search suggestions as you type. 3M daily users,
+peak 120k suggest requests/sec, one request per keystroke. Each request is a
+prefix query against Elasticsearch over 80M product titles, with a Redis cache
+keyed on the exact prefix string (60% hit rate). p99 has gone from 40ms to
+310ms over three months and the box now feels laggy on mobile.**
 
-1. What breaks first, and why?
+1. What breaks first here, and why did it get worse over three months?
 2. What do you change?
-3. What does that change cost you, or when does it stop working?
+3. What does that change cost you, and when does it stop working?
 
 <details>
 <summary>What a good answer covers</summary>
 
-Replica lag makes the candidate set stale, but that is not the bug — the bug
-is that the UPDATE is unconditional, so two dispatchers both "win". The
-cheap fix is a conditional write: `WHERE id=? AND status='free'`, check rows
-affected, re-pick on 0. That makes correctness safe but moves the pain to
-contention: with 900/s fighting over ~50 hot couriers, losers retry and
-retry rate climbs fast. The alternative is a single assigner per city or geo
-cell, which removes contention entirely and lets you batch a 2s window for
-better matching — at the cost of a failure domain, a hot cell at a stadium,
-and added latency. Either way an assignment is not a boolean: the courier
-must ack, so it needs a reservation with a TTL.
-Push: the single assigner dies holding 200 unacked reservations — what
-happens, and who notices?
+ES is doing 48k uncached prefix queries/sec against a growing index — the miss
+rate is the problem, and misses grew because the long tail of prefixes grew
+with the catalog. Cheapest win first: client-side debounce of 100-150ms cuts
+QPS 3-4x for free, at the cost of the last keystroke feeling slower.
+Real fix: precompute top-10 suggestions for the head prefixes into a trie/FST
+and ship it in-process on every suggest node — ~1M prefixes is a few hundred MB,
+no network hop, sub-ms. Send only the tail to ES.
+The cost is staleness: new and trending items appear only at rebuild interval,
+and a shared trie cannot rank per user. Push on where you cut head vs tail, what
+rebuild time and memory look like at 3x catalog, and what serves the first
+request after a deploy.
 
 </details>
 <!-- /scenario -->
@@ -62,8 +59,8 @@ happens, and who notices?
 <details>
 <summary>Answers</summary>
 
-**Recall** — in-place problems score `nums[:k]`; write back with `nums[:len(sol)] = sol` — a bare slice is a no-op
+**Recall** — the judge reads the first k slots of the input array, not your return value. Mutate the caller's array (`nums[:len(sol)] = sol`; a bare `nums = sol` rebinds a local and does nothing) and return k, the count.
 
-**Pattern** — Array Basics. Trivial. Use it to check your language's list operations are second nature.
+**Pattern** — Array Basics. Track the minimum price seen so far; at each day ask what profit selling today would give.
 
 </details>

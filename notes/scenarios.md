@@ -11,3 +11,4 @@ Format: `YYYY-MM-DD — <one line naming the situation and the pressure>`
 
 2026-09-20 — payments webhook receiver holding 4,000 in-flight requests while fulfilment is down; sync receive path vs durable queue
 2026-09-20 — delivery dispatch double-assigning couriers at 900 orders/sec; unconditional UPDATE vs conditional write contention vs single assigner per cell
+2026-09-21 — marketplace search typeahead at 120k req/sec, p99 40ms -> 310ms as the prefix cache miss rate grew; debounce vs in-process trie for the head vs ES for the tail, paid in staleness and no personalization
