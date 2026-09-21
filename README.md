@@ -77,6 +77,22 @@ Better an empty list than cases that fail for the wrong reason.
 | Advanced | 28–29 | Bit manipulation, math, design data structures |
 | Revision | 30–35 | Four sweeps, mocks, applications |
 
+## On a new machine
+
+```bash
+git clone https://github.com/rohittgajula/dsa-prep.git ~/Desktop/dsa-prep
+ln -s ~/Desktop/dsa-prep/.claude/skills/prep ~/.claude/skills/prep
+```
+
+The second line makes `/prep` — the tutor skill in `.claude/skills/prep/` — available everywhere on that machine, not only inside this folder. Without it the skill still works while the working directory is this repo.
+
+Two things do **not** come with the clone, and should live on one machine only:
+
+- the `dsa-daily-card` scheduled task, in `~/.claude/scheduled-tasks/`
+- its permission allow-rules in `~/.claude/settings.json`, which hold absolute paths
+
+Running the morning card on two machines means both push to `main` each day and one clobbers the other. One machine owns it.
+
 ## Rules
 
 - **Write the brute force down first.** In an interview you state it before optimising — that's what's being scored. Every file has a slot for it; run it before you touch the optimal one.
