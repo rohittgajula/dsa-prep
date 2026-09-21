@@ -28,10 +28,14 @@ same slip. The repeat dates are the signal.
 ## Open
 
 ### Arrays — in-place modification contract
-**Slip:** builds a new list and returns it, instead of mutating the input and returning k
-**Fix:** in-place problems score `nums[:k]`; write back with `nums[:len(sol)] = sol` — a bare slice is a no-op
-**Seen:** 2026-09-20
-**Status:** open
+**Slip:** builds a new list and returns it, instead of mutating the input and returning k;
+          three variants so far — returned the list (26), bare slice with no `=` (26),
+          rebound the local name `nums, newArr = newArr, nums` (27)
+**Fix:** mutate the OBJECT, not the name — `nums[:] = newArr`, then `return len(newArr)`.
+         Assigning to a parameter name never reaches the caller. A brute force does NOT
+         get to opt out of the contract; brute describes wasted work, not a changed signature.
+**Seen:** 2026-09-20, 2026-09-21
+**Status:** open (repeat confirmed — drill this on 283 Move Zeroes)
 
 ### DSA reasoning — ignoring a stated constraint
 **Slip:** brute force works on unsorted input for a problem that hands you a *sorted* array

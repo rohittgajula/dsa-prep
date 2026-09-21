@@ -35,3 +35,17 @@ Keep the `- Theory:` lines as real paths — that is the part the script parses.
   a consequence of his convention, not a typo. Did not test an edge case before declaring done.
 - Note: thinking block opens with "this is mostly a two pointer approach" — recognising the
   SHAPE of the input, not deriving from the sortedness observation. This is rubric point 4.
+
+## 2026-09-21 (week 1)
+- Solved: 27 Remove Element — unaided (Y), hints used, 15 min. Brute force and optimal both green.
+- Note: brute force blocked on the in-place contract again — this time `nums, newArr = newArr, nums`,
+  which rebinds local names only. Third variant of the same slip in two days. weak-topics updated.
+- Note: came in believing a brute force is exempt from the in-place contract. Corrected — brute
+  describes wasted work, not a changed signature.
+- Note: optimal used `for fast in nums` (values) instead of `range(len(nums))` (indices). Passed
+  case 1 by coincidence, raises IndexError when a value exceeds the array length.
+- Note: assumed a LeetCode Accepted meant the local file was identical; one line differed.
+  Lesson taken: diff before theorising about why "the same code" behaves differently.
+- Note: stated O(n) time / O(1) space for the optimal correctly and unprompted. Missed the
+  brute force's O(n) space until asked — that contrast is the reason the optimal exists.
+- Note: MY THINKING block on 27 still empty.
