@@ -49,3 +49,4 @@ Keep the `- Theory:` lines as real paths — that is the part the script parses.
 - Note: stated O(n) time / O(1) space for the optimal correctly and unprompted. Missed the
   brute force's O(n) space until asked — that contrast is the reason the optimal exists.
 - Note: MY THINKING block on 27 still empty.
+- Solved: 66 Plus One — unaided (Y), 10 min. Right-to-left carry logic was the key move; all-9s case required the leading 1, with no hint used.
