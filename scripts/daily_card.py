@@ -256,21 +256,50 @@ def main():
         print(f"filed {f.relative_to(L.ROOT)}")
 
     if args.commit:
-        rel = str(path.relative_to(L.ROOT))
+        # Everything a run can touch: today's card, the dated copies archive()
+        # filed, and the index it rewrites. Staging the cards directory covers
+        # the last two without having to name each file.
+        rel = [str(path.relative_to(L.ROOT)), str(CARDS.relative_to(L.ROOT))]
         run = lambda *a: subprocess.run(a, cwd=L.ROOT, capture_output=True, text=True)
+
+        def failed(step, proc):
+            # git puts "nothing added to commit" and most push advice on stdout,
+            # so reporting stderr alone leaves the reason blank.
+            detail = (proc.stderr.strip() or proc.stdout.strip()).splitlines()
+            print(f"{step}: {detail[0] if detail else 'no output'}", file=sys.stderr)
+            for line in detail[1:]:
+                print(f"  {line}", file=sys.stderr)
+
         # `git diff` reports nothing for an untracked file, so the very first
         # card looked unchanged and skipped its own commit. Ask status instead.
-        if not run("git", "status", "--porcelain", "--", rel).stdout.strip():
+        if not run("git", "status", "--porcelain", "--", *rel).stdout.strip():
             print("card unchanged, nothing to commit")
             return 0
-        run("git", "add", *rel)
+        add = run("git", "add", *rel)
+        if add.returncode:
+            failed("add failed", add)
+            return 1
         commit = run("git", "commit", "-m", f"Daily card: {today:%Y-%m-%d}")
         if commit.returncode:
-            print(f"commit failed: {commit.stderr.strip()}", file=sys.stderr)
+            failed("commit failed", commit)
             return 1
+
+        # The remote may have moved since the last run. Replay the card on top
+        # of it rather than pushing a stale branch and being rejected.
+        branch = run("git", "rev-parse", "--abbrev-ref", "HEAD").stdout.strip()
+        if not run("git", "fetch", "origin", branch).returncode:
+            behind = run("git", "rev-list", "--count", f"HEAD..origin/{branch}").stdout.strip()
+            if behind and behind != "0":
+                print(f"{behind} commit(s) behind origin/{branch}, rebasing")
+                rebase = run("git", "rebase", f"origin/{branch}")
+                if rebase.returncode:
+                    run("git", "rebase", "--abort")
+                    failed("rebase failed, card committed but not pushed", rebase)
+                    return 1
+
         push = run("git", "push", "origin", "HEAD")
         if push.returncode:
-            print(f"committed, but push failed: {push.stderr.strip()}", file=sys.stderr)
+            failed("committed, but push failed", push)
             return 1
         print("committed and pushed")
     return 0
