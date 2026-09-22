@@ -54,12 +54,14 @@ THEMES = [
 ]
 
 
-def existing_scenario(today):
-    """Today's scenario, if one has already been written into the card.
+def written_block(today, open_m, close_m, placeholder=None):
+    """Text the scheduled task has already written between two markers.
 
-    The morning task replaces the script's theme with a real scenario. Running
-    the script again later in the day must not throw that away, so a scenario
-    already written for today is carried through untouched.
+    The task replaces the script's placeholder with real prose. Running the
+    script again later the same day must not throw that away, so anything
+    written for today is carried through untouched. A body still starting with
+    `placeholder` is the script's own filler and does not count as written.
+    Yesterday's card is ignored outright.
     """
     path = L.NOTES / "daily-card.md"
     if not path.exists():
@@ -67,10 +69,19 @@ def existing_scenario(today):
     text = path.read_text(encoding="utf-8")
     if not text.startswith(f"# {today:%a %d %b %Y}"):
         return None                                   # yesterday's card
-    if SCENARIO_OPEN not in text or SCENARIO_CLOSE not in text:
+    if open_m not in text or close_m not in text:
         return None
-    body = text.split(SCENARIO_OPEN, 1)[1].split(SCENARIO_CLOSE, 1)[0].strip()
-    return body if body and not body.startswith("**Today's theme:**") else None
+    body = text.split(open_m, 1)[1].split(close_m, 1)[0].strip()
+    if not body:
+        return None
+    if placeholder and body.startswith(placeholder):
+        return None
+    return body
+
+
+def existing_scenario(today):
+    """Today's scenario, if one has already been written into the card."""
+    return written_block(today, SCENARIO_OPEN, SCENARIO_CLOSE, "**Today's theme:**")
 
 
 def scenario_block(today, seed=None, existing=None):
@@ -93,6 +104,139 @@ def scenario_block(today, seed=None, existing=None):
         "Set it up yourself: what is the scale, what breaks first, what do you",
         "change, and what does that change cost you?",
         SCENARIO_CLOSE,
+    ]
+
+
+# One component or idea a day, rotating across the four subjects. The scheduled
+# task writes the actual explanation; this bank only decides the topic, so the
+# rotation is the script's job and the prose is not.
+CONCEPTS = [
+    ("HLD", "L4 vs L7 load balancer"),
+    ("HLD", "what a reverse proxy does that a load balancer does not"),
+    ("HLD", "vector database - what it is and when you actually need one"),
+    ("HLD", "Redis vs Memcached"),
+    ("HLD", "Kafka vs RabbitMQ - a log is not a queue"),
+    ("HLD", "consistent hashing, and what it fixes about modulo sharding"),
+    ("HLD", "read replica vs sharding - which problem each one solves"),
+    ("HLD", "bloom filter - where it saves a disk read"),
+    ("HLD", "token bucket vs leaky bucket vs sliding window rate limits"),
+    ("HLD", "CAP theorem - what the P actually means"),
+    ("HLD", "idempotency keys, and why retries need them"),
+    ("HLD", "long polling vs SSE vs WebSocket"),
+    ("HLD", "blue-green vs canary deploys"),
+    ("HLD", "object vs block vs file storage"),
+    ("HLD", "OLTP vs OLAP, and why reports do not run on the primary"),
+    ("HLD", "quorum reads and writes - why R + W > N"),
+    ("HLD", "two-phase commit vs saga"),
+    ("HLD", "circuit breaker, and what half-open is for"),
+    ("HLD", "distributed lock - why a TTL alone is not enough"),
+    ("HLD", "CDN - what happens on a cache miss"),
+    ("HLD", "API gateway vs load balancer"),
+    ("HLD", "write-ahead log - why the log is written before the data"),
+    ("DBMS", "B-tree vs LSM tree"),
+    ("DBMS", "composite index - why column order decides everything"),
+    ("DBMS", "covering index, and the index-only scan"),
+    ("DBMS", "isolation levels, and the anomaly each one still allows"),
+    ("DBMS", "MVCC - how a reader avoids blocking a writer"),
+    ("DBMS", "optimistic vs pessimistic locking"),
+    ("DBMS", "how a database detects and breaks a deadlock"),
+    ("DBMS", "normalization vs denormalization - what you pay either way"),
+    ("DBMS", "connection pooling - why bigger is not better"),
+    ("DBMS", "the N+1 query problem"),
+    ("DBMS", "partitioning vs sharding"),
+    ("DBMS", "why the planner picks a full scan over your index"),
+    ("DBMS", "fsync, group commit, and what durability costs"),
+    ("DBMS", "SQL vs NoSQL - what actually decides it"),
+    ("DBMS", "columnar storage - why it is fast for aggregates"),
+    ("OS", "process vs thread"),
+    ("OS", "what a context switch actually costs"),
+    ("OS", "virtual memory and the page fault"),
+    ("OS", "mutex vs semaphore vs spinlock"),
+    ("OS", "user space vs kernel space - the price of a syscall"),
+    ("OS", "blocking vs non-blocking I/O, and what epoll changed"),
+    ("OS", "copy-on-write fork"),
+    ("OS", "sizing a thread pool - CPU bound vs I/O bound"),
+    ("OS", "zombie and orphan processes"),
+    ("OS", "cache lines and false sharing"),
+    ("OS", "memory mapped files, and when mmap beats read()"),
+    ("OS", "preemptive vs cooperative scheduling"),
+    ("NET", "TCP vs UDP - what the handshake buys you"),
+    ("NET", "the TLS handshake - what happens before the first byte"),
+    ("NET", "HTTP/1.1 vs HTTP/2 vs HTTP/3"),
+    ("NET", "head-of-line blocking, at both layers"),
+    ("NET", "the DNS resolution path, from browser to authoritative"),
+    ("NET", "TCP slow start and congestion control"),
+    ("NET", "what a socket actually is"),
+    ("NET", "keep-alive, and why connection reuse matters so much"),
+    ("LLD", "the SOLID letter that actually gets violated most"),
+    ("LLD", "strategy pattern vs a dict of functions"),
+    ("LLD", "factory vs builder"),
+    ("LLD", "observer pattern, and the leak it invites"),
+    ("LLD", "why constructor injection beats the alternatives"),
+    ("LLD", "composition over inheritance, with a real example"),
+    ("LLD", "why singleton is a testing problem"),
+    ("LLD", "repository pattern - what it buys and what it hides"),
+    ("LLD", "value objects, and why immutability removes bugs"),
+]
+
+
+def covered_concepts():
+    """Topics the card has already explained, read off the log."""
+    path = L.NOTES / "concepts.md"
+    if not path.exists():
+        return set()
+    seen = set()
+    for line in path.read_text(encoding="utf-8").splitlines():
+        line = line.strip()
+        if not line.startswith("20"):
+            continue
+        if "\u2014" in line:
+            seen.add(line.split("\u2014", 1)[1].strip().lower())
+        elif " - " in line:
+            seen.add(line.split(" - ", 1)[1].strip().lower())
+    return seen
+
+
+def pick_concept(today):
+    """Today's topic: a stable rotation, skipping what has been covered.
+
+    The order is shuffled once with a fixed seed rather than taken in file
+    order, so the subjects interleave instead of arriving in four long runs.
+    Once every topic has been covered the rotation simply starts again.
+    """
+    order = list(CONCEPTS)
+    random.Random(20260922).shuffle(order)
+    done = covered_concepts()
+    fresh = [c for c in order if c[1].lower() not in done]
+    if fresh:
+        return fresh[0]
+    return order[today.toordinal() % len(order)]   # all covered, go round again
+
+
+def existing_concept(today):
+    """Today's concept, if the task has already written one into the card."""
+    return written_block(today, CONCEPT_OPEN, CONCEPT_CLOSE, "**Today's concept:**")
+
+
+def concept_block(today, existing=None):
+    """One component or idea, explained. Read, not drilled.
+
+    Same contract as the scenario: markers so the scheduled task can replace
+    the placeholder, and a placeholder good enough that the card still tells
+    you what to go and look up if nothing ever does.
+    """
+    if existing:
+        return ["## Concept — 5 minutes", "",
+                CONCEPT_OPEN, existing, CONCEPT_CLOSE]
+    area, topic = pick_concept(today)
+    return [
+        "## Concept — 5 minutes", "",
+        CONCEPT_OPEN,
+        f"**Today's concept:** {topic} *({area})*",
+        "",
+        "Nothing written yet. Say what it is, when you reach for it, and what",
+        "it costs you — then go and check yourself.",
+        CONCEPT_CLOSE,
     ]
 
 
@@ -130,6 +274,16 @@ def recall_item(rows, today):
 
 SCENARIO_OPEN = "<!-- scenario -->"
 SCENARIO_CLOSE = "<!-- /scenario -->"
+
+CONCEPT_OPEN = "<!-- concept -->"
+CONCEPT_CLOSE = "<!-- /concept -->"
+
+# The recall question is regenerated from the repo each run, so a sharper one
+# written by hand needs markers too - both the question and its answer.
+RECALL_OPEN = "<!-- recall -->"
+RECALL_CLOSE = "<!-- /recall -->"
+RECALL_ANSWER_OPEN = "<!-- recall-answer -->"
+RECALL_ANSWER_CLOSE = "<!-- /recall-answer -->"
 
 CARDS = L.NOTES / "cards"
 HEADER_DATE = re.compile(r"^#\s+\w{3}\s+(\d{2}\s+\w{3}\s+\d{4})")
@@ -213,7 +367,17 @@ def build(rows, today):
         out.append("Nothing scheduled today.")
 
     question, answer = recall_item(rows, today)
-    out += ["", "## Recall", "", question]
+    # A question the task rewrote today wins over the generated one, and its
+    # answer travels with it - swapping only one of the two would be worse
+    # than swapping neither.
+    kept_q = written_block(today, RECALL_OPEN, RECALL_CLOSE)
+    kept_a = written_block(today, RECALL_ANSWER_OPEN, RECALL_ANSWER_CLOSE)
+    if kept_a:
+        # stored with its label, re-emitted with one - strip so it is not doubled
+        kept_a = re.sub(r"^\*\*Recall\*\*\s*[-\u2014]\s*", "", kept_a).strip()
+    if kept_q and kept_a:
+        question, answer = kept_q, kept_a
+    out += ["", "## Recall", "", RECALL_OPEN, question, RECALL_CLOSE]
 
     drill = L.drill_pick(rows, 1, today)
     drill = drill[0] if drill else None
@@ -224,9 +388,12 @@ def build(rows, today):
 
     out += [""] + scenario_block(today, existing=existing_scenario(today))
 
+    out += [""] + concept_block(today, existing=existing_concept(today))
+
     out += ["", "<details>", "<summary>Answers</summary>", ""]
     if answer:
-        out += [f"**Recall** — {answer}", ""]
+        out += [RECALL_ANSWER_OPEN, f"**Recall** — {answer}",
+                RECALL_ANSWER_CLOSE, ""]
     if drill:
         hint = drill["recognition"] or "no recognition hint written yet"
         out += [f"**Pattern** — {drill['pattern']}. {hint}", ""]
