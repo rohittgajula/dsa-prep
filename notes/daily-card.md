@@ -6,7 +6,9 @@
 
 ## Recall
 
+<!-- recall -->
 A function takes `nums` and must change it in place. Why does `nums = sorted(nums)` leave the caller's list untouched, while `nums[:] = sorted(nums)` changes it?
+<!-- /recall -->
 
 ## Name the pattern
 
@@ -57,10 +59,61 @@ sequence restart at, and how do you avoid a duplicate or a gap?
 </details>
 <!-- /scenario -->
 
+## Concept — 5 minutes
+
+<!-- concept -->
+**L4 vs L7 load balancer** *(HLD)*
+
+A load balancer has to pick a backend. The question is how much of the request
+it is allowed to read before deciding.
+
+**L4** works at TCP level. It sees IP and port, nothing else. It picks a
+backend, then shovels bytes both ways without understanding them. It cannot
+read a URL or a header, because the payload may be encrypted and it never
+terminates TLS. Cheap, fast, and it works for any protocol.
+
+**L7** terminates the connection, parses the HTTP request, and decides using
+what it read — path, host, cookie, header. `/api/*` to one pool, `/static/*`
+to another. It can retry a failed request on a second backend, because it
+still holds the parsed request. L4 cannot: it has already forwarded the bytes.
+
+<details>
+<summary>Deeper — when it matters, and what it costs</summary>
+
+**When each one wins**
+
+L7 whenever routing depends on request content, or you want per-path timeouts,
+retries, canary splits by header, or one TLS certificate in front of many
+services. That is most web traffic — and it is what an "API gateway" is.
+
+L4 when you need raw throughput, non-HTTP protocols (databases, gRPC streams,
+game traffic, SMTP), or true end-to-end encryption where the balancer must not
+hold the private key. Also when connections are long-lived and the per-request
+parse buys you nothing.
+
+**What L7 costs**
+
+It is a real proxy: it terminates TLS and re-encrypts to the backend, so you
+pay CPU per request and add a hop of latency — usually 1-3ms, more under load.
+It holds state per connection, so it is the thing that falls over first. And it
+must now be scaled and made highly available itself.
+
+**The follow-up**
+
+"Your L7 terminates TLS — what does the backend see as the client IP?" Answer:
+not the client. You need `X-Forwarded-For` or PROXY protocol, and the backend
+must be configured to trust it, or you will rate-limit the load balancer's own
+address instead of the caller.
+
+</details>
+<!-- /concept -->
+
 <details>
 <summary>Answers</summary>
 
+<!-- recall-answer -->
 **Recall** — `nums = ...` only rebinds the local name; the caller still holds the original object. `nums[:] = ...` is slice assignment, which overwrites the contents of that same object, so the caller sees it. Same reason rebinding via `nums, tmp = tmp, nums` never reaches the caller.
+<!-- /recall-answer -->
 
 **Pattern** — Array Basics. Slow write pointer places non-zeros; fill the rest with zeros. Same skeleton as 26 and 27.
 
