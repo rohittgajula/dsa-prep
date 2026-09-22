@@ -11,7 +11,9 @@ INPUT
     nums : list of integers
 
 RETURN
-    nothing is returned - nums itself is changed
+    optimal : nothing is returned - nums itself is changed
+    brute   : may return the finished result instead - the runner
+              accepts either
 
 EXAMPLE
     nums = [2, 0, 2, 1, 1, 0]
@@ -110,7 +112,8 @@ if __name__ == "__main__":
         return "FAIL"
 
     sol = Solution()
-    for label, fname in (("BRUTE FORCE", METHOD + "_brute"), ("OPTIMAL    ", METHOD)):
+    for label, fname, brute in (("BRUTE FORCE", METHOD + "_brute", True),
+                                ("OPTIMAL    ", METHOD, False)):
         fn = getattr(sol, fname, None)
         if fn is None:
             continue
@@ -125,6 +128,7 @@ if __name__ == "__main__":
             except Exception as exc:
                 print(f"    case {n}: ERROR  {type(exc).__name__}: {exc}")
                 continue
-            got = call[INPLACE_ARG]
+            if not (brute and got is not None):
+                got = call[INPLACE_ARG]
             print(f"    case {n}: {_verdict(got, want):<20} got={got!r}  want={want!r}")
         print()

@@ -57,6 +57,14 @@ complexities all live in the docstring, so the code area stays clean.
 Linked-list and tree problems include `build_list` / `build_tree` helpers, so a test case is written
 as a plain list (`[3,9,20,None,None,15,7]`) and the runner builds the real structure for you.
 In-place problems (`sortColors`, `rotate`, …) are checked on the mutated argument, not the return value.
+
+**The brute force is allowed its own return shape.** It is a different algorithm, so it should not be
+held to the optimal's contract. For `Merge Sorted Array` the natural brute force is
+`sorted(nums1[:m] + nums2[:n])` — it builds and returns a new array, which is exactly *why* it is the
+brute force. The runner accepts either shape from `*_brute`: return the finished result, or mutate the
+argument. The optimal method stays strict and is still checked the way LeetCode checks it, so an
+optimal that returns the right answer without mutating in place correctly fails.
+
 Design problems (`MinStack`, `LRUCache`, …) get two classes and replay the LeetCode operation sequence.
 
 **13 problems are the exception.** For things like `Linked List Cycle` or `Clone Graph`, LeetCode's judge

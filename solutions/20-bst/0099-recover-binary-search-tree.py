@@ -11,7 +11,9 @@ INPUT
     root : root of a binary tree
 
 RETURN
-    nothing is returned - root itself is changed
+    optimal : nothing is returned - root itself is changed
+    brute   : may return the finished result instead - the runner
+              accepts either
 
 EXAMPLE
     root = [1, 3, None, None, 2]
@@ -174,7 +176,8 @@ if __name__ == "__main__":
         return "FAIL"
 
     sol = Solution()
-    for label, fname in (("BRUTE FORCE", METHOD + "_brute"), ("OPTIMAL    ", METHOD)):
+    for label, fname, brute in (("BRUTE FORCE", METHOD + "_brute", True),
+                                ("OPTIMAL    ", METHOD, False)):
         fn = getattr(sol, fname, None)
         if fn is None:
             continue
@@ -189,6 +192,9 @@ if __name__ == "__main__":
             except Exception as exc:
                 print(f"    case {n}: ERROR  {type(exc).__name__}: {exc}")
                 continue
-            got = dump_tree(call[INPLACE_ARG])
+            if brute and got is not None:
+                got = got if isinstance(got, list) else dump_tree(got)
+            else:
+                got = dump_tree(call[INPLACE_ARG])
             print(f"    case {n}: {_verdict(got, want):<20} got={got!r}  want={want!r}")
         print()

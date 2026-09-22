@@ -131,7 +131,8 @@ if __name__ == "__main__":
         return "FAIL"
 
     sol = Solution()
-    for label, fname in (("BRUTE FORCE", METHOD + "_brute"), ("OPTIMAL    ", METHOD)):
+    for label, fname, brute in (("BRUTE FORCE", METHOD + "_brute", True),
+                                ("OPTIMAL    ", METHOD, False)):
         fn = getattr(sol, fname, None)
         if fn is None:
             continue

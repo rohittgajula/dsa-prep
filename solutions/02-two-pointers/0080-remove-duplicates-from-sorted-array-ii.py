@@ -11,7 +11,10 @@ INPUT
     nums : list of integers
 
 RETURN
-    the new length k, and nums holds the k kept values at the front
+    optimal : the new length k, with nums holding those k values at the
+              front
+    brute   : may return the kept values as a new list instead - the
+              runner accepts either
 
 EXAMPLE
     nums = [1, 1, 1, 2, 2, 3]
@@ -111,7 +114,8 @@ if __name__ == "__main__":
         return "FAIL"
 
     sol = Solution()
-    for label, fname in (("BRUTE FORCE", METHOD + "_brute"), ("OPTIMAL    ", METHOD)):
+    for label, fname, brute in (("BRUTE FORCE", METHOD + "_brute", True),
+                                ("OPTIMAL    ", METHOD, False)):
         fn = getattr(sol, fname, None)
         if fn is None:
             continue
@@ -126,6 +130,11 @@ if __name__ == "__main__":
             except Exception as exc:
                 print(f"    case {n}: ERROR  {type(exc).__name__}: {exc}")
                 continue
-            got = call[INPLACE_ARG][:got] if isinstance(got, int) else call[INPLACE_ARG]
+            if brute and isinstance(got, list):
+                pass
+            elif isinstance(got, int):
+                got = call[INPLACE_ARG][:got]
+            else:
+                got = call[INPLACE_ARG]
             print(f"    case {n}: {_verdict(got, want):<20} got={got!r}  want={want!r}")
         print()
