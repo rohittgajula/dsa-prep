@@ -50,3 +50,7 @@ Keep the `- Theory:` lines as real paths — that is the part the script parses.
   brute force's O(n) space until asked — that contrast is the reason the optimal exists.
 - Note: MY THINKING block on 27 still empty.
 - Solved: 66 Plus One — unaided (Y), 10 min. Right-to-left carry logic was the key move; all-9s case required the leading 1, with no hint used.
+
+## 2026-09-23 (week 1)
+- Solved: 88 Merge Sorted Array — unaided (Y), hints used, 20 min. Brute append-and-sort and optimal back-fill merge both green.
+- Note: key insight was to use nums1's spare slots from the back, so merging does not overwrite unprocessed values.

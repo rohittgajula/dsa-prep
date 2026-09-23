@@ -38,26 +38,28 @@ MY THINKING  (write this while you solve - raw, unedited)
         <>
 
     Tutor review:
-        <>
+        Right: filled from the back, which avoids shifting nums1's real values.
+        Wrong turn: brute force needed a hint, so the first approach was not fully cold.
+        Ask yourself next time: where is the spare space, and which direction avoids overwriting?
 
 BRUTE FORCE
-    <state it the way you would say it out loud in an interview>
-    Time  : O(?)
-    Space : O(?)
+    Put nums2 after the first m real values in nums1, then sort the whole array.
+    Time  : O((m + n) log(m + n))    sorting all m + n values dominates
+    Space : O(1) extra               nums1 already has the buffer
 
 OPTIMAL
-    <what does it exploit that the brute force wastes?>
-    Time  : O(?)
-    Space : O(?)
+    Merge from the back so the empty slots in nums1 are filled first and no shifting is needed.
+    Time  : O(m + n)    each real value is copied at most once
+    Space : O(1)        only three pointers are used
 
 KEY INSIGHT
-    <the one sentence that makes this collapse>
+    Since nums1 has empty space at the end, compare the largest remaining values and write from right to left.
 
 MISTAKES I MADE
-    <the part worth re-reading in the revision sweeps>
+    None recorded this session.
 
-Time taken: __ min      Solved unaided: Y / N      Hints used: __
-Solved on: __           Revised: __
+Time taken: 20 min      Solved unaided: Y      Hints used: Y
+Solved on: 2026-09-23   Revised: __
 ------------------------------------------------------------------------
 """
 
@@ -66,11 +68,32 @@ from typing import List
 
 class Solution:
     def merge_brute(self, nums1: List[int], m: int, nums2: List[int], n: int) -> None:
-        pass
+        for i in range(n):
+            nums1[m+i] = nums2[i]
+        return nums1.sort()
+        
 
 
     def merge(self, nums1: List[int], m: int, nums2: List[int], n: int) -> None:
-        pass
+        i = m-1
+        j = n-1
+        k = (m+n)-1
+
+        while i >=0 and j >= 0:
+            if nums1[i] > nums2[j]:
+                nums1[k] = nums1[i]
+                i -= 1
+            else:
+                nums1[k] = nums2[j]
+                j -= 1
+            k -= 1
+
+        while j >= 0:
+            nums1[k] = nums2[j]
+            j -= 1
+            k -= 1
+        return nums1
+
 
 
 METHOD      = 'merge'
