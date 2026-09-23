@@ -11,3 +11,4 @@ will offer it again.
 
 ---
 2026-09-22 — L4 vs L7 load balancer
+2026-09-23 — the N+1 query problem
