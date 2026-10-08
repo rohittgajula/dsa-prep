@@ -1,10 +1,9 @@
-# Sun 04 Oct 2026 — week 3
+# Thu 08 Oct 2026 — week 4
 
-**Solve** 53 Maximum Subarray, 121 Best Time To Buy And Sell Stock, 169 Majority Element
+**Solve** 53 Maximum Subarray, 121 Best Time To Buy And Sell Stock
 **Read** theory/os/01-processes-and-threads.md
 **Revise** 1 Two Sum (sweep 1), 26 Remove Duplicates From Sorted Array (sweep 1), 27 Remove Element (sweep 1)
-**Mixed** 18 4Sum — name the pattern before you start
-**Mock** 45 minutes out loud: one problem, one system design prompt
+**Mixed** 42 Trapping Rain Water — name the pattern before you start
 
 ## Recall
 
@@ -14,24 +13,25 @@ DSA reasoning — ignoring a stated constraint — what goes wrong here, and wha
 
 ## Name the pattern
 
-*Easy* — pattern, key insight, complexity. Do not solve it.
+*Medium* — pattern, key insight, complexity. Do not solve it.
 
 ```text
 INPUT
-    prices : list of integers
+    nums : list of integers
+    k    : integer
 
 RETURN
     integer
 
 EXAMPLE
-    prices = [7, 1, 5, 3, 6, 4]
-    ->  5
+    nums = [4, 5, 0, -2, -3, 1], k = 5
+    ->  7
 ```
 
 ## System design — 10 minutes, out loud
 
 <!-- scenario -->
-**Today's theme:** sessions that must survive one server dying mid-request
+**Today's theme:** the same request arriving twice because the client retried
 
 Set it up yourself: what is the scale, what breaks first, what do you
 change, and what does that change cost you?
@@ -53,6 +53,6 @@ it costs you — then go and check yourself.
 **Recall** — before optimising, ask which given constraint the brute force is not using yet
 <!-- /recall-answer -->
 
-**Pattern** — Array Basics. Track the minimum price seen so far; at each day ask what profit selling today would give.
+**Pattern** — Prefix Sum. Same remainder idea as 523, but COUNT the pairs. Careful with negative modulo.
 
 </details>

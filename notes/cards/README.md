@@ -2,6 +2,7 @@
 
 Every daily card, newest first. `../daily-card.md` is always today's.
 
+- [Thu 08 Oct 2026](2026-10-08.md) — 53 Maximum Subarray, 121 Best Time To Buy And Sell Stock
 - [Sun 04 Oct 2026](2026-10-04.md) — 53 Maximum Subarray, 121 Best Time To Buy And Sell Stock, 16
 - [Thu 01 Oct 2026](2026-10-01.md) — 53 Maximum Subarray, 121 Best Time To Buy And Sell Stock
 - [Sat 26 Sep 2026](2026-09-26.md) — 53 Maximum Subarray, 121 Best Time To Buy And Sell Stock, 16
