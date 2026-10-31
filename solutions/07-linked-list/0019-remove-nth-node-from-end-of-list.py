@@ -5,7 +5,7 @@ https://leetcode.com/problems/remove-nth-node-from-end-of-list/
 Difficulty : Medium
 Pattern    : Linked List
 Sheet      : A
-Order      : 042
+Order      : 090
 Asked      : Amazon, Google, India
 Lesson     : https://www.hellointerview.com/learn/code/linked-list/overview
 

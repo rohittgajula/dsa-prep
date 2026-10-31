@@ -5,7 +5,7 @@ https://leetcode.com/problems/maximum-sum-of-distinct-subarrays-with-length-k/
 Difficulty : Medium
 Pattern    : Sliding Window
 Sheet      : C
-Order      : 017
+Order      : 033
 Asked      : -
 Lesson     : https://www.hellointerview.com/learn/code/sliding-window/fixed-length
 

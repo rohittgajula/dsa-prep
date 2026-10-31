@@ -5,7 +5,7 @@ https://leetcode.com/problems/employee-free-time/
 Difficulty : Hard
 Pattern    : Intervals
 Sheet      : C
-Order      : 032
+Order      : 069
 Asked      : Google
 Lesson     : https://www.hellointerview.com/learn/code/intervals/overview
 

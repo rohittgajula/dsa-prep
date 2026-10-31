@@ -5,7 +5,7 @@ https://leetcode.com/problems/validate-binary-search-tree/
 Difficulty : Medium
 Pattern    : DFS on Trees
 Sheet      : A
-Order      : 063
+Order      : 138
 Asked      : Amazon, Google, India
 Lesson     : https://www.hellointerview.com/learn/code/depth-first-search/introduction
 

@@ -5,7 +5,7 @@ https://leetcode.com/problems/alien-dictionary/
 Difficulty : Hard
 Pattern    : Topological Sort & Shortest Path
 Sheet      : B
-Order      : 097
+Order      : 211
 Asked      : Amazon, Google
 Lesson     : https://www.hellointerview.com/learn/code/graphs/topological-sort
 

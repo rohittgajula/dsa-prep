@@ -5,7 +5,7 @@ https://leetcode.com/problems/spiral-matrix/
 Difficulty : Medium
 Pattern    : Matrices
 Sheet      : A
-Order      : 130
+Order      : 277
 Asked      : Amazon, Google, India
 Lesson     : https://www.hellointerview.com/learn/code/matrices/spiral-matrix
 

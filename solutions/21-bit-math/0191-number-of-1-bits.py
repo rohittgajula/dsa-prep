@@ -5,7 +5,7 @@ https://leetcode.com/problems/number-of-1-bits/
 Difficulty : Easy
 Pattern    : Bit & Math
 Sheet      : B
-Order      : 136
+Order      : 290
 Asked      : India
 
 INPUT

@@ -5,7 +5,7 @@ https://leetcode.com/problems/k-closest-points-to-origin/
 Difficulty : Medium
 Pattern    : Heap & Top-K
 Sheet      : A
-Order      : 054
+Order      : 120
 Asked      : Amazon, India
 Lesson     : https://www.hellointerview.com/learn/code/heap/overview
 

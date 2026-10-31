@@ -5,7 +5,7 @@ https://leetcode.com/problems/find-median-from-data-stream/
 Difficulty : Hard
 Pattern    : Heap & Top-K
 Sheet      : A
-Order      : 056
+Order      : 123
 Asked      : Amazon, Google
 Lesson     : https://www.hellointerview.com/learn/code/heap/overview
 

@@ -5,7 +5,7 @@ https://leetcode.com/problems/serialize-and-deserialize-binary-tree/
 Difficulty : Hard
 Pattern    : DFS on Trees
 Sheet      : B
-Order      : 069
+Order      : 155
 Asked      : Amazon, Google
 Lesson     : https://www.hellointerview.com/learn/code/depth-first-search/introduction
 

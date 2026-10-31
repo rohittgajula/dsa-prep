@@ -5,7 +5,7 @@ https://leetcode.com/problems/plus-one/
 Difficulty : Easy
 Pattern    : Bit & Math
 Sheet      : C
-Order      : 138
+Order      : 297
 Asked      : -
 
 INPUT

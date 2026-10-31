@@ -5,7 +5,7 @@ https://leetcode.com/problems/split-array-largest-sum/
 Difficulty : Hard
 Pattern    : Binary Search
 Sheet      : B
-Order      : 050
+Order      : 115
 Asked      : Google
 Lesson     : https://www.hellointerview.com/learn/code/binary-search/overview
 

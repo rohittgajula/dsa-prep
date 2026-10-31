@@ -5,7 +5,7 @@ https://leetcode.com/problems/two-sum-ii-input-array-is-sorted/
 Difficulty : Medium
 Pattern    : Two Pointers
 Sheet      : A
-Order      : 006
+Order      : 009
 Asked      : Amazon, India
 Lesson     : https://www.hellointerview.com/learn/code/two-pointers/overview
 

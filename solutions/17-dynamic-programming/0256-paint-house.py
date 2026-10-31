@@ -5,7 +5,7 @@ https://leetcode.com/problems/paint-house/
 Difficulty : Medium
 Pattern    : Dynamic Programming
 Sheet      : C
-Order      : 121
+Order      : 257
 Asked      : -
 Lesson     : https://www.hellointerview.com/learn/code/dynamic-programming/fundamentals
 

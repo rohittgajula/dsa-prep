@@ -5,7 +5,7 @@ https://leetcode.com/problems/powx-n/
 Difficulty : Medium
 Pattern    : Bit & Math
 Sheet      : B
-Order      : 137
+Order      : 294
 Asked      : Google, India
 
 INPUT

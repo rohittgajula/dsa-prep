@@ -5,7 +5,7 @@ https://leetcode.com/problems/maximum-average-subarray-i/
 Difficulty : Easy
 Pattern    : Sliding Window
 Sheet      : A
-Order      : 012
+Order      : 022
 Asked      : India
 Lesson     : https://www.hellointerview.com/learn/code/sliding-window/fixed-length
 

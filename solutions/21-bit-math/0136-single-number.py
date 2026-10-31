@@ -5,7 +5,7 @@ https://leetcode.com/problems/single-number/
 Difficulty : Easy
 Pattern    : Bit & Math
 Sheet      : A
-Order      : 135
+Order      : 288
 Asked      : Amazon, India
 
 INPUT

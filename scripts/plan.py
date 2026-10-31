@@ -26,7 +26,7 @@ def show(r):
     print(f"           {r['file']}")
 
 
-def build(rows, today, n=4, tiers="AB"):
+def build(rows, today, n=4, tiers="ABC"):
     """The sitting, as data. Used by daily_card.py.
 
     No week, no quota, no "behind" - just the head of the queue plus whatever
@@ -51,7 +51,7 @@ def build(rows, today, n=4, tiers="AB"):
 def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("--n", type=int, default=4)
-    ap.add_argument("--tier", default="AB")
+    ap.add_argument("--tier", default="ABC")
     ap.add_argument("--revise", type=int)
     ap.add_argument("--drill", type=int)
     ap.add_argument("--answers", action="store_true")

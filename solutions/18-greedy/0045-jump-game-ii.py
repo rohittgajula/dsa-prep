@@ -5,7 +5,7 @@ https://leetcode.com/problems/jump-game-ii/
 Difficulty : Medium
 Pattern    : Greedy
 Sheet      : B
-Order      : 127
+Order      : 268
 Asked      : Google, India
 Lesson     : https://www.hellointerview.com/learn/code/greedy/overview
 

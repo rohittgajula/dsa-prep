@@ -5,7 +5,7 @@ https://leetcode.com/problems/minimum-knight-moves/
 Difficulty : Medium
 Pattern    : BFS
 Sheet      : C
-Order      : 086
+Order      : 185
 Asked      : -
 Lesson     : https://www.hellointerview.com/learn/code/breadth-first-search/introduction
 

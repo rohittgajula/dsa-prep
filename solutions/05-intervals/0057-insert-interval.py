@@ -5,7 +5,7 @@ https://leetcode.com/problems/insert-interval/
 Difficulty : Medium
 Pattern    : Intervals
 Sheet      : A
-Order      : 029
+Order      : 064
 Asked      : Amazon, Google, India
 Lesson     : https://www.hellointerview.com/learn/code/intervals/overview
 

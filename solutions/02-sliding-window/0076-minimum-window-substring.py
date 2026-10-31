@@ -5,7 +5,7 @@ https://leetcode.com/problems/minimum-window-substring/
 Difficulty : Hard
 Pattern    : Sliding Window
 Sheet      : A
-Order      : 014
+Order      : 026
 Asked      : Amazon, Google
 Lesson     : https://www.hellointerview.com/learn/code/sliding-window/fixed-length
 

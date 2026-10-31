@@ -32,7 +32,7 @@ except ImportError:
 
 NAV, BAND, SUB = "1F3864", "2E5C8A", "EDF2FA"
 DIFF = {"Easy": "E2EFDA", "Medium": "FFF2CC", "Hard": "FCE4E4"}
-TIER = {"A": "C6E0B4", "B": "F2F2F2", "C": "FFFFFF"}
+TIER = {"A": "C6E0B4", "B": "F2F2F2", "C": "FFFFFF", "D": "FCE4E4"}
 SEC = {"01-two-pointers": "Two Pointers", "02-sliding-window": "Sliding Window",
  "03-prefix-sum": "Prefix Sum", "04-hashing-strings": "Hashing & Strings",
  "05-intervals": "Intervals", "06-stack": "Stack & Monotonic Stack",
@@ -111,7 +111,8 @@ def main():
     ws = wb.active; ws.title = "Queue"
     last = head(ws, f"THE QUEUE  -  {len(rows)} PROBLEMS  -  pull-based, no dates",
         "Take the next unsolved row when you sit down. Nothing is scheduled; nothing is ever late. "
-        "Tier A is the spine - do these even in a bad week. Sections marked (gap) are NOT on Hello "
+        "Tier A is the spine - do these even in a bad week; tier D is the least important work in its "
+        "own section and is the first thing to drop. Sections marked (gap) are NOT on Hello "
         "Interview; they are added because the target companies ask them. Column H opens the lesson. "
         + INDIA_NOTE,
         [("Order", 6), ("Section", 24), ("#", 6), ("Problem  (click -> LeetCode)", 42), ("Diff", 8),
@@ -197,9 +198,12 @@ def main():
     pt = wb.create_sheet("Patterns")
     head(pt, f"PATTERNS  -  {len(SEC)} SECTIONS  -  recognise it in 60 seconds",
         "Recognition is what the first minute of an interview tests, and the Queue tab gives it away "
-        "by grouping. Cover column B and read D: name the pattern before you look.",
-        [("#", 5), ("Section", 26), ("HI Lesson", 11), ("RECOGNISE IT WHEN...", 54),
-         ("THE INSIGHT", 54), ("Complexity", 26), ("Common mistake", 44), ("Probs", 7)])
+        "by grouping. Cover column B and read D: name the pattern before you look. "
+        "The last columns count each section by tier - 'D skip' is the least important work in that "
+        "section, safe to drop first without losing the pattern.",
+        [("#", 5), ("Section", 26), ("HI Lesson", 11), ("RECOGNISE IT WHEN...", 50),
+         ("THE INSIGHT", 50), ("Complexity", 24), ("Common mistake", 40),
+         ("A", 5), ("B", 5), ("C", 5), ("D skip", 7), ("Total", 7)])
     pt.freeze_panes = "C4"
     r = 4
     for i, f_ in enumerate(sorted(SEC), 1):
@@ -213,16 +217,49 @@ def main():
         put(pt, f"E{r}", c.get("insight", ""), wrap=True, top=True)
         put(pt, f"F{r}", c.get("cx", ""), wrap=True, top=True)
         put(pt, f"G{r}", c.get("mist", ""), wrap=True, top=True)
-        put(pt, f"H{r}", sum(1 for q in rows if q["folder"] == f_), top=True)
+        sec_rows = [q for q in rows if q["folder"] == f_]
+        for j, tier in enumerate("ABCD"):
+            col = get_column_letter(8 + j)
+            n = sum(1 for q in sec_rows if q["sheet"] == tier)
+            put(pt, f"{col}{r}", n, top=True, b=(tier == "D"),
+                fill=("FCE4E4" if tier == "D" and n else None))
+        put(pt, f"L{r}", len(sec_rows), b=True, top=True)
         if also: put(pt, f"B{r+1}", f"also covers: {also}", sz=8, color="808080", wrap=True, top=True)
         pt.row_dimensions[r].height = 74
         for c_ in range(1, 9):
             pt[f"{get_column_letter(c_)}{r+1}"].border = Border(bottom=thin)
         r += 2
 
+    md = ["# The sheet", "",
+          f"{len(rows)} problems in one order. **Pull-based: take the next one when you sit down.**",
+          "Nothing here is scheduled to a date and nothing is ever late - a dead week costs",
+          "position, not progress. That is why the old 454-problem calendar died at 5 solved.", "",
+          "| tier | meaning | count |", "|---|---|---|"]
+    for tier, meaning in (("A", "the spine - a bad week still does these"),
+                          ("B", "core - normal sittings"),
+                          ("C", "useful depth - only if ahead"),
+                          ("D", "**least important in its section - drop these first**")):
+        md.append(f"| **{tier}** | {meaning} | {sum(1 for r in rows if r['sheet'] == tier)} |")
+    md += ["", "Within a section the order is A -> B -> C -> D, easiest first, so working top-down",
+           "always does the important problems before the optional ones.", "",
+           "Run `python3 scripts/plan.py` rather than reading this top to bottom.", ""]
+    for folder in sorted(SEC):
+        s = [r for r in rows if r["folder"] == folder]
+        les = next((r["lesson"] for r in s if r["lesson"]), None)
+        counts = " · ".join(f"{t}:{sum(1 for r in s if r['sheet'] == t)}" for t in "ABCD")
+        md += [f"## {SEC[folder]}" + ("  **(gap)**" if folder in GAP else ""), "",
+               (f"Lesson: {les}" if les else "No Hello Interview lesson - added to patch a gap."),
+               "", f"`{len(s)} problems  —  {counts}`", "",
+               "| # | problem | diff | tier | asked at |", "|---|---|---|---|---|"]
+        for r in s:
+            md.append(f"| {r['order']:03d} | [{r['number']}. {r['title']}]({r['file']}) | "
+                      f"{r['difficulty']} | {r['sheet']} | {'' if r['asked'] == '-' else r['asked']} |")
+        md.append("")
+    (L.ROOT / "SHEET.md").write_text("\n".join(md))
+
     out = Path(a.out).expanduser()
     wb.save(out)
-    print(f"wrote {out}")
+    print(f"wrote {out}\nwrote {L.ROOT / 'SHEET.md'}")
     print(f"  Queue    {len(rows)} problems, rows 4-{end}")
     print(f"  Progress live formulas (blank until Excel opens and recalculates)")
     print(f"  Patterns {len(SEC)} sections")

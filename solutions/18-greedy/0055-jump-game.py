@@ -5,7 +5,7 @@ https://leetcode.com/problems/jump-game/
 Difficulty : Medium
 Pattern    : Greedy
 Sheet      : A
-Order      : 126
+Order      : 266
 Asked      : Amazon, Google, India
 Lesson     : https://www.hellointerview.com/learn/code/greedy/overview
 

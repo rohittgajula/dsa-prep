@@ -5,7 +5,7 @@ https://leetcode.com/problems/minimum-window-subsequence/
 Difficulty : Hard
 Pattern    : Dynamic Programming
 Sheet      : C
-Order      : 124
+Order      : 261
 Asked      : Google
 Lesson     : https://www.hellointerview.com/learn/code/dynamic-programming/fundamentals
 

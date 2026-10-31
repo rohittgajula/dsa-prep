@@ -5,7 +5,7 @@ https://leetcode.com/problems/redundant-connection/
 Difficulty : Medium
 Pattern    : Union-Find
 Sheet      : B
-Order      : 104
+Order      : 220
 Asked      : Google
 
 INPUT

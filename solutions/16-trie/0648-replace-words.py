@@ -5,7 +5,7 @@ https://leetcode.com/problems/replace-words/
 Difficulty : Medium
 Pattern    : Trie
 Sheet      : B
-Order      : 107
+Order      : 226
 Asked      : India
 Lesson     : https://www.hellointerview.com/learn/code/trie/overview
 

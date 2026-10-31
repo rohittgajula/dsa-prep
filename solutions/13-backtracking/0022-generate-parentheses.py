@@ -5,7 +5,7 @@ https://leetcode.com/problems/generate-parentheses/
 Difficulty : Medium
 Pattern    : Backtracking
 Sheet      : A
-Order      : 090
+Order      : 190
 Asked      : Amazon, Google
 Lesson     : https://www.hellointerview.com/learn/code/backtracking/overview
 

@@ -5,7 +5,7 @@ https://leetcode.com/problems/meeting-rooms-ii/
 Difficulty : Medium
 Pattern    : Intervals
 Sheet      : A
-Order      : 030
+Order      : 065
 Asked      : Amazon, India
 Lesson     : https://www.hellointerview.com/learn/code/intervals/overview
 

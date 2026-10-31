@@ -5,7 +5,7 @@ https://leetcode.com/problems/valid-triangle-number/
 Difficulty : Medium
 Pattern    : Two Pointers
 Sheet      : C
-Order      : 011
+Order      : 020
 Asked      : -
 Lesson     : https://www.hellointerview.com/learn/code/two-pointers/overview
 

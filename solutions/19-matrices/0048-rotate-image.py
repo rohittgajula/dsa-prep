@@ -5,7 +5,7 @@ https://leetcode.com/problems/rotate-image/
 Difficulty : Medium
 Pattern    : Matrices
 Sheet      : A
-Order      : 131
+Order      : 276
 Asked      : Amazon, India
 Lesson     : https://www.hellointerview.com/learn/code/matrices/spiral-matrix
 

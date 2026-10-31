@@ -5,7 +5,7 @@ https://leetcode.com/problems/3sum/
 Difficulty : Medium
 Pattern    : Two Pointers
 Sheet      : A
-Order      : 008
+Order      : 007
 Asked      : Amazon, Google, India
 Lesson     : https://www.hellointerview.com/learn/code/two-pointers/overview
 

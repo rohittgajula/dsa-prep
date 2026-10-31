@@ -5,7 +5,7 @@ https://leetcode.com/problems/best-time-to-buy-and-sell-stock/
 Difficulty : Easy
 Pattern    : Greedy
 Sheet      : A
-Order      : 125
+Order      : 265
 Asked      : Amazon, Google, India
 Lesson     : https://www.hellointerview.com/learn/code/greedy/overview
 

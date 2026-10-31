@@ -5,7 +5,7 @@ https://leetcode.com/problems/subarray-sum-equals-k/
 Difficulty : Medium
 Pattern    : Prefix Sum
 Sheet      : A
-Order      : 018
+Order      : 039
 Asked      : Amazon, Google, India
 Lesson     : https://www.hellointerview.com/learn/code/prefix-sum/overview
 

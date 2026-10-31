@@ -5,7 +5,7 @@ https://leetcode.com/problems/course-schedule/
 Difficulty : Medium
 Pattern    : Topological Sort & Shortest Path
 Sheet      : A
-Order      : 095
+Order      : 205
 Asked      : Amazon, Google
 Lesson     : https://www.hellointerview.com/learn/code/graphs/topological-sort
 

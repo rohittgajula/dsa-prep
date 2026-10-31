@@ -5,7 +5,7 @@ https://leetcode.com/problems/path-with-minimum-effort/
 Difficulty : Medium
 Pattern    : Topological Sort & Shortest Path
 Sheet      : C
-Order      : 100
+Order      : 215
 Asked      : Google
 Lesson     : https://www.hellointerview.com/learn/code/graphs/topological-sort
 

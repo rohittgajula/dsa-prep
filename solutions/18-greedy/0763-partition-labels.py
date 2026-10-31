@@ -5,7 +5,7 @@ https://leetcode.com/problems/partition-labels/
 Difficulty : Medium
 Pattern    : Greedy
 Sheet      : B
-Order      : 129
+Order      : 271
 Asked      : Amazon, Google, India
 Lesson     : https://www.hellointerview.com/learn/code/greedy/overview
 

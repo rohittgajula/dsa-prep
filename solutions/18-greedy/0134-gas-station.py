@@ -5,7 +5,7 @@ https://leetcode.com/problems/gas-station/
 Difficulty : Medium
 Pattern    : Greedy
 Sheet      : B
-Order      : 128
+Order      : 269
 Asked      : Amazon, India
 Lesson     : https://www.hellointerview.com/learn/code/greedy/overview
 

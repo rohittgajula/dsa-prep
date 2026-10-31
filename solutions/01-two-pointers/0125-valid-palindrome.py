@@ -5,7 +5,7 @@ https://leetcode.com/problems/valid-palindrome/
 Difficulty : Easy
 Pattern    : Two Pointers
 Sheet      : A
-Order      : 001
+Order      : 004
 Asked      : Amazon, Google, India
 Lesson     : https://www.hellointerview.com/learn/code/two-pointers/overview
 

@@ -21,7 +21,10 @@ START = dt.date(2026, 9, 10)   # kept only for the study log
 
 # the sheet is an ORDERED QUEUE, not a calendar. There is no "behind".
 # Tier A is the must-do spine, B the normal load, C only if ahead.
-TIERS = {"A": "must-do", "B": "normal", "C": "if ahead"}
+TIERS = {"A": "must-do", "B": "normal", "C": "if ahead", "D": "skip first"}
+
+# D is the explicit skip list: the least important problems IN THEIR OWN SECTION.
+# Dropping every D costs coverage, not a pattern - each section keeps its A/B spine.
 
 # theory track -> the weeks it is scheduled across (from theory/README.md)
 # System design is no longer here - Hello Interview premium covers it, and two
@@ -42,7 +45,7 @@ HEADER = {
     "title":      re.compile(r"^\s*(\d+)\.\s+(.+?)\s*$", re.M),
     "difficulty": re.compile(r"^Difficulty\s*:\s*(\S+)", re.M),
     "pattern":    re.compile(r"^Pattern\s*:\s*(.+?)\s*$", re.M),
-    "sheet":      re.compile(r"^Sheet\s*:\s*([ABC])", re.M),
+    "sheet":      re.compile(r"^Sheet\s*:\s*([ABCD])", re.M),
     "order":      re.compile(r"^Order\s*:\s*(\d+)", re.M),
     "asked":      re.compile(r"^Asked\s*:\s*(.+?)\s*$", re.M),
     "lesson":     re.compile(r"^Lesson\s*:\s*(\S+)", re.M),
@@ -403,7 +406,7 @@ def current_folder(rows):
     return nxt[0]["folder"] if nxt else None
 
 
-def up_next(rows, n=5, tiers="AB"):
+def up_next(rows, n=5, tiers="ABC"):
     """The next n unsolved problems in queue order. This is the whole plan."""
     return [r for r in sorted(rows, key=lambda r: r["order"])
             if r["status"] == "todo" and r["sheet"] in tiers][:n]

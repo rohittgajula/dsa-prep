@@ -5,7 +5,7 @@ https://leetcode.com/problems/remove-duplicates-from-sorted-array/
 Difficulty : Easy
 Pattern    : Two Pointers
 Sheet      : A
-Order      : 002
+Order      : 001
 Asked      : Amazon, India
 Lesson     : https://www.hellointerview.com/learn/code/two-pointers/overview
 

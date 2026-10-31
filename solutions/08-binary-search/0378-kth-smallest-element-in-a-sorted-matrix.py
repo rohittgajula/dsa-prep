@@ -5,7 +5,7 @@ https://leetcode.com/problems/kth-smallest-element-in-a-sorted-matrix/
 Difficulty : Medium
 Pattern    : Binary Search
 Sheet      : B
-Order      : 051
+Order      : 113
 Asked      : Google, India
 Lesson     : https://www.hellointerview.com/learn/code/binary-search/overview
 

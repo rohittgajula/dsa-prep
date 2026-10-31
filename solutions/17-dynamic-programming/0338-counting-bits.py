@@ -5,7 +5,7 @@ https://leetcode.com/problems/counting-bits/
 Difficulty : Easy
 Pattern    : Dynamic Programming
 Sheet      : C
-Order      : 120
+Order      : 256
 Asked      : -
 Lesson     : https://www.hellointerview.com/learn/code/dynamic-programming/fundamentals
 

@@ -5,7 +5,7 @@ https://leetcode.com/problems/number-of-provinces/
 Difficulty : Medium
 Pattern    : Union-Find
 Sheet      : A
-Order      : 102
+Order      : 218
 Asked      : Amazon, Google
 
 INPUT

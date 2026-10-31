@@ -5,7 +5,7 @@ https://leetcode.com/problems/implement-trie-prefix-tree/
 Difficulty : Medium
 Pattern    : Trie
 Sheet      : A
-Order      : 106
+Order      : 224
 Asked      : Amazon, Google, India
 Lesson     : https://www.hellointerview.com/learn/code/trie/overview
 

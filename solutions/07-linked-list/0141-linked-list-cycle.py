@@ -5,7 +5,7 @@ https://leetcode.com/problems/linked-list-cycle/
 Difficulty : Easy
 Pattern    : Linked List
 Sheet      : A
-Order      : 041
+Order      : 086
 Asked      : Amazon, India
 Lesson     : https://www.hellointerview.com/learn/code/linked-list/overview
 

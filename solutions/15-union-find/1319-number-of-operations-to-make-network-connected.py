@@ -5,7 +5,7 @@ https://leetcode.com/problems/number-of-operations-to-make-network-connected/
 Difficulty : Medium
 Pattern    : Union-Find
 Sheet      : C
-Order      : 105
+Order      : 222
 Asked      : -
 
 INPUT

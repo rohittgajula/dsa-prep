@@ -5,7 +5,7 @@ https://leetcode.com/problems/longest-repeating-character-replacement/
 Difficulty : Medium
 Pattern    : Sliding Window
 Sheet      : B
-Order      : 015
+Order      : 027
 Asked      : Google, India
 Lesson     : https://www.hellointerview.com/learn/code/sliding-window/fixed-length
 

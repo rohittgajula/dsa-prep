@@ -5,7 +5,7 @@ https://leetcode.com/problems/construct-binary-tree-from-preorder-and-inorder-tr
 Difficulty : Medium
 Pattern    : DFS on Trees
 Sheet      : B
-Order      : 067
+Order      : 148
 Asked      : Amazon, Google, India
 Lesson     : https://www.hellointerview.com/learn/code/depth-first-search/introduction
 

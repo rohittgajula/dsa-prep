@@ -5,7 +5,7 @@ https://leetcode.com/problems/palindrome-partitioning/
 Difficulty : Medium
 Pattern    : Backtracking
 Sheet      : B
-Order      : 092
+Order      : 199
 Asked      : Google
 Lesson     : https://www.hellointerview.com/learn/code/backtracking/overview
 

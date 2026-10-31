@@ -5,7 +5,7 @@ https://leetcode.com/problems/maximum-points-you-can-obtain-from-cards/
 Difficulty : Medium
 Pattern    : Sliding Window
 Sheet      : B
-Order      : 016
+Order      : 031
 Asked      : Amazon, India
 Lesson     : https://www.hellointerview.com/learn/code/sliding-window/fixed-length
 

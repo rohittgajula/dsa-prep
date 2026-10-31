@@ -19,7 +19,7 @@ sys.path.insert(0, str(Path(__file__).resolve().parent))
 import prep_lib as L
 
 BAR = 12
-NAMES = {"A": "must-do", "B": "normal", "C": "if ahead"}
+NAMES = {"A": "must-do", "B": "normal", "C": "if ahead", "D": "skip first"}
 
 
 def bar(done, total, width=BAR):
@@ -30,7 +30,7 @@ def bar(done, total, width=BAR):
 def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("--section")
-    ap.add_argument("--tier", choices="ABC")
+    ap.add_argument("--tier", choices="ABCD")
     ap.add_argument("--json", action="store_true")
     ap.add_argument("--full", action="store_true")
     a = ap.parse_args()
@@ -45,7 +45,7 @@ def main():
     done = [r for r in rows if r["status"] == "done"]
     print(f"\n  {today:%a %d %b %Y}   {len(done)} / {len(rows)} solved")
 
-    for tier in "ABC":
+    for tier in "ABCD":
         t = [r for r in rows if r["sheet"] == tier]
         if not t:
             continue

@@ -5,7 +5,7 @@ https://leetcode.com/problems/daily-temperatures/
 Difficulty : Medium
 Pattern    : Stack & Monotonic Stack
 Sheet      : A
-Order      : 035
+Order      : 074
 Asked      : Amazon, India
 Lesson     : https://www.hellointerview.com/learn/code/stack/overview
 

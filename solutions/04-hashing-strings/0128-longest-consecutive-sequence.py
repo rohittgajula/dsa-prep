@@ -5,7 +5,7 @@ https://leetcode.com/problems/longest-consecutive-sequence/
 Difficulty : Medium
 Pattern    : Hashing & Strings
 Sheet      : A
-Order      : 025
+Order      : 051
 Asked      : Google, India
 
 INPUT

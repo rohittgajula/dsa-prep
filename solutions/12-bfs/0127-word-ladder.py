@@ -5,7 +5,7 @@ https://leetcode.com/problems/word-ladder/
 Difficulty : Hard
 Pattern    : BFS
 Sheet      : A
-Order      : 082
+Order      : 176
 Asked      : Amazon, Google
 Lesson     : https://www.hellointerview.com/learn/code/breadth-first-search/introduction
 

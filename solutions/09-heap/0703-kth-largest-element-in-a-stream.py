@@ -5,7 +5,7 @@ https://leetcode.com/problems/kth-largest-element-in-a-stream/
 Difficulty : Easy
 Pattern    : Heap & Top-K
 Sheet      : C
-Order      : 059
+Order      : 129
 Asked      : Amazon
 Lesson     : https://www.hellointerview.com/learn/code/heap/overview
 

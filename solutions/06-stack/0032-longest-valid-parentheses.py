@@ -5,7 +5,7 @@ https://leetcode.com/problems/longest-valid-parentheses/
 Difficulty : Hard
 Pattern    : Stack & Monotonic Stack
 Sheet      : C
-Order      : 039
+Order      : 083
 Asked      : Google
 Lesson     : https://www.hellointerview.com/learn/code/stack/overview
 

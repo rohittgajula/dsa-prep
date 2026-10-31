@@ -5,7 +5,7 @@ https://leetcode.com/problems/two-sum/
 Difficulty : Easy
 Pattern    : Hashing & Strings
 Sheet      : A
-Order      : 022
+Order      : 048
 Asked      : Amazon, India
 
 INPUT

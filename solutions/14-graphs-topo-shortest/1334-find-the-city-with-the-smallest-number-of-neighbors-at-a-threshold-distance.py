@@ -5,7 +5,7 @@ https://leetcode.com/problems/find-the-city-with-the-smallest-number-of-neighbor
 Difficulty : Medium
 Pattern    : Topological Sort & Shortest Path
 Sheet      : C
-Order      : 101
+Order      : 214
 Asked      : -
 Lesson     : https://www.hellointerview.com/learn/code/graphs/topological-sort
 

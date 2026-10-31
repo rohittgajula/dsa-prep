@@ -5,7 +5,7 @@ https://leetcode.com/problems/insert-delete-getrandom-o1/
 Difficulty : Medium
 Pattern    : Design a Data Structure
 Sheet      : B
-Order      : 134
+Order      : 283
 Asked      : Amazon, Google, India
 
 OPERATIONS

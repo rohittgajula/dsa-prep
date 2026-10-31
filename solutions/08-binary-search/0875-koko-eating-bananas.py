@@ -5,7 +5,7 @@ https://leetcode.com/problems/koko-eating-bananas/
 Difficulty : Medium
 Pattern    : Binary Search
 Sheet      : A
-Order      : 048
+Order      : 107
 Asked      : Amazon, Google, India
 Lesson     : https://www.hellointerview.com/learn/code/binary-search/overview
 

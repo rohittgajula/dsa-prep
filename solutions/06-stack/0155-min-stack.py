@@ -5,7 +5,7 @@ https://leetcode.com/problems/min-stack/
 Difficulty : Medium
 Pattern    : Stack & Monotonic Stack
 Sheet      : A
-Order      : 034
+Order      : 073
 Asked      : Amazon, India
 Lesson     : https://www.hellointerview.com/learn/code/stack/overview
 

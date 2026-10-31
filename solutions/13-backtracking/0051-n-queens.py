@@ -5,7 +5,7 @@ https://leetcode.com/problems/n-queens/
 Difficulty : Hard
 Pattern    : Backtracking
 Sheet      : C
-Order      : 094
+Order      : 202
 Asked      : Google
 Lesson     : https://www.hellointerview.com/learn/code/backtracking/overview
 

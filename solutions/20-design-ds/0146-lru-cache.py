@@ -5,7 +5,7 @@ https://leetcode.com/problems/lru-cache/
 Difficulty : Medium
 Pattern    : Design a Data Structure
 Sheet      : A
-Order      : 133
+Order      : 282
 Asked      : Amazon, Google, India
 
 OPERATIONS

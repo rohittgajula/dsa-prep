@@ -5,7 +5,7 @@ https://leetcode.com/problems/merge-sorted-array/
 Difficulty : Easy
 Pattern    : Two Pointers
 Sheet      : A
-Order      : 004
+Order      : 003
 Asked      : Amazon, India
 Lesson     : https://www.hellointerview.com/learn/code/two-pointers/overview
 

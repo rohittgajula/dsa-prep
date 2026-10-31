@@ -5,7 +5,7 @@ https://leetcode.com/problems/valid-parentheses/
 Difficulty : Easy
 Pattern    : Stack & Monotonic Stack
 Sheet      : A
-Order      : 033
+Order      : 070
 Asked      : Amazon, Google, India
 Lesson     : https://www.hellointerview.com/learn/code/stack/overview
 

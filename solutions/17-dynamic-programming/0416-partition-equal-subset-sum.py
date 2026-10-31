@@ -5,7 +5,7 @@ https://leetcode.com/problems/partition-equal-subset-sum/
 Difficulty : Medium
 Pattern    : Dynamic Programming
 Sheet      : B
-Order      : 118
+Order      : 252
 Asked      : Amazon, Google, India
 Lesson     : https://www.hellointerview.com/learn/code/dynamic-programming/fundamentals
 

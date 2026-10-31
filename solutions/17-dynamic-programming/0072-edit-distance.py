@@ -5,7 +5,7 @@ https://leetcode.com/problems/edit-distance/
 Difficulty : Medium
 Pattern    : Dynamic Programming
 Sheet      : B
-Order      : 117
+Order      : 243
 Asked      : Google, India
 Lesson     : https://www.hellointerview.com/learn/code/dynamic-programming/fundamentals
 

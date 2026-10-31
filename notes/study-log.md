@@ -75,3 +75,12 @@ Keep the `- Theory:` lines as real paths — that is the part the script parses.
 - Note: added scripts/export_xlsx.py — regenerates a 3-tab workbook (Queue, Progress,
   Patterns) FROM the repo, so the repo stays the single source of truth and the
   spreadsheet is a disposable view. Pattern cues vendored to scripts/pattern_cues.json.
+- Note: grew the sheet 138 -> 300 by promoting 162 problems back out of archive/ — pattern
+  variants that teach a twist rather than new material (80 after 26, 438 after 3, 518 after
+  322, 235 after 236). 62 archived problems were considered and cut as redundant or
+  near-zero interview value; the rest stay archived.
+- Note: added a 4th tier D (30) = least important IN ITS OWN SECTION, the explicit skip
+  list. Dropping all C and D still covers every one of the 21 patterns. Within a section
+  the order is now A->B->C->D, easiest first, so top-down always does the important ones.
+- Note: found and fixed a parser bug — prep_lib's Sheet regex only matched [ABC], so all
+  30 D problems silently read as C. Caught it because progress.py showed C=70 not C=40.

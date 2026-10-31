@@ -5,7 +5,7 @@ https://leetcode.com/problems/decode-ways/
 Difficulty : Medium
 Pattern    : Dynamic Programming
 Sheet      : A
-Order      : 111
+Order      : 235
 Asked      : Amazon, Google, India
 Lesson     : https://www.hellointerview.com/learn/code/dynamic-programming/fundamentals
 

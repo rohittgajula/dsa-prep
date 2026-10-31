@@ -5,7 +5,7 @@ https://leetcode.com/problems/kth-smallest-element-in-a-bst/
 Difficulty : Medium
 Pattern    : DFS on Trees
 Sheet      : A
-Order      : 064
+Order      : 139
 Asked      : Google, India
 Lesson     : https://www.hellointerview.com/learn/code/depth-first-search/introduction
 

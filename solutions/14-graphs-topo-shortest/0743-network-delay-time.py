@@ -5,7 +5,7 @@ https://leetcode.com/problems/network-delay-time/
 Difficulty : Medium
 Pattern    : Topological Sort & Shortest Path
 Sheet      : B
-Order      : 098
+Order      : 207
 Asked      : Google
 Lesson     : https://www.hellointerview.com/learn/code/graphs/topological-sort
 

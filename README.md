@@ -10,7 +10,7 @@ of the same material is worse than one good one.
 
 ## How this works
 
-The sheet is a **queue, not a calendar**. 138 problems in one order; take the next
+The sheet is a **queue, not a calendar**. 300 problems in one order; take the next
 one when you sit down. Nothing is scheduled to a date, so nothing is ever late.
 
 The previous version of this repo was a 35-week calendar over 454 problems. It
@@ -29,15 +29,30 @@ python3 scripts/progress.py       # where you stand
 
 ## The sheet
 
-[SHEET.md](SHEET.md) — 138 problems, 21 sections.
+[SHEET.md](SHEET.md) — 300 problems, 21 sections.
 
-- **Spine**: Hello Interview's 92 problems, in its order, each linked to its lesson.
-- **Patch**: 46 problems covering what HI does not teach — hashing and strings,
-  union-find, design-a-data-structure (LRU cache), bit and math, plus DP breadth
-  (knapsack, coin change, edit distance) and the BST/tree problems Google asks.
+- **Spine**: Hello Interview's 92 problems, each linked to its lesson.
+- **Patch**: 46 covering what HI does not teach — hashing and strings, union-find,
+  design-a-data-structure (LRU cache), bit and math, DP breadth, BST/trees.
+- **Depth**: 162 more that build the same patterns — the variants that teach a twist
+  (80 after 26, 438 after 3, 235 after 236, 518 after 322) rather than new material.
 
-Tiers: **A** (73) is the spine — a bad week still does these. **B** (45) is a normal
-sitting. **C** (20) only if ahead.
+| tier | meaning | count |
+|---|---|---|
+| A | the spine — a bad week still does these | 101 |
+| B | core — normal sittings | 129 |
+| C | useful depth — only if ahead | 40 |
+| D | **least important in its section — drop these first** | 30 |
+
+Within a section the order is A → B → C → D, easiest first, so working top-down always
+does the important problems before the optional ones. **Dropping every C and D still
+leaves all 21 patterns covered** — it costs depth, never a pattern. That is the point of
+the tiers: the sheet shrinks under pressure instead of being abandoned.
+
+```bash
+python3 scripts/progress.py --tier D   # what you can safely skip
+python3 scripts/plan.py --tier A       # rough week: spine only
+```
 
 ## Company tags
 

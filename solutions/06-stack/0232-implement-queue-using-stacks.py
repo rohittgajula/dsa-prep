@@ -5,7 +5,7 @@ https://leetcode.com/problems/implement-queue-using-stacks/
 Difficulty : Easy
 Pattern    : Stack & Monotonic Stack
 Sheet      : B
-Order      : 036
+Order      : 075
 Asked      : Amazon, India
 Lesson     : https://www.hellointerview.com/learn/code/stack/overview
 
