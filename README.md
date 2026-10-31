@@ -1,108 +1,68 @@
 # dsa-prep
 
-Interview preparation: 454 curated problems, 53 patterns, and CS fundamentals.
+Interview preparation for SDE-2 backend. Target: **Amazon and Google**, no fixed date.
 
-**Timeline:** 10 Sep 2026 → 16 May 2027 (35 weeks)
-**Target:** SDE-2 / backend roles at product companies
+System design is **not** here — that is Hello Interview premium. Two thinner copies
+of the same material is worse than one good one.
 
----
+## How this works
+
+The sheet is a **queue, not a calendar**. 138 problems in one order; take the next
+one when you sit down. Nothing is scheduled to a date, so nothing is ever late.
+
+The previous version of this repo was a 35-week calendar over 454 problems. It
+assigned work to days, and a busy stretch at the office turned into "60 problems
+behind" — at which point it stopped being opened. 5 of 454 got solved. The queue
+removes that failure mode entirely: a dead week costs position, not progress.
+
+```bash
+python3 scripts/plan.py           # what to do this sitting
+python3 scripts/plan.py --n 2     # short sitting
+python3 scripts/plan.py --tier A  # rough week: must-do spine only
+python3 scripts/plan.py --revise 5
+python3 scripts/plan.py --drill 5 # name the pattern, do not solve
+python3 scripts/progress.py       # where you stand
+```
+
+## The sheet
+
+[SHEET.md](SHEET.md) — 138 problems, 21 sections.
+
+- **Spine**: Hello Interview's 92 problems, in its order, each linked to its lesson.
+- **Patch**: 46 problems covering what HI does not teach — hashing and strings,
+  union-find, design-a-data-structure (LRU cache), bit and math, plus DP breadth
+  (knapsack, coin change, edit distance) and the BST/tree problems Google asks.
+
+Tiers: **A** (73) is the spine — a bad week still does these. **B** (45) is a normal
+sitting. **C** (20) only if ahead.
 
 ## Layout
 
-| Folder | What's in it |
-|---|---|
-| [`patterns/`](patterns/) | **53 pattern guides** — recognition cue, the insight, diagrams, templates, pitfalls, every problem |
-| [`solutions/`](solutions/) | **44 pattern folders, 454 runnable files** — two methods (brute force + optimal) and the real LeetCode test cases in each |
-| [`theory/`](theory/) | **OS · Networks · DBMS · LLD · System Design · AI** — with Mermaid diagrams |
-| [`templates/`](templates/) | Solution scaffold |
-| [`notes/`](notes/) | Scratch notes, mock interview post-mortems |
+```text
+SHEET.md        the queue
+solutions/      21 sections, mirroring the sheet
+patterns/       pattern guides
+theory/         os, networks, dbms, lld
+notes/          study-log.md, weak-topics.md
+scripts/        prep_lib.py, plan.py, progress.py
+archive/        the old 454-problem calendar, kept for reference
+```
 
-## How I use this
+## Per-problem file
 
-1. Read the pattern guide **before** the first problem of a new topic
-2. Attempt the problem cold — 25 min for Medium, 40 for Hard
-3. Write the **brute force** method first, run it, get it green
-4. Then write the **optimal** method and run both against the same cases
-5. Timebox hit → read the editorial, close it, re-code from scratch
-6. Fill in the docstring (both approaches, key insight, mistakes)
-7. Paste the file link into the tracking sheet
-
-### Running a problem
-
-Every file runs on its own — no imports, no test framework, no setup:
+Each file carries the problem, a `MY THINKING` block filled in **while** solving,
+and the brute-force → limitation → optimal progression written out afterwards.
+Run it directly to test both methods:
 
 ```bash
-python3 solutions/02-two-pointers/0011-container-with-most-water.py
+python3 solutions/01-two-pointers/0011-container-with-most-water.py
 ```
 
-```
-BRUTE FORCE :
-    case 1: PASS                 got=49  want=49
-    case 2: PASS                 got=1   want=1
+`Solved unaided: Y` the moment a working solution comes out, hints or not.
+`Hints used: Y` is the field that matters — it shortens the revision interval.
 
-OPTIMAL     :
-    -- not written yet --
-```
+## Revision
 
-Each file has:
-
-- a docstring saying in plain words what the **input** is, what to **return**, and a worked **example**
-- `<method>_brute` and `<method>` — the **same signature as LeetCode**, so working code pastes straight into the submission box, each body just `pass` for you to fill in
-- `TESTS` — that problem's **own** example cases, pulled from its LeetCode page
-- a runner that skips whichever method you have not written yet, so brute force first is the natural order
-
-Outside that top docstring the files carry no comments — notes, approaches and
-complexities all live in the docstring, so the code area stays clean.
-
-Linked-list and tree problems include `build_list` / `build_tree` helpers, so a test case is written
-as a plain list (`[3,9,20,None,None,15,7]`) and the runner builds the real structure for you.
-In-place problems (`sortColors`, `rotate`, …) are checked on the mutated argument, not the return value.
-
-**The brute force is allowed its own return shape.** It is a different algorithm, so it should not be
-held to the optimal's contract. For `Merge Sorted Array` the natural brute force is
-`sorted(nums1[:m] + nums2[:n])` — it builds and returns a new array, which is exactly *why* it is the
-brute force. The runner accepts either shape from `*_brute`: return the finished result, or mutate the
-argument. The optimal method stays strict and is still checked the way LeetCode checks it, so an
-optimal that returns the right answer without mutating in place correctly fails.
-
-Design problems (`MinStack`, `LRUCache`, …) get two classes and replay the LeetCode operation sequence.
-
-**13 problems are the exception.** For things like `Linked List Cycle` or `Clone Graph`, LeetCode's judge
-feeds data that does not match the method signature — `pos` is not a parameter, the graph arrives as an
-adjacency list, `isBadVersion` is a hidden API. Those files carry the real signature, a **HEADS UP** note
-explaining the mismatch, and the raw judge data as a comment, with `TESTS` left empty to fill in by hand.
-Better an empty list than cases that fail for the wrong reason.
-
-## Progress
-
-| Phase | Weeks | Topic |
-|---|---|---|
-| Foundations | 1–10 | Arrays, two pointers, sliding window, prefix sum, hashing, strings, binary search, sorting |
-| Linear structures | 11–14 | Linked lists, stacks, monotonic stack, queues, heaps |
-| Recursion & trees | 15–20 | Recursion, backtracking, trees, BST, tries |
-| Graphs | 21–23 | Traversal, topo sort, union-find, shortest path, MST |
-| Greedy & DP | 24–27 | Greedy, 1D, knapsack, grid, strings, LIS, interval, tree, bitmask |
-| Advanced | 28–29 | Bit manipulation, math, design data structures |
-| Revision | 30–35 | Four sweeps, mocks, applications |
-
-## On a new machine
-
-```bash
-git clone https://github.com/rohittgajula/dsa-prep.git ~/Desktop/dsa-prep
-ln -s ~/Desktop/dsa-prep/.claude/skills/prep ~/.claude/skills/prep
-```
-
-The second line makes `/prep` — the tutor skill in `.claude/skills/prep/` — available everywhere on that machine, not only inside this folder. Without it the skill still works while the working directory is this repo.
-
-Two things do **not** come with the clone, and should live on one machine only:
-
-- the `dsa-daily-card` scheduled task, in `~/.claude/scheduled-tasks/`
-- its permission allow-rules in `~/.claude/settings.json`, which hold absolute paths
-
-Running the morning card on two machines means both push to `main` each day and one clobbers the other. One machine owns it.
-
-## Rules
-
-- **Write the brute force down first.** In an interview you state it before optimising — that's what's being scored. Every file has a slot for it; run it before you touch the optimal one.
-- **A hint is not a failure, but it is a flag.** `Solved unaided: Y` the moment it works, hints or not; `N` only for one I could not finish. `Hints used: Y` is what brings a problem back sooner.
-- **The complexity is part of the answer.** Every solution's docstring states time and space.
+Spaced from `Solved on:`, sweeping at 3/7/21/60/120 days — shortened to 2/5/14/40/90
+when a hint was used. Revising means stating the approach and complexity **from
+memory first**, then opening the file. If that fails, it goes to `notes/weak-topics.md`.

@@ -54,3 +54,17 @@ Keep the `- Theory:` lines as real paths — that is the part the script parses.
 ## 2026-09-23 (week 1)
 - Solved: 88 Merge Sorted Array — unaided (Y), hints used, 20 min. Brute append-and-sort and optimal back-fill merge both green.
 - Note: key insight was to use nums1's spare slots from the back, so merging does not overwrite unprocessed values.
+
+## 2026-10-31
+- Note: rebuilt the repo. The 35-week calendar over 454 problems reached 5 solved in
+  7 weeks and stopped being opened — a plan that only survives good weeks.
+- Replaced it with a 138-problem QUEUE: Hello Interview's 92 as the spine (in its order,
+  each linked to its lesson) plus 46 patching what HI does not cover — hashing/strings,
+  union-find, design-a-data-structure, bit/math, DP breadth, BST and trees.
+- Tiers A/B/C (73/45/20) so a bad week degrades instead of collapsing. No dates on
+  problems, no quota, no "behind" — that concept is gone from the scripts entirely.
+- System design removed from the repo: Hello Interview premium covers it far deeper
+  (9 core concepts, 7 patterns, 32 breakdowns, 15 deep-dives). theory/ai dropped too.
+- 334 problems and the old folder taxonomy moved to archive/, not deleted.
+- scripts rewired: plan.py is pull-based, progress.py has no behind-count, daily_card.py
+  rewired to the queue so the morning scheduled task keeps working.

@@ -1,0 +1,129 @@
+"""
+138. Copy List With Random Pointer
+https://leetcode.com/problems/copy-list-with-random-pointer/
+
+Difficulty : Medium
+Pattern    : Linked List
+Sheet      : A
+Order      : 043
+Asked      : Amazon
+Lesson     : https://www.hellointerview.com/learn/code/linked-list/overview
+
+INPUT
+    head : node, see the problem page
+
+HEADS UP
+    LeetCode's test data does not line up with this method.
+    head: real type 'Optional[Node]', judge sends
+    Optional[ListNode].
+    Uses LeetCode's Node class (val, next, random). Input pairs are
+    [val, randomIndex]. Check the copy is a DEEP one: same values,
+    but every node object is new.
+    Build the real arguments by hand, then fill in TESTS below.
+
+RAW JUDGE DATA
+    inputs:
+        [[7,null],[13,0],[11,4],[10,2],[1,0]]
+        [[1,1],[2,1]]
+        [[3,null],[3,0],[3,null]]
+    outputs:
+        [[7,null],[13,0],[11,4],[10,2],[1,0]]
+        [[1,1],[2,1]]
+        [[3,null],[3,0],[3,null]]
+
+RECOGNITION HINT  (read only AFTER a real attempt)
+    Hash map old->new in two passes, or the O(1)-space weave: interleave
+    copies, set randoms, then split.
+
+------------------------------------------------------------------------
+MY THINKING  (write this while you solve - raw, unedited)
+    What the problem looked like at first:
+        <>
+    What I tried:
+        <>
+    Where I got stuck:
+        <>
+    What made it click:
+        <>
+
+    Tutor review:
+        <>
+
+BRUTE FORCE
+    <state it the way you would say it out loud in an interview>
+    Time  : O(?)
+    Space : O(?)
+
+OPTIMAL
+    <what does it exploit that the brute force wastes?>
+    Time  : O(?)
+    Space : O(?)
+
+KEY INSIGHT
+    <the one sentence that makes this collapse>
+
+MISTAKES I MADE
+    <the part worth re-reading in the revision sweeps>
+
+Time taken: __ min      Solved unaided: Y / N      Hints used: __
+Solved on: __           Revised: __
+------------------------------------------------------------------------
+"""
+
+from typing import Optional
+
+
+class Node:
+    def __init__(self, x: int, next=None, random=None):
+        self.val = int(x)
+        self.next = next
+        self.random = random
+
+
+class Solution:
+    def copyRandomList_brute(self, head: 'Optional[Node]') -> 'Optional[Node]':
+        pass
+
+
+    def copyRandomList(self, head: 'Optional[Node]') -> 'Optional[Node]':
+        pass
+
+
+TESTS = [
+]
+
+
+if __name__ == "__main__":
+    import ast
+    import copy
+    import inspect
+    import textwrap
+
+    def _todo(fn):
+        try:
+            body = ast.parse(textwrap.dedent(inspect.getsource(fn))).body[0].body
+        except (OSError, TypeError, SyntaxError, IndexError):
+            return False
+        return len(body) == 1 and isinstance(body[0], (ast.Pass, ast.Expr))
+
+    sol = Solution()
+    for label, fname in (("BRUTE FORCE", 'copyRandomList_brute'), ("OPTIMAL    ", 'copyRandomList')):
+        fn = getattr(sol, fname, None)
+        if fn is None:
+            continue
+        print(f"{label} :")
+        if _todo(fn):
+            print("    not written yet\n")
+            continue
+        if not TESTS:
+            print("    no test cases yet - see HEADS UP at the top of this file\n")
+            continue
+        for n, (args, want) in enumerate(TESTS, 1):
+            try:
+                got = fn(*copy.deepcopy(args))
+            except Exception as exc:
+                print(f"    case {n}: ERROR  {type(exc).__name__}: {exc}")
+                continue
+            mark = "PASS" if got == want else "FAIL"
+            print(f"    case {n}: {mark:<20} got={got!r}  want={want!r}")
+        print()

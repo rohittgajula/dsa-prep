@@ -17,28 +17,16 @@ NOTES = ROOT / "notes"
 STUDY_LOG = NOTES / "study-log.md"
 WEAK_TOPICS = NOTES / "weak-topics.md"
 
-START = dt.date(2026, 9, 10)
-TOTAL_WEEKS = 35
+START = dt.date(2026, 9, 10)   # kept only for the study log
 
-PHASES = [
-    ("Foundations",       0, 10),
-    ("Linear structures", 11, 14),
-    ("Recursion & trees", 15, 20),
-    ("Graphs",            21, 23),
-    ("Greedy & DP",       24, 27),
-    ("Advanced",          28, 29),
-    ("Revision",          30, 35),
-]
+# the sheet is an ORDERED QUEUE, not a calendar. There is no "behind".
+# Tier A is the must-do spine, B the normal load, C only if ahead.
+TIERS = {"A": "must-do", "B": "normal", "C": "if ahead"}
 
 # theory track -> the weeks it is scheduled across (from theory/README.md)
-TRACKS = [
-    ("os",            1, 5),
-    ("networks",      6, 10),
-    ("dbms",          11, 13),
-    ("lld",           14, 17),
-    ("system-design", 18, 26),
-    ("ai",            27, 35),
-]
+# System design is no longer here - Hello Interview premium covers it, and two
+# thinner copies of the same material is worse than one good one.
+TRACKS = ["os", "networks", "dbms", "lld"]
 
 # days until the next sweep, by how many times it has been revised already.
 # A problem that needed help comes back sooner; one he could not finish at all
@@ -54,8 +42,10 @@ HEADER = {
     "title":      re.compile(r"^\s*(\d+)\.\s+(.+?)\s*$", re.M),
     "difficulty": re.compile(r"^Difficulty\s*:\s*(\S+)", re.M),
     "pattern":    re.compile(r"^Pattern\s*:\s*(.+?)\s*$", re.M),
-    "tier":       re.compile(r"^Tier\s*:\s*(\S+)", re.M),
-    "scheduled":  re.compile(r"^Scheduled\s*:\s*(.+?)\s*\(week\s*(\d+)\)", re.M),
+    "sheet":      re.compile(r"^Sheet\s*:\s*([ABC])", re.M),
+    "order":      re.compile(r"^Order\s*:\s*(\d+)", re.M),
+    "asked":      re.compile(r"^Asked\s*:\s*(.+?)\s*$", re.M),
+    "lesson":     re.compile(r"^Lesson\s*:\s*(\S+)", re.M),
     # stop at the field itself: `Hints used` sits on the same line
     "unaided":    re.compile(r"Solved unaided\s*:\s*(Y\s*/\s*N|[YN])", re.M),
     "minutes":    re.compile(r"Time taken\s*:\s*(\S+)\s*min", re.M),
@@ -74,22 +64,6 @@ THINKING_FIELDS = [
 
 
 # ---------------------------------------------------------------- calendar
-
-def current_week(today=None):
-    today = today or dt.date.today()
-    return max(0, (today - START).days // 7)
-
-
-def phase_of(week):
-    for name, lo, hi in PHASES:
-        if lo <= week <= hi:
-            return name
-    return "?"
-
-
-def week_start(week):
-    return START + dt.timedelta(weeks=week)
-
 
 def parse_date(text):
     text = (text or "").strip()
@@ -233,8 +207,10 @@ def parse(path):
         "title": title.group(2) if title else path.stem,
         "difficulty": grab("difficulty", default="?"),
         "pattern": grab("pattern", default="?"),
-        "tier": grab("tier", default="?"),
-        "week": int(grab("scheduled", 2, "0") or 0),
+        "sheet": grab("sheet", default="C"),
+        "order": int(grab("order", default="999") or 999),
+        "asked": grab("asked", default="-"),
+        "lesson": grab("lesson", default=""),
         "status": status,
         "brute": brute,
         "optimal": optimal,
@@ -258,7 +234,7 @@ def parse(path):
     }
 
 
-def load(folder=None, week=None, errors=None):
+def load(folder=None, sheet=None, errors=None):
     rows = []
     for path in sorted(SOLUTIONS.glob("*/*.py")):
         row = parse(path)
@@ -268,7 +244,7 @@ def load(folder=None, week=None, errors=None):
             continue
         if folder and folder not in row["folder"]:
             continue
-        if week is not None and row["week"] != week:
+        if sheet is not None and row["sheet"] != sheet:
             continue
         rows.append(row)
     return rows
@@ -314,27 +290,27 @@ def pick_revision(rows, n=3, today=None, seed=None):
 
 # ---------------------------------------------------------------- theory
 
-def track_for_week(week):
-    for name, lo, hi in TRACKS:
-        if lo <= max(week, 1) <= hi:
-            return name, lo, hi
-    return TRACKS[-1]
-
-
 def theory_files(track):
     return sorted(p for p in (THEORY / track).glob("*.md") if p.name != "README.md")
 
 
-def theory_plan(week, done=None):
-    """(track, files, expected_by_now, next_unread) for this week."""
+def theory_queue(done=None):
+    """Every theory file across the tracks, in order, unread ones first.
+
+    Same rule as the problems: a queue, not a calendar. Nothing is ever "late",
+    it is simply still ahead of him.
+    """
     done = done or set()
-    track, lo, hi = track_for_week(week)
-    files = theory_files(track)
-    weeks = hi - lo + 1
-    through = min(max(week - lo + 1, 1), weeks)
-    expected = min(len(files), round(len(files) * through / weeks))
-    unread = [f for f in files if str(f.relative_to(ROOT)) not in done]
-    return track, files, expected, (unread[0] if unread else None)
+    out = []
+    for track in TRACKS:
+        for f in theory_files(track):
+            rel = str(f.relative_to(ROOT))
+            out.append({"track": track, "path": rel, "read": rel in done})
+    return out
+
+
+def theory_next(done=None, n=1):
+    return [t for t in theory_queue(done) if not t["read"]][:n]
 
 
 # ---------------------------------------------------------------- notes
@@ -411,11 +387,26 @@ def theory_revision_pool(today=None):
 
 # ---------------------------------------------------- recognition drill
 
-def covered_folders(rows, week=None):
-    """Folders he has reached: scheduled at or before this week, or already started."""
-    week = week if week is not None else current_week()
-    started = {r["folder"] for r in rows if r["status"] != "todo"}
-    return {r["folder"] for r in rows if r["week"] <= week} | started
+def covered_folders(rows):
+    """Sections he has actually worked in - at least one problem started.
+
+    Not "everything before the furthest solve": one stray problem late in the
+    queue would then mark the whole sheet as covered. A section counts only
+    when he has opened something in it.
+    """
+    return {r["folder"] for r in rows if r["status"] != "todo"}
+
+
+def current_folder(rows):
+    """The section the queue is pointing at right now."""
+    nxt = up_next(rows, 1)
+    return nxt[0]["folder"] if nxt else None
+
+
+def up_next(rows, n=5, tiers="AB"):
+    """The next n unsolved problems in queue order. This is the whole plan."""
+    return [r for r in sorted(rows, key=lambda r: r["order"])
+            if r["status"] == "todo" and r["sheet"] in tiers][:n]
 
 
 def drill_pick(rows, n=5, today=None, seed=None):
@@ -428,8 +419,7 @@ def drill_pick(rows, n=5, today=None, seed=None):
     import random
     today = today or dt.date.today()
     rng = random.Random(seed if seed is not None else today.toordinal())
-    week = current_week(today)
-    covered = covered_folders(rows, week)
+    covered = covered_folders(rows)
     pool = [r for r in rows if r["folder"] in covered and r["status"] == "todo"
             and r["statement"]]
     rng.shuffle(pool)
@@ -446,9 +436,10 @@ def interleave_pool(rows, today=None, exclude=(), seed=None):
     """
     import random
     today = today or dt.date.today()
-    week = current_week(today)
+    here = current_folder(rows)
+    covered = covered_folders(rows)
     rng = random.Random((seed if seed is not None else today.toordinal()) + 7)
-    pool = [r for r in rows if r["week"] < week and r["status"] == "todo"
-            and r["file"] not in set(exclude)]
+    pool = [r for r in rows if r["folder"] in covered and r["folder"] != here
+            and r["status"] == "todo" and r["file"] not in set(exclude)]
     rng.shuffle(pool)
     return pool

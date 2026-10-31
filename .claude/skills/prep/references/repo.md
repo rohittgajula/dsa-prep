@@ -10,17 +10,27 @@ Paths in this file are written as `~/Desktop/dsa-prep`, which is where it sits o
 
 ```text
 dsa-prep/
-  README.md        the plan: 35 weeks, 10 Sep 2026 -> 16 May 2027, SDE-2 backend
-  patterns/        53 pattern guides, grouped by family
+  README.md        how the queue works
+  SHEET.md         the queue: 138 problems, 21 sections
+  patterns/        pattern guides
                    recognition cue -> insight -> diagram -> template -> pitfalls -> problems
-  solutions/       44 numbered folders, 454 runnable Python files
-  theory/          os/ networks/ dbms/ lld/ system-design/ ai/   (Mermaid diagrams)
+  solutions/       21 sections mirroring the sheet
+  theory/          os/ networks/ dbms/ lld/   (Mermaid diagrams)
   templates/       solution-template.py
   scripts/         prep_lib.py (shared parser), progress.py, plan.py
   notes/           study-log.md, weak-topics.md, mock interview post-mortems
+  archive/         the old 454-problem calendar, kept for reference
 ```
 
-Folders are numbered in study order (`01-array-basics` ... `44-advanced`), so the filesystem order *is* the roadmap order.
+**The sheet is a queue, not a calendar.** Rewritten 31 Oct 2026 after the 35-week
+calendar version reached 5 of 454 solved and stopped being opened. Problems carry an
+`Order:` and a `Sheet:` tier (A/B/C), never a date. Nothing is ever "behind" - there is
+no such concept any more, and reintroducing one would rebuild the thing that failed.
+
+The spine is Hello Interview's 92 problems in its order, each linked to its lesson
+(`Lesson:` in the docstring). The other 46 patch what HI does not cover: hashing and
+strings, union-find, design-a-data-structure, bit and math, DP breadth, BST/trees.
+System design is **not** in this repo - he has Hello Interview premium for it.
 
 ## Reading his progress
 
@@ -30,35 +40,41 @@ Folders are numbered in study order (`01-array-basics` ... `44-advanced`), so th
 cd ~/Desktop/dsa-prep && python3 scripts/progress.py
 ```
 
-It parses all 454 files with `ast` and reports: overall and core counts, per-folder bars, the current week against the 10 Sep 2026 start, what is **behind**, what is left **this week**, the **re-solve** queue, and solved problems whose docstring is still the template.
+It parses the sheet with `ast` and reports: solved counts per tier, per-section bars,
+which section the queue is pointing at, what is up next, what is due for a sweep, and
+solved problems whose docstring is still the template. There is deliberately **no
+"behind" count**.
 
 ```bash
-python3 scripts/progress.py --week 3      # one week
-python3 scripts/progress.py --folder 02   # one pattern folder
+python3 scripts/progress.py --section 09  # one section
+python3 scripts/progress.py --tier A      # just the spine
 python3 scripts/progress.py --full        # nothing truncated
 python3 scripts/progress.py --json        # rows, for filtering
 ```
 
-Status comes from the code itself: `todo` (both bodies `pass`), `brute` (brute only), `done` (both). Two flags come from the docstring footer — `hinted` (`Solved unaided: N`, so it does not count yet and is re-solved within two weeks) and `no notes` (code written, docstring still placeholders).
+Status comes from the code itself: `todo` (both bodies `pass`), `brute` (brute only), `done` (both).
 
 Use `--json` when the question needs filtering the scraper does not do, for example "which Mediums did I take over 40 minutes on".
 
 ## Planning his day
 
 ```bash
-python3 scripts/plan.py              # today + the next 4 days
-python3 scripts/plan.py --days 7     # a week ahead
+python3 scripts/plan.py              # a normal sitting
+python3 scripts/plan.py --n 2        # a short sitting
+python3 scripts/plan.py --tier A     # rough week: the spine only
 python3 scripts/plan.py --revise 5   # just a revision set
 python3 scripts/plan.py --drill 5    # name the pattern, do not solve
 python3 scripts/plan.py --drill 5 --answers
-python3 scripts/plan.py --date 2026-10-05
 ```
 
-The plan is **derived, never stored**: from which files have real code, which theory files `notes/study-log.md` says he has read, when each solved problem is next due for a sweep, and what is open in `notes/weak-topics.md`. Nothing to keep in sync — solve something, log it, and tomorrow's plan moves on by itself.
+The plan is **derived, never stored**: the next unsolved problems in queue order, one
+interleaved problem from an earlier section, whatever revision is due, the next theory
+file, and the open weak topics.
 
-It decides the daily load from what is actually left: core problems remaining this week divided by days left in the week, capped at 4. Problems from earlier weeks go first. Theory is paced so the track finishes in its weeks.
-
-**Run it, then adapt it out loud.** The script does not know he has 40 minutes tonight or that he is tired. Take its output and cut it to fit — say what you are dropping and why. If he is far behind, say so plainly and propose dropping Stretch problems rather than pretending the plan still fits.
+**It is pull-based. Never tell him he is behind, and never assign a quota.** He takes as
+many as the sitting allows; `--n` and `--tier A` are how a bad week degrades. He is
+working 8-10 hours a week with a full-time job and no interview date - the plan must
+survive weeks where nothing happens, because that is what killed the last one.
 
 ## Recognition drill
 

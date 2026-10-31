@@ -343,28 +343,26 @@ def index():
 
 
 def build(rows, today):
-    plan = __import__("plan").build(rows, today, days=1)
-    day = plan["schedule"][0]
-    week = plan["week"]
+    plan = __import__("plan").build(rows, today)
+    day = plan
 
-    out = [f"# {today:%a %d %b %Y} — week {week}", ""]
+    out = [f"# {today:%a %d %b %Y} — {plan['section']} · {plan['left']} left on the sheet", ""]
 
     if day["solve"]:
-        out.append("**Solve** " + ", ".join(f"{r['number']} {r['title']}" for r in day["solve"]))
+        out.append("**Next up** (take as many as the sitting allows) — " +
+                   ", ".join(f"{r['number']} {r['title']}" for r in day["solve"]))
     if day["theory"]:
-        out.append(f"**Read** {day['theory'].relative_to(L.ROOT)}")
+        out.append(f"**Read** {day['theory']}")
     for t in plan["theory_due"][:1]:
         out.append(f"**Re-read** {t['path']} — {t['overdue']}d overdue")
     if day["revise"]:
         out.append("**Revise** " + ", ".join(
-            f"{r['number']} {r['title']} (sweep {r['reps'] + 1})" for r in day["revise"]))
+            f"{r['number']} {r['title']} (sweep {r['reps'] + 1})" for r in day["revise"][:3]))
     if day["mixed"]:
         m = day["mixed"]
         out.append(f"**Mixed** {m['number']} {m['title']} — name the pattern before you start")
-    if day["mock"]:
-        out.append("**Mock** 45 minutes out loud: one problem, one system design prompt")
     if len(out) == 2:
-        out.append("Nothing scheduled today.")
+        out.append("Nothing due - take the next one off the queue.")
 
     question, answer = recall_item(rows, today)
     # A question the task rewrote today wins over the generated one, and its
