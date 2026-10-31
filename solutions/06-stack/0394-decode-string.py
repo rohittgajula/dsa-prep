@@ -6,7 +6,7 @@ Difficulty : Medium
 Pattern    : Stack & Monotonic Stack
 Sheet      : B
 Order      : 037
-Asked      : Amazon, Google
+Asked      : Amazon, Google, India
 Lesson     : https://www.hellointerview.com/learn/code/stack/overview
 
 INPUT

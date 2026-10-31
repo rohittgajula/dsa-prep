@@ -6,7 +6,7 @@ Difficulty : Medium
 Pattern    : Hashing & Strings
 Sheet      : B
 Order      : 026
-Asked      : Amazon, Google
+Asked      : Amazon, Google, India
 
 INPUT
     s : string

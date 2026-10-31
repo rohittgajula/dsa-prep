@@ -6,7 +6,7 @@ Difficulty : Medium
 Pattern    : Binary Search
 Sheet      : A
 Order      : 049
-Asked      : Amazon
+Asked      : Amazon, India
 Lesson     : https://www.hellointerview.com/learn/code/binary-search/overview
 
 INPUT

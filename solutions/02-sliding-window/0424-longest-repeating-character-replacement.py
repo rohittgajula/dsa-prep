@@ -6,7 +6,7 @@ Difficulty : Medium
 Pattern    : Sliding Window
 Sheet      : B
 Order      : 015
-Asked      : Google
+Asked      : Google, India
 Lesson     : https://www.hellointerview.com/learn/code/sliding-window/fixed-length
 
 INPUT

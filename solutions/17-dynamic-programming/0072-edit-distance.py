@@ -6,7 +6,7 @@ Difficulty : Medium
 Pattern    : Dynamic Programming
 Sheet      : B
 Order      : 117
-Asked      : Google
+Asked      : Google, India
 Lesson     : https://www.hellointerview.com/learn/code/dynamic-programming/fundamentals
 
 INPUT

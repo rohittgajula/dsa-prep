@@ -6,7 +6,7 @@ Difficulty : Medium
 Pattern    : Binary Search
 Sheet      : B
 Order      : 051
-Asked      : Google
+Asked      : Google, India
 Lesson     : https://www.hellointerview.com/learn/code/binary-search/overview
 
 INPUT

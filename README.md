@@ -1,6 +1,9 @@
 # dsa-prep
 
-Interview preparation for SDE-2 backend. Target: **Amazon and Google**, no fixed date.
+Interview preparation for SDE-2 backend. No fixed date.
+
+Targets: **Amazon**, **Google**, and **Indian product/startup companies** — Zomato, Swiggy,
+CRED, Razorpay, Flipkart, PhonePe, Meesho, Groww, Zepto, Navi, Dream11.
 
 System design is **not** here — that is Hello Interview premium. Two thinner copies
 of the same material is worse than one good one.
@@ -35,6 +38,28 @@ python3 scripts/progress.py       # where you stand
 
 Tiers: **A** (73) is the spine — a bad week still does these. **B** (45) is a normal
 sitting. **C** (20) only if ahead.
+
+## Company tags
+
+Each problem's `Asked:` line carries `Amazon`, `Google` and/or `India`.
+
+Amazon and Google tags are per-problem judgements. **The `India` tag is a rule, not scraped
+data**: Easy/Medium, tier A or B, in the core sections. Those rounds are one or two DSA
+interviews of standard problems plus LLD, and rarely reach Dijkstra, MST, bitmask DP or hard
+graph work. 94 of 138 qualify. Nobody has a verified question bank for these companies — treat
+the tag as "this is the shape of what they ask", never as "they asked this one".
+
+```bash
+python3 scripts/export_xlsx.py --out ~/Desktop/"Interview prep"/DSA_Queue_HI.xlsx
+```
+
+Regenerates the 3-tab spreadsheet (Queue, Progress, Patterns) **from this repo**. The repo is
+the source of truth; the spreadsheet is a view. Editing the spreadsheet does not feed back —
+re-run the export instead. Needs `openpyxl`, so use a venv if the system python refuses:
+
+```bash
+python3 -m venv ~/.venvs/xlsx && ~/.venvs/xlsx/bin/pip install openpyxl
+```
 
 ## Layout
 

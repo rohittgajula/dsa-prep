@@ -6,7 +6,7 @@ Difficulty : Medium
 Pattern    : Prefix Sum
 Sheet      : A
 Order      : 019
-Asked      : Amazon, Google
+Asked      : Amazon, Google, India
 Lesson     : https://www.hellointerview.com/learn/code/prefix-sum/overview
 
 INPUT

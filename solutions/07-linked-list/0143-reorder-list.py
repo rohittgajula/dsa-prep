@@ -6,7 +6,7 @@ Difficulty : Medium
 Pattern    : Linked List
 Sheet      : B
 Order      : 045
-Asked      : Amazon
+Asked      : Amazon, India
 Lesson     : https://www.hellointerview.com/learn/code/linked-list/overview
 
 INPUT

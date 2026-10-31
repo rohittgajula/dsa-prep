@@ -6,7 +6,7 @@ Difficulty : Medium
 Pattern    : Design a Data Structure
 Sheet      : A
 Order      : 133
-Asked      : Amazon, Google
+Asked      : Amazon, Google, India
 
 OPERATIONS
     LRUCache(capacity)   with capacity = integer

@@ -6,7 +6,7 @@ Difficulty : Medium
 Pattern    : Hashing & Strings
 Sheet      : A
 Order      : 025
-Asked      : Google
+Asked      : Google, India
 
 INPUT
     nums : list of integers

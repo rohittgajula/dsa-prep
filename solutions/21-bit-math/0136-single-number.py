@@ -6,7 +6,7 @@ Difficulty : Easy
 Pattern    : Bit & Math
 Sheet      : A
 Order      : 135
-Asked      : Amazon
+Asked      : Amazon, India
 
 INPUT
     nums : list of integers

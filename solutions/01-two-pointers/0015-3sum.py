@@ -6,7 +6,7 @@ Difficulty : Medium
 Pattern    : Two Pointers
 Sheet      : A
 Order      : 008
-Asked      : Amazon, Google
+Asked      : Amazon, Google, India
 Lesson     : https://www.hellointerview.com/learn/code/two-pointers/overview
 
 INPUT

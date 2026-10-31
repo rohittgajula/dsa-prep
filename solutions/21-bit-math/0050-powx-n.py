@@ -6,7 +6,7 @@ Difficulty : Medium
 Pattern    : Bit & Math
 Sheet      : B
 Order      : 137
-Asked      : Google
+Asked      : Google, India
 
 INPUT
     x : decimal number

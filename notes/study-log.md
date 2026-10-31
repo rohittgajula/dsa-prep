@@ -68,3 +68,10 @@ Keep the `- Theory:` lines as real paths — that is the part the script parses.
 - 334 problems and the old folder taxonomy moved to archive/, not deleted.
 - scripts rewired: plan.py is pull-based, progress.py has no behind-count, daily_card.py
   rewired to the queue so the morning scheduled task keeps working.
+- Note: added `India` company tag — Zomato/Swiggy/CRED/Razorpay/Flipkart/PhonePe/Meesho/
+  Groww/Zepto/Navi/Dream11. It is a RULE (Easy/Medium, tier A or B, core sections), not
+  scraped interview data; 94 of 138 qualify. Said so explicitly in the README and in the
+  spreadsheet itself so it is never mistaken for a verified question bank.
+- Note: added scripts/export_xlsx.py — regenerates a 3-tab workbook (Queue, Progress,
+  Patterns) FROM the repo, so the repo stays the single source of truth and the
+  spreadsheet is a disposable view. Pattern cues vendored to scripts/pattern_cues.json.

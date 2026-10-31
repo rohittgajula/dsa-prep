@@ -6,7 +6,7 @@ Difficulty : Easy
 Pattern    : Sliding Window
 Sheet      : A
 Order      : 012
-Asked      : -
+Asked      : India
 Lesson     : https://www.hellointerview.com/learn/code/sliding-window/fixed-length
 
 INPUT

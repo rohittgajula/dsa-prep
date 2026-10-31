@@ -6,7 +6,7 @@ Difficulty : Medium
 Pattern    : Hashing & Strings
 Sheet      : A
 Order      : 024
-Asked      : Amazon, Google
+Asked      : Amazon, Google, India
 
 INPUT
     strs : list of strings

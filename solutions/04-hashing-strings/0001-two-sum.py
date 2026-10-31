@@ -6,7 +6,7 @@ Difficulty : Easy
 Pattern    : Hashing & Strings
 Sheet      : A
 Order      : 022
-Asked      : Amazon
+Asked      : Amazon, India
 
 INPUT
     nums   : list of integers

@@ -6,7 +6,7 @@ Difficulty : Easy
 Pattern    : Stack & Monotonic Stack
 Sheet      : B
 Order      : 036
-Asked      : Amazon
+Asked      : Amazon, India
 Lesson     : https://www.hellointerview.com/learn/code/stack/overview
 
 OPERATIONS

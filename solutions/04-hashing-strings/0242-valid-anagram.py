@@ -6,7 +6,7 @@ Difficulty : Easy
 Pattern    : Hashing & Strings
 Sheet      : A
 Order      : 023
-Asked      : Amazon
+Asked      : Amazon, India
 
 INPUT
     s : string

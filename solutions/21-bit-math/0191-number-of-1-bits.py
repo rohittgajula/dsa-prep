@@ -6,7 +6,7 @@ Difficulty : Easy
 Pattern    : Bit & Math
 Sheet      : B
 Order      : 136
-Asked      : -
+Asked      : India
 
 INPUT
     n : integer

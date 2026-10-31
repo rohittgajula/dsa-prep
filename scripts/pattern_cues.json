@@ -1,0 +1,373 @@
+[
+ {
+  "pattern": "Two Pointers - opposite ends",
+  "recog": "Sorted array + find a PAIR/TRIPLET summing to a target. Or 'container', 'reverse', 'palindrome'.",
+  "insight": "On a sorted array, comparing the current result to the target tells you UNAMBIGUOUSLY which pointer to move. That certainty is what removes the inner loop and turns O(n^2) into O(n).",
+  "cx": "O(n) time, O(1) space",
+  "mist": "For 3Sum you MUST skip duplicates on all three pointers or you emit repeats. Sort first - forgetting to sort is the classic error."
+ },
+ {
+  "pattern": "Two Pointers - fast & slow",
+  "recog": "Detect a CYCLE, find the MIDDLE, or 'duplicate number in 1..n' framed as a linked list.",
+  "insight": "If a fast pointer moves 2x and a slow pointer 1x, inside a cycle the gap closes by exactly 1 each step, so they MUST meet. Then the distance from head to cycle start equals the distance from the meeting point to cycle start - which is why resetting one pointer to head works.",
+  "cx": "O(n) time, O(1) space",
+  "mist": "Always check `fast and fast.next` or you dereference None. For 'middle', whether you get the first or second middle depends on your loop condition - read the problem carefully."
+ },
+ {
+  "pattern": "Sliding Window - fixed size",
+  "recog": "'Subarray/substring of size EXACTLY k'. The window length never changes.",
+  "insight": "Recomputing each window from scratch is O(nk). Since consecutive windows overlap in k-1 elements, you only need to add the entering element and remove the leaving one - O(1) per step.",
+  "cx": "O(n) time, O(1) space",
+  "mist": "Off-by-one on the first window. Build the first k elements BEFORE the loop, then start iterating at index k."
+ },
+ {
+  "pattern": "Sliding Window - variable size",
+  "recog": "'LONGEST or SHORTEST subarray/substring SUCH THAT <condition>'. All positive numbers or a character-count condition.",
+  "insight": "The window is a monotonic predicate: if a window is invalid, extending it right keeps it invalid, so the only fix is to shrink from the left. Each index enters and leaves exactly once, giving O(n) despite the nested loop.",
+  "cx": "O(n) - each element enters and exits once",
+  "mist": "THE SHRINK CONDITION IS THE WHOLE PROBLEM. For 'shortest', update the answer INSIDE the while loop; for 'longest', update it after. Does not work with negative numbers - use prefix sum + hashmap instead."
+ },
+ {
+  "pattern": "Prefix Sum",
+  "recog": "Repeated range-sum queries on a STATIC array, or 'sum of everything except me'.",
+  "insight": "Precompute cumulative sums once so any range becomes a single subtraction. You trade O(n) space for O(1) queries.",
+  "cx": "O(n) build, O(1) per query",
+  "mist": "Use a size n+1 array with pre[0]=0 - it removes every boundary special case. Getting the inclusive/exclusive indices wrong is the usual bug."
+ },
+ {
+  "pattern": "Prefix Sum + HashMap",
+  "recog": "'COUNT of subarrays with sum = k' (counting, not length). Array may contain NEGATIVES, which kills sliding window.",
+  "insight": "Any subarray sum equals prefix[j] - prefix[i]. So asking 'does a subarray ending at j sum to k' becomes 'have I seen prefix value (current - k) before'. A hashmap answers that in O(1).",
+  "cx": "O(n) time, O(n) space",
+  "mist": "FORGETTING seen={0:1} breaks every subarray that starts at index 0. Count BEFORE inserting the current prefix, or you match a zero-length subarray. For divisibility use cur % k, handling negative modulo."
+ },
+ {
+  "pattern": "Difference Array",
+  "recog": "MANY range UPDATES ('add v to all elements from l to r'), then read the array once at the end.",
+  "insight": "The inverse of prefix sum. Instead of touching r-l+1 cells per update, mark only the two boundaries where the change starts and stops, then integrate once.",
+  "cx": "O(1) per update, O(n) to finalise",
+  "mist": "The d[r+1] index needs the array sized n+1 or you overflow. Only valid when ALL updates come before ANY read."
+ },
+ {
+  "pattern": "Hashing / Frequency Map",
+  "recog": "'Anagram', 'duplicate', 'group by', 'count', 'seen before'. Any time you are about to write a nested search loop.",
+  "insight": "A hash map converts 'search the collection' from O(n) to O(1), which collapses a nested loop into a single pass. The creative part is choosing the KEY - a canonical form that makes equivalent things collide deliberately.",
+  "cx": "O(n) time, O(n) space",
+  "mist": "sorted(word) is O(L log L); a 26-length count tuple is O(L) and faster for large inputs. Mutable types cannot be dict keys - convert lists to tuples."
+ },
+ {
+  "pattern": "Expand Around Centre",
+  "recog": "PALINDROMIC substrings - longest, or count them all.",
+  "insight": "Every palindrome has a centre. There are only 2n-1 possible centres (n single characters, n-1 gaps), and growing outward from each is O(n), so the whole thing is O(n^2) with O(1) space - better than the O(n^2) space DP.",
+  "cx": "O(n^2) time, O(1) space",
+  "mist": "FORGETTING EVEN-LENGTH CENTRES is the single most common bug. After the loop, l and r have each overshot by one - account for that when computing length or slicing."
+ },
+ {
+  "pattern": "Kadane's Algorithm",
+  "recog": "'Maximum sum contiguous subarray'. Also the product variant, and circular arrays.",
+  "insight": "At each index there are only two choices: extend the previous subarray, or start fresh here. If the running sum ever goes negative it can only hurt, so you drop it. That single local decision yields the global optimum.",
+  "cx": "O(n) time, O(1) space",
+  "mist": "Initialise with a[0], NOT 0 - initialising to zero breaks on all-negative arrays. For MAXIMUM PRODUCT you must track the minimum too, because a negative times a negative flips to a large positive."
+ },
+ {
+  "pattern": "Dutch National Flag (3-way partition)",
+  "recog": "Sort or partition into exactly THREE categories in one pass with O(1) space. 'Sort colors', 'move zeroes'.",
+  "insight": "Maintain three regions with three pointers: everything before `low` is category 0, everything after `high` is category 2, and `mid` scans the unknown middle. Each swap shrinks the unknown region, so one pass suffices.",
+  "cx": "O(n) time, O(1) space",
+  "mist": "After swapping with `high` you must NOT advance mid - the value you just pulled in is unexamined. Advancing there is the classic bug."
+ },
+ {
+  "pattern": "In-place Index Marking",
+  "recog": "Array holds values in range 1..n (or 0..n-1) and you must find missing/duplicate values in O(1) EXTRA SPACE.",
+  "insight": "The array itself can serve as the hash table: the value v tells you to go mark index v-1. Mark by negating the value there, or by adding n. The constraint that values fit the index range is the whole enabler.",
+  "cx": "O(n) time, O(1) extra space",
+  "mist": "Always use abs() when reading, since earlier marking may have negated the value. Only works when the value range matches the index range - check that constraint first."
+ },
+ {
+  "pattern": "Binary Search - exact & bounds",
+  "recog": "SORTED (or rotated-sorted) input and you need an element or a boundary.",
+  "insight": "Each comparison discards half the search space. The hard part is never the halving - it is the invariant. Commit to ONE template (half-open [l, r)) and derive everything from it rather than memorising variants.",
+  "cx": "O(log n) time",
+  "mist": "Infinite loops from `l = m` instead of `m + 1`. For ROTATED arrays: one half is always sorted - identify which by comparing a[l] to a[m], then decide if the target lies in it."
+ },
+ {
+  "pattern": "Binary Search on the ANSWER",
+  "recog": "'MINIMUM/MAXIMUM value X such that <condition> holds'. The INPUT IS NOT SORTED. Words like capacity, speed, days, threshold.",
+  "insight": "You are not searching the array - you are searching the RANGE OF POSSIBLE ANSWERS. It works whenever feasible(x) is monotonic: if x works then every larger x works. Then finding the boundary is just binary search.",
+  "cx": "O(n log(range))",
+  "mist": "PROVE MONOTONICITY FIRST - if it is not monotonic, binary search is simply wrong. Get the lo/hi bounds right: lo is usually max(array) or 1, hi is usually sum(array)."
+ },
+ {
+  "pattern": "Cyclic Sort",
+  "recog": "Array contains n numbers from the range 1..n or 0..n-1, and you need missing/duplicate values in O(n) with O(1) space.",
+  "insight": "Because values map one-to-one onto indices, every value has a correct home. Repeatedly swap each value into its home; whatever ends up out of place reveals the missing or duplicate value.",
+  "cx": "O(n) time, O(1) space",
+  "mist": "Do NOT increment i after a swap - the newly arrived value must be examined. Compare VALUES (a[i] != a[j]) not indices, so duplicates terminate instead of looping forever."
+ },
+ {
+  "pattern": "Quickselect",
+  "recog": "Kth largest/smallest and you do NOT need the whole array sorted.",
+  "insight": "Quicksort recurses into both halves; quickselect knows the answer lies in only ONE half, so it recurses into just that side. The work halves each time, giving O(n) average instead of O(n log n).",
+  "cx": "O(n) average, O(n^2) worst",
+  "mist": "A sorted input with a naive pivot gives O(n^2) - choose a RANDOM pivot. If k is small, an O(n log k) heap is simpler and safer; say that trade-off out loud in an interview."
+ },
+ {
+  "pattern": "Merge Sort / Divide & Conquer counting",
+  "recog": "Count INVERSIONS, 'smaller elements to the right', or 'reverse pairs'. A counting problem that a plain scan cannot do in less than O(n^2).",
+  "insight": "During the merge step both halves are already sorted. That ordering lets you count cross-half pairs in bulk - when a[i] > a[j], every remaining element in the left half also beats a[j]. You get counting for free alongside sorting.",
+  "cx": "O(n log n) time, O(n) space",
+  "mist": "Count the cross pairs BEFORE merging destroys the boundary. A Fenwick tree solves the same problems and is often easier to write correctly."
+ },
+ {
+  "pattern": "Merge Intervals / Sweep Line",
+  "recog": "Input is a list of [start, end] pairs. Merge, insert, count overlaps, 'minimum meeting rooms'.",
+  "insight": "Sorting by start time means any overlap must be with the interval you just processed, so one pass suffices. For 'how many overlap at once', convert to +1/-1 events sorted by time and track a running count - the maximum is your answer.",
+  "cx": "O(n log n) time",
+  "mist": "Decide whether touching intervals ([1,2] and [2,3]) count as overlapping - the problem always specifies and it changes `<=` to `<`. For minimum-rooms, sort by END and use a heap, or use the sweep-line event method."
+ },
+ {
+  "pattern": "Linked List Reversal",
+  "recog": "Reverse the whole list, a sublist, or groups of k.",
+  "insight": "Reversal is just re-pointing each node backwards while holding onto the next node so you do not lose the rest of the list. Three pointers is the minimum needed: previous, current, next.",
+  "cx": "O(n) time, O(1) space",
+  "mist": "Saving `nxt` before reassigning cur.next is non-negotiable. Use a DUMMY NODE whenever the head might change - it removes every null-head special case."
+ },
+ {
+  "pattern": "Dummy Node technique",
+  "recog": "Any linked-list problem where the HEAD itself might be removed or replaced.",
+  "insight": "A dummy node placed before the head means every real node has a predecessor. That erases the 'what if it's the first node' branch from your code entirely - the single biggest source of linked-list bugs.",
+  "cx": "O(n) time, O(1) space",
+  "mist": "Return dummy.next, never the original `head` - head may have been removed. This is worth using by default, not only when you predict trouble."
+ },
+ {
+  "pattern": "Monotonic Stack",
+  "recog": "'NEXT or PREVIOUS greater/smaller element'. Histogram area, stock span, daily temperatures, trapping water.",
+  "insight": "Keep the stack sorted. When a new element arrives and violates that order, it is precisely the 'next greater' element for everything you pop. Each index is pushed once and popped once, so the whole thing is O(n) despite the nested while.",
+  "cx": "O(n) - each index pushed and popped once",
+  "mist": "Store INDICES not values, so you can compute distances. Decide increasing vs decreasing from what you need (next GREATER needs a decreasing stack). Handle leftovers after the loop - they have no next greater element."
+ },
+ {
+  "pattern": "Monotonic Deque",
+  "recog": "MAXIMUM or MINIMUM of every sliding window, in O(n).",
+  "insight": "A heap gives O(n log k), but you do not need full ordering - only the maximum. A deque holding indices in decreasing value order keeps the max at the front; anything smaller than an incoming element can never be the max again, so you discard it permanently.",
+  "cx": "O(n) time, O(k) space",
+  "mist": "Store indices so you can detect expiry. Pop from the BACK for ordering, pop from the FRONT for the window - mixing these up is the usual bug."
+ },
+ {
+  "pattern": "Top-K with a Heap",
+  "recog": "'K largest / K smallest / K most frequent / K closest'.",
+  "insight": "You never need the whole array ordered - only the K best. A heap of size K discards everything else immediately, so memory is O(k) and time is O(n log k) instead of O(n log n).",
+  "cx": "O(n log k) time, O(k) space",
+  "mist": "COUNTERINTUITIVE: use a MIN-heap to find the K LARGEST (you pop the smallest each time). Python's heapq is min-only - negate values for a max-heap."
+ },
+ {
+  "pattern": "Two Heaps (running median)",
+  "recog": "MEDIAN of a stream, or you need the middle element as data keeps arriving.",
+  "insight": "Split the data at the median: a max-heap holds the smaller half, a min-heap the larger half. The median is then always at one or both tops - O(1) to read, O(log n) to maintain.",
+  "cx": "O(log n) insert, O(1) query",
+  "mist": "Always push-then-transfer-then-rebalance in that fixed order, or the heaps drift. In Python, negate values going into `lo` to fake a max-heap."
+ },
+ {
+  "pattern": "K-way Merge",
+  "recog": "Merge k sorted lists/arrays, or 'kth smallest across k sorted things', or 'smallest range covering all lists'.",
+  "insight": "You only ever need the smallest unconsumed element across all k lists. A heap of exactly k candidates - one per list - gives it in O(log k), and you refill from whichever list you consumed.",
+  "cx": "O(N log k), N = total elements",
+  "mist": "Store the list index and position in the tuple so you know where to refill from. Add a tie-breaker index so Python never tries to compare incomparable objects."
+ },
+ {
+  "pattern": "Backtracking",
+  "recog": "'ALL possible / every combination / generate all / enumerate'. Output is a LIST OF LISTS.",
+  "insight": "You are walking a decision tree. At each node you make a choice, recurse, then UNDO it so the next branch starts clean. The undo is what lets one shared path array serve the whole tree instead of copying at every level.",
+  "cx": "O(2^n) subsets, O(n!) permutations",
+  "mist": "APPEND A COPY (path[:]) not the reference, or every result mutates to empty. For duplicates: sort first, then `if i > start and a[i] == a[i-1]: continue`. Pass i+1 for 'use once', i for 'reuse allowed'."
+ },
+ {
+  "pattern": "Tree DFS (recursive)",
+  "recog": "Paths, depth, subtree properties, or 'compute a value for each node from its children'.",
+  "insight": "A tree is defined recursively, so recursion mirrors its structure exactly. The key discipline: decide what each call RETURNS UP to its parent, and what state you pass DOWN as arguments. Most tree bugs are confusion between those two.",
+  "cx": "O(n) time, O(h) stack space",
+  "mist": "For 'max path sum' style problems the value you RETURN (a one-sided path usable by the parent) differs from the value you RECORD as the answer (which may split through the node). Conflating them is the classic error."
+ },
+ {
+  "pattern": "Tree BFS (level order)",
+  "recog": "Any problem containing the word LEVEL. Also 'right side view', 'zigzag', 'minimum depth', 'width'.",
+  "insight": "A queue processes nodes in the order they were discovered, which is exactly level order. Capturing the queue's SIZE at the top of each iteration freezes one level, so you can group nodes by depth without storing depth on each node.",
+  "cx": "O(n) time, O(w) space (w = max width)",
+  "mist": "Capture `size` BEFORE the inner loop - reading len(q) inside it reads a growing queue and merges levels. Minimum depth via BFS beats DFS: return at the first leaf."
+ },
+ {
+  "pattern": "BST Inorder Property",
+  "recog": "It is a Binary SEARCH Tree. Validate, kth smallest, LCA, range sum, find mode.",
+  "insight": "Inorder traversal of a BST yields values in SORTED order. That one fact converts most BST problems into array problems you already know. And search is just binary search on a tree - O(h).",
+  "cx": "O(n) traversal, O(h) search",
+  "mist": "VALIDATING a BST needs a (min, max) RANGE passed down - checking only node against its immediate children is the classic wrong answer that passes small tests. For kth smallest, count during inorder and stop early."
+ },
+ {
+  "pattern": "Lowest Common Ancestor",
+  "recog": "'Lowest common ancestor', 'nearest shared parent', 'distance between two nodes in a tree'.",
+  "insight": "Post-order recursion: if a node finds one target in its left subtree and the other in its right, that node IS the LCA. Otherwise it passes up whichever side found something. The first node where the two searches converge is the answer.",
+  "cx": "O(n) time, O(h) space",
+  "mist": "In a BST it is far simpler: descend while both targets are on the same side, and the first node that splits them is the LCA - O(h). Do not use the general algorithm when told it is a BST."
+ },
+ {
+  "pattern": "Tree Construction from Traversals",
+  "recog": "'Build the tree from preorder and inorder', or inorder + postorder, or serialize/deserialize.",
+  "insight": "Preorder's first element is always the ROOT. Finding that value in the inorder array splits it into exactly the left and right subtrees. Recurse on those halves. A hashmap of value to inorder index removes the O(n) search.",
+  "cx": "O(n) with the hashmap, O(n^2) without",
+  "mist": "The index arithmetic is where everyone breaks. Derive left_size explicitly and write the four indices out. Inorder ALONE cannot rebuild a tree - you always need two traversals."
+ },
+ {
+  "pattern": "Trie (Prefix Tree)",
+  "recog": "PREFIX matching, autocomplete, dictionary/wildcard search, or maximising XOR (a binary trie on bits).",
+  "insight": "Shared prefixes are stored exactly once, so lookup cost depends on WORD LENGTH not dictionary size. Combining a trie with grid DFS lets you prune whole search branches the moment a prefix cannot exist.",
+  "cx": "O(L) per operation, L = word length",
+  "mist": "You need the `end` flag - without it 'app' matches inside 'apple' incorrectly. For Word Search II, insert all words into a trie and DFS the grid ONCE, pruning on missing prefixes; the naive per-word search times out."
+ },
+ {
+  "pattern": "Graph DFS / Connected Components",
+  "recog": "'Number of islands/provinces/groups', flood fill, 'explore everything reachable'.",
+  "insight": "DFS exhausts one branch fully before backtracking. Counting components is then trivial: loop over every node, and each time you start a fresh DFS you have found one new component.",
+  "cx": "O(V + E), or O(rows x cols) on a grid",
+  "mist": "MARK VISITED BEFORE RECURSING, not after - otherwise cycles cause infinite recursion. On large grids recursive DFS can blow the stack; use an explicit stack or BFS."
+ },
+ {
+  "pattern": "Graph BFS - shortest path (unweighted)",
+  "recog": "SHORTEST path or MINIMUM number of steps in an UNWEIGHTED graph.",
+  "insight": "BFS explores in order of distance, so the first time you reach a node is guaranteed to be via a shortest path. DFS gives NO such guarantee - this is the single most important reason to choose BFS.",
+  "cx": "O(V + E) time",
+  "mist": "MARK VISITED WHEN YOU PUSH, not when you pop - marking on pop lets the same node enter the queue many times and degrades to exponential behaviour."
+ },
+ {
+  "pattern": "Multi-source BFS",
+  "recog": "Several starting points spreading SIMULTANEOUSLY. 'Rotting oranges', 'distance to nearest 0', 'nearest exit'.",
+  "insight": "Running BFS from each source separately is O(sources x V). Instead, seed the queue with ALL sources at distance 0. The wavefronts expand together, so every cell is naturally reached first by its NEAREST source - one BFS, same cost as one source.",
+  "cx": "O(V + E) - same as single-source",
+  "mist": "All sources must go in BEFORE the loop starts. For 'time until all rotten', process level by level and remember to check afterwards whether any cell remains unreachable."
+ },
+ {
+  "pattern": "Topological Sort",
+  "recog": "DEPENDENCIES, prerequisites, ordering, build order, on a DIRECTED graph.",
+  "insight": "A node is safe to output once nothing points at it any more. Kahn's algorithm repeatedly emits zero-indegree nodes and removes their edges. If you cannot empty the graph, the leftover nodes form a CYCLE - so this doubles as cycle detection.",
+  "cx": "O(V + E) time",
+  "mist": "The cycle check (len(order) < n) is the entire answer to 'can you finish all courses' - do not forget it. Topological order only exists for a DAG; undirected graphs need union-find instead."
+ },
+ {
+  "pattern": "Union-Find (Disjoint Set Union)",
+  "recog": "Connectivity, grouping, 'are these two connected', merging accounts, redundant edge, Kruskal's MST.",
+  "insight": "Each set is a tree with a representative root. PATH COMPRESSION flattens those trees on every find, and union-by-rank keeps them shallow. Together they make operations effectively O(1) amortised.",
+  "cx": "O(alpha(n)) ~ O(1) amortised",
+  "mist": "union() returning False IS your cycle detector - that is the whole of 'redundant connection'. Without path compression you degrade to O(n) per operation. DSU cannot handle deletions."
+ },
+ {
+  "pattern": "Dijkstra's Algorithm",
+  "recog": "SHORTEST path with WEIGHTED, NON-NEGATIVE edges.",
+  "insight": "BFS works for unweighted graphs because every edge costs 1. With weights, 'fewest edges' stops meaning 'cheapest', so you replace the queue with a PRIORITY QUEUE ordered by total cost. Popping the cheapest unfinalised node guarantees its distance is final.",
+  "cx": "O(E log V) time",
+  "mist": "FAILS WITH NEGATIVE WEIGHTS - use Bellman-Ford there. Skip stale heap entries rather than trying to decrease-key. For 'at most k stops', Dijkstra alone is wrong; use Bellman-Ford or track stops in the state."
+ },
+ {
+  "pattern": "Minimum Spanning Tree",
+  "recog": "'Connect all nodes at minimum total cost', 'minimum cost to connect all points'.",
+  "insight": "KRUSKAL: sort every edge by weight and greedily add any edge that does not create a cycle (union-find detects that). PRIM: grow one tree, repeatedly taking the cheapest edge leaving it (heap). Both are greedy and both are provably optimal.",
+  "cx": "Kruskal O(E log E), Prim O(E log V)",
+  "mist": "Kruskal needs union-find - learn DSU first. Prim is better on dense graphs, Kruskal on sparse. An MST is not a shortest-path tree; do not confuse the two."
+ },
+ {
+  "pattern": "Greedy - interval scheduling",
+  "recog": "'Maximum non-overlapping', 'minimum removals', 'fewest arrows', 'maximum meetings'.",
+  "insight": "Sort by END time, not start. Taking the earliest-finishing interval always leaves the maximum room for everything after it - this is provable by an exchange argument, and it is why the greedy choice is safe here when it usually is not.",
+  "cx": "O(n log n) time",
+  "mist": "SORTING BY START IS WRONG and is the most common mistake. If you cannot justify the greedy choice with an exchange argument, you probably need DP instead."
+ },
+ {
+  "pattern": "DP - 1D linear",
+  "recog": "'Number of ways' or 'min/max' where dp[i] depends on a FIXED few previous entries.",
+  "insight": "Define dp[i] as the answer for the first i elements, then find the RECURRENCE - how dp[i] is built from earlier values. Always write the recurrence in words before you write code; that is 90% of DP.",
+  "cx": "O(n) time, O(1) after optimising",
+  "mist": "Getting the base cases wrong breaks everything downstream - verify dp[0] and dp[1] by hand. Start with recursion + memoisation if the recurrence is unclear, then convert to a table."
+ },
+ {
+  "pattern": "DP - Knapsack (0/1 and unbounded)",
+  "recog": "Pick a SUBSET of items to reach a target sum or capacity. 'Can I make this amount', 'fewest coins', 'partition into equal halves'.",
+  "insight": "For each item you have a binary choice: take it or skip it. dp[c] = best achievable with capacity c. THE ITERATION DIRECTION ENCODES REUSE: descending capacity means each item is used at most once; ascending means it can be reused.",
+  "cx": "O(n x capacity) time",
+  "mist": "THE LOOP DIRECTION IS THE ENTIRE DIFFERENCE between 0/1 and unbounded - get it backwards and you silently solve the wrong problem. Also: combinations vs permutations depends on whether the item loop is outer or inner."
+ },
+ {
+  "pattern": "DP - Grid",
+  "recog": "A 2D grid where you move only right/down (or similar), counting paths or minimising cost.",
+  "insight": "Each cell is reachable only from a fixed set of predecessors, so dp[i][j] combines dp[i-1][j] and dp[i][j-1]. Because you only ever read the previous row, you can collapse the whole table to a single row.",
+  "cx": "O(m x n) time, O(n) space optimised",
+  "mist": "Handle row 0 and column 0 separately or use sentinel infinity values. For 'dungeon game' you must work BACKWARDS from the destination - forward DP gives the wrong answer."
+ },
+ {
+  "pattern": "DP - Two strings (LCS family)",
+  "recog": "TWO strings compared: edit distance, common subsequence, matching, delete operations.",
+  "insight": "dp[i][j] = the answer for the first i characters of s1 and the first j of s2. At each cell either the characters match (extend the diagonal) or they do not (take the best of the neighbouring subproblems). Every problem in this family is a variation on that single grid.",
+  "cx": "O(m x n) time and space",
+  "mist": "Off-by-one between string index and dp index - dp is 1-indexed so use s1[i-1]. Initialise row 0 and column 0 to represent 'match against the empty string'."
+ },
+ {
+  "pattern": "DP - Longest Increasing Subsequence",
+  "recog": "'Longest increasing subsequence', 'chain', 'russian doll envelopes', 'string chain'.",
+  "insight": "The O(n^2) version asks, for each i, the best over all previous j. The O(n log n) version maintains `tails`, where tails[k] is the SMALLEST possible tail of an increasing subsequence of length k+1 - keeping tails small maximises future extension room.",
+  "cx": "O(n log n) time, O(n) space",
+  "mist": "`tails` is NOT an actual subsequence - only its LENGTH is meaningful. Use bisect_left for strictly increasing and bisect_right for non-decreasing. For 2D problems (envelopes), sort by width ascending then height DESCENDI"
+ },
+ {
+  "pattern": "DP - Interval",
+  "recog": "The answer for a RANGE is built from smaller ranges. 'Burst balloons', 'cut sticks', 'matrix chain', 'stone game'.",
+  "insight": "Iterate by LENGTH, not by index, so every smaller range is already solved when you need it. The trick in burst-balloons style problems is to think about which element is handled LAST in the range, not first - that makes the subproblems independent.",
+  "cx": "O(n^3) time, O(n^2) space",
+  "mist": "You MUST loop by length first. Thinking 'which do I burst first' leads nowhere; 'which do I burst LAST' decouples the two halves. Padding the array with sentinel 1s at both ends simplifies the boundaries."
+ },
+ {
+  "pattern": "DP - State machine (stocks)",
+  "recog": "You are always in one of a few STATES (holding / not holding / cooldown) and each step transitions between them.",
+  "insight": "Rather than tracking indices, track STATES and the best value achievable in each. Every one of the six stock problems is this same machine with different transition rules or a transaction counter added.",
+  "cx": "O(n) time, O(1) space",
+  "mist": "For COOLDOWN you must use the value of `free` from TWO steps back, so save prev_free. For at most k transactions, add a k dimension. Initialise hold to negative infinity, not 0."
+ },
+ {
+  "pattern": "DP on Trees",
+  "recog": "'Maximum sum in a tree with constraints', 'house robber on a tree', 'binary tree cameras'.",
+  "insight": "Post-order DFS where each node returns a TUPLE of answers - one per state (e.g. 'best if I take this node' and 'best if I skip it'). The parent combines its children's tuples. It is 1D DP applied along tree edges instead of array indices.",
+  "cx": "O(n) time, O(h) space",
+  "mist": "Return a TUPLE of states, not one number - trying to collapse it to a single value is why people get stuck. Take the max only at the very end, at the root."
+ },
+ {
+  "pattern": "XOR Tricks",
+  "recog": "'Every element appears twice except one', 'find the missing number', 'find the single number'.",
+  "insight": "XOR has two properties that do all the work: x ^ x = 0 and x ^ 0 = x. XOR-ing everything therefore cancels all pairs and leaves the loner. It is also commutative, so order never matters.",
+  "cx": "O(n) time, O(1) space",
+  "mist": "For 'appears three times' XOR fails - use bit-by-bit counting mod 3 instead. The lowest-set-bit trick `x & -x` relies on two's complement."
+ },
+ {
+  "pattern": "Bitmask Enumeration & Bitmask DP",
+  "recog": "n is small (roughly <= 20) and you need ALL subsets, or DP over 'which items have I already used'.",
+  "insight": "With n <= 20 there are at most a million subsets, which is tractable. An integer's bits ARE the subset: bit i set means item i is included. That turns 'set of used items' into a cheap integer DP key.",
+  "cx": "O(2^n x n) time",
+  "mist": "Check the constraint first - n <= 20 or so is the signal. Operator precedence in Python bites: write (mask & (1 << i)) != 0 with explicit parentheses."
+ },
+ {
+  "pattern": "Fast Exponentiation & Modular Arithmetic",
+  "recog": "'Compute x^n', 'answer modulo 1e9+7', very large powers.",
+  "insight": "Squaring halves the exponent each step, so n multiplications become log n. Take the modulus at EVERY step to keep numbers small and avoid overflow in languages with fixed-width integers.",
+  "cx": "O(log n) time",
+  "mist": "Handle negative exponents (x^-n = 1/x^n) and n = 0. In Java/C++ intermediate products overflow - use long and mod at every multiplication."
+ },
+ {
+  "pattern": "LRU / LFU Cache",
+  "recog": "'O(1) get and put with eviction', 'design a cache', 'least recently used'.",
+  "insight": "A hash map gives O(1) lookup but no ordering; a doubly linked list gives O(1) reordering but no lookup. Combining them - map key to NODE, list maintains recency - gives O(1) for both. This exact pairing is the answer to a whole family of design questions.",
+  "cx": "O(1) for get and put",
+  "mist": "You need a DOUBLY linked list - a singly linked one cannot unlink a node in O(1). Dummy head/tail sentinels remove all the null checks. Note the direct link to OS page replacement (LRU eviction)."
+ },
+ {
+  "pattern": "O(1) Insert / Delete / GetRandom",
+  "recog": "'Insert, delete AND get a uniformly random element, all in O(1)'.",
+  "insight": "Random access in O(1) requires an ARRAY. Deletion from an array is O(n) - unless you SWAP the target with the last element and pop, which is O(1) because order does not matter. A hash map from value to index makes finding the target O(1).",
+  "cx": "O(1) insert, delete and getRandom",
+  "mist": "You must update the moved element's index in the map - forgetting that is the standard bug. If you delete the LAST element, guard the self-assignment case."
+ }
+]

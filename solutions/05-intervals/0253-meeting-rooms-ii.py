@@ -6,7 +6,7 @@ Difficulty : Medium
 Pattern    : Intervals
 Sheet      : A
 Order      : 030
-Asked      : Amazon
+Asked      : Amazon, India
 Lesson     : https://www.hellointerview.com/learn/code/intervals/overview
 
 INPUT

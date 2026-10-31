@@ -6,7 +6,7 @@ Difficulty : Medium
 Pattern    : Two Pointers
 Sheet      : B
 Order      : 009
-Asked      : Amazon
+Asked      : Amazon, India
 Lesson     : https://www.hellointerview.com/learn/code/two-pointers/overview
 
 INPUT
